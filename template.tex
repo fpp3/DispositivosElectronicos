@@ -1,0 +1,100 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem} %permite el uso de letras para enumerar
+\usepackage{graphicx} %para las imágenes
+\usepackage{float} %para fijar las imágenes
+\usepackage{booktabs} %para fijar las imágenes
+\renewcommand{\arraystretch}{2} % Escala la altura de las filas
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning} %para hacer diagramas de bloques
+
+\usepackage{amsmath}%para entornos de alineación
+\usepackage{amsfonts}%para las letras lindas de matemática
+\usepackage{xfrac}%para fracciones chiquitas
+\setlength{\jot}{8pt}%modifica el interlineado
+
+\usepackage{tikz} %Librería para gráficos
+\usetikzlibrary{calc, arrows.meta, positioning}
+
+\usepackage[a4paper, %margenes de pagina
+  left=2.5cm,
+  right=2.5cm,
+  top=2cm,
+  bottom=2cm,
+  includehead
+]{geometry}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{UTN-FRC}
+\chead{ASyS}
+\rhead{2R3}
+\cfoot{\thepage}
+\setlength{\headwidth}{\textwidth} % Hace que el ancho del encabezado coincida con el ancho del texto
+\setlength{\headheight}{15pt}  % Ajusta la altura del encabezado
+\setlength{\headsep}{20pt}     % Ajusta la separación entre el encabezado y el contenido
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]{\normalfont\Large\bfseries}{}{0pt}{}
+\titlespacing*{\chapter}{10pt}{-45pt}{10pt}
+
+\usepackage{etoolbox} 
+\makeatletter
+\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{} %Muestra encabezado en las paginas con \chapter
+\makeatother
+
+%Comandos de fake section y fake sub section, para poder agregar secciones al indice
+\newcommand{\fs}[1]{%
+  \par\refstepcounter{section}% Increase section counter
+  \sectionmark{#1}% Add section mark (header)
+  \addcontentsline{toc}{section}{\protect\numberline{\thechapter.\alph{section}}#1}% Add section to ToC
+}
+\newcommand{\fss}[1]{%
+  \par\refstepcounter{subsection}% Increase subsection counter
+  \subsectionmark{#1}% Add subsection mark (header)
+  \addcontentsline{toc}{subsection}{\protect\numberline{\alph{subsection}}#1}% Add subsection to ToC
+}
+
+\renewcommand{\contentsname}{Tabla de Contenidos}
+
+\usepackage{afterpage}
+\newcommand\myemptypage{
+  \newpage
+  \null
+  \thispagestyle{empty}
+  \addtocounter{page}{-1}
+  \newpage
+}
+
+\usepackage{circuitikz}
+
+\title{%
+\setlength{\headwidth}{\textwidth} % Hace que el encabezado tenga el mismo ancho que el contenido
+\setlength{\headheight}{15pt}  % Ajusta la altura del encabezado
+\setlength{\headsep}{10pt}     % Ajusta la separación entre el encabezado y el contenido
+  \fontsize{25}{0}\selectfont Universidad Tecnológica Nacional \\
+  \fontsize{22}{30}\selectfont Dispositivos Electronicos I \\
+  \fontsize{20}{25}\selectfont Trabajo Practico N°
+}
+\author{
+  Santino Noccetti - 405927\\
+  Franco Palombo - 401910\\
+}
+\date{1 / 1 / 2025}
+
+\begin{document}
+
+  \maketitle
+
+  \myemptypage
+
+  \tableofcontents
+  \thispagestyle{plain}
+
+  \myemptypage
+
+  \chapter{Introduccion}
+    Introduccion.
+
+\end{document}
