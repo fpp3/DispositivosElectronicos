@@ -16,6 +16,8 @@
 \setlength{\jot}{8pt}%modifica el interlineado
 \usepackage[font=footnotesize,labelfont=bf]{caption}
 
+\usepackage{pgfplots}
+
 \usepackage{tikz} %Librería para gráficos
 \usetikzlibrary{calc, arrows.meta, positioning}
 
@@ -357,5 +359,55 @@
       contacto al colocar los elementos en la Protoboard y las puntas del multimetro, y las tolerancias de fabricacion
       de los resistores (en este caso, 5\%).
 
+    \chapter{Actividad Anexa}
+      El profesor propuso, a modo de interiorizarce con las herramientas de trabajo del laboatorio, reemplazar la
+      fuente de corriente continua por un generador de funciones. Este mismo, configurado a $10Vpp$, onda sinusoidal y
+      frecuencia de $50Hz$ simula un transformador de corriente alterna. De esta forma, podemos emplear el Osciloscopio
+      para poder ver como se comportan los resistores bajo corrientes alternas.
+
+      \section{Simulacion}
+      Para la simulacion utilizamos nuevamente el software LTSpice, esta vez con el comando spice .tran (transient
+      analysis) con $0.04s$ de muestra para ver dos ciclos de la señal alterna:
+      \begin{figure}[!h]
+        \centering
+        \includegraphics[width=1\linewidth]{images/sim_ac.png}
+        \caption{Simulacion en corriente alterna.}
+      \end{figure}
+
+      Podemos entonces observar que la caida de tension pico-pico en el resistor $R_1$ es de aproximadamente $8,376V$,
+      y en el resistor $R_2$ es de aproximadamente $1,623V$. Asi mismo, las corrientes tienen valores pico-pico
+      similares a los calculados en corriente continua. Para $i_t$ son $837,6\mu A$, para $i_2$, $345,4\mu A$ y para
+      $i_3$, $491,9\mu A$.
+
+      \newpage
+      \section{Mediciones}
+      Configurando el generador de funciones, y despues de haber calibrado el osciloscopio, podemos ver la siguiente
+      señal en el mismo:
+      \begin{figure}[!h]
+        \centering
+        \includegraphics[width=0.8\linewidth]{pictures/osc-ac_vs.jpeg}
+        \caption{Calibracion del generador de funciones. Osciloscopio configurado a 2V/div, 5mS/div.}
+      \end{figure}
+
+      Si conectamos ahora la salida del generador de funciones a nuestro circuito, podemos observar las caidas de
+      tension en cada resistor:
+      \begin{figure}[!h]
+        \centering
+        \begin{minipage}{0.45\textwidth}
+          \includegraphics[width=1\linewidth]{pictures/osc-mult-ac_v_r1.jpeg}
+          \caption{$V_{R_1}$. Osciloscopio configurado a 1V/div, 5mS/div. Lectura: $3,54V$}
+        \end{minipage}
+        \hspace{0.5cm}
+        \begin{minipage}{0.45\textwidth}
+          \includegraphics[width=1\linewidth]{pictures/osc-ac-mult-v_r2-r3.jpeg}
+          \caption{$V_{R_2}$. Osciloscopio configurado a 1V/div, 5mS/div. Lectura: $0,576V$}
+        \end{minipage}
+      \end{figure}
+
+      Naturalmente, los numeros no coinciden, esto es debido a que el multimetro esta midiendo el valor eficaz de la
+      caida de tension en las resistencias, y no el valor pico o el valor pico-pico. Asi y todo, al momento de escribir
+      el informe, quisimos corroborar esas mediciones, y nos dimos cuenta que posiblemente hayamos calibrado mal el
+      osciloscopio, y por lo tanto el generador de funciones, ya que los valores eficaces, pasados a valores pico-pico,
+      no se acercan por algunos volts a los valores simulados.
 
 \end{document}
