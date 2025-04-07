@@ -1,16 +1,20 @@
-\documentclass[a4paper,12pt]{report}
+\documentclass[a4paper,12pt, spanish]{report}
 \usepackage[utf8]{inputenc}
 \usepackage{enumitem} %permite el uso de letras para enumerar
 \usepackage{graphicx} %para las imágenes
 \usepackage{float} %para fijar las imágenes
 \usepackage{booktabs} %para fijar las imágenes
+\usepackage{wrapfig} %para que el texto se acomode entre las imagenes
+\usepackage[spanish]{babel}
 \renewcommand{\arraystretch}{2} % Escala la altura de las filas
+\usepackage{multirow}
 
 \usepackage{amsmath}%para entornos de alineación
 \usepackage{amsfonts}%para las letras lindas de matemática
 \usepackage{xfrac}%para fracciones chiquitas
 \allowdisplaybreaks
 \setlength{\jot}{8pt}%modifica el interlineado
+\usepackage[font=footnotesize,labelfont=bf]{caption}
 
 \usepackage{tikz} %Librería para gráficos
 \usetikzlibrary{calc, arrows.meta, positioning}
@@ -53,8 +57,6 @@
   \subsectionmark{#1}% Add subsection mark (header)
   \addcontentsline{toc}{subsection}{\protect\numberline{\alph{subsection}}#1}% Add subsection to ToC
 }
-
-\renewcommand{\contentsname}{Tabla de Contenidos}
 
 \usepackage{afterpage}
 \newcommand\myemptypage{
@@ -259,6 +261,93 @@
       \end{figure}
 
       \section{Implementacion y Mediciones}
+      \begin{figure}[!h]
+        \centering
+        \includegraphics[angle=270, width=0.8\textwidth]{pictures/prot-crkt.jpg}
+        \caption{Implementacion del circuito.}
+        \label{prot-crkt}
+      \end{figure}
+      \begin{wrapfigure}{r}{0.3\textwidth}
+        \vspace{-0.3cm}
+        \centering
+        \includegraphics[width=0.25\textwidth]{pictures/mult-vs.jpeg}
+        \caption{Calibracion de la Fuente.}
+        \label{mult-vs}
+      \end{wrapfigure}
+      Para la implementacion del circuito utilizamos una Protoboard, en conjunto con cables unifilares para hacer 
+      las conexiones, y resistores de carbono de $\tfrac{1}{4}W$. El circuito quedo como se ve en la figura 
+      \ref{prot-crkt}.
+
+      Seguido al ensamblaje del circuito, procedimos a conectar la fuente y calibrar la salida de voltaje lo mas
+      proximo a 10V usando el multimetro, como se ve en la figura \ref{mult-vs}. La medicion excta es $9,98V$.
+
+      Despues de haber calibrado la fuente, procedimos a conectar los cables banana-cocodrilo al circuito ensamblado
+      en la Protoboard y comenzar con las mediciones. A continuacion se muestran una serie de imagenes en las que por
+      un lado se muestra la medicion del multimetro y por otro lado se muestra donde estaban tocando las puntas del
+      multimetro.
+      \begin{figure}[H]
+        \centering
+          \begin{minipage}{0.3\textwidth}
+            \centering
+            \includegraphics[width=1\linewidth]{pictures/mult-v_r1.jpg}
+            \includegraphics[width=1\linewidth]{pictures/prot-v_r1.jpg}
+            \caption{Medicion $V_{R_1}$.}
+          \end{minipage}
+          \begin{minipage}{0.3\textwidth}
+            \centering
+            \includegraphics[width=1\linewidth]{pictures/mult-v_r2-r3.jpg}
+            \includegraphics[width=1\linewidth]{pictures/prot-v_r2-r3.jpg}
+            \caption{Medicion $V_{R_2}$.}
+          \end{minipage}
+          \begin{minipage}{0.3\textwidth}
+            \centering
+            \includegraphics[width=1\linewidth]{pictures/mult-it.jpg}
+            \includegraphics[width=1\linewidth]{pictures/prot-it.jpg}
+            \caption{Medicion $I_t$.}
+          \end{minipage}
+      \end{figure}
+      \vspace{-0.5cm}
+      \begin{figure}[H]
+        \centering
+          \begin{minipage}{0.3\textwidth}
+            \centering
+            \includegraphics[width=1\linewidth]{pictures/mult-i2.jpg}
+            \includegraphics[width=1\linewidth]{pictures/prot-i2.jpg}
+            \caption{Medicion $I_2$.}
+          \end{minipage}
+          \begin{minipage}{0.3\textwidth}
+            \centering
+            \includegraphics[width=1\linewidth]{pictures/mult-i3.jpg}
+            \includegraphics[width=1\linewidth]{pictures/prot-i3.jpg}
+            \caption{Medicion $I_3$.}
+          \end{minipage}
+      \end{figure}
+
+
+      Con el objetivo de comparar, se presenta a continuacion una tabla de los valores calculados con resistores y
+      fuentes ideales y los valores medidos en la practica de laboratorio:
+      \begin{figure}[!h]
+        \centering
+        \begin{tabular}[c]{|c||c|c|c|c||c|}
+          \hline
+          \multicolumn{6}{|c|}{Comparativa de valores}\\
+          \hline
+                    & $V_s$         & $R_1$         & $R_2$         & $R_3$         & \\
+          \hline
+          Tension   & $10V$         & $8,3760V$     & \multicolumn{2}{|c||}{$1,6239V$} & \multirow{2}{*}{Ideal}\\
+          \cline{1-5}
+          Corriente &               & $837,6\mu A$  & $345,5\mu A$  & $492\mu A$    & \\
+          \hline
+          Tension   & $9,98V$       & $8,36V$       & \multicolumn{2}{|c||}{$1,611V$}  & \multirow{2}{*}{Real}\\
+          \cline{1-5}
+          Corriente &               & $829\mu A$    & $340\mu A$    & $481\mu A$    & \\
+          \hline
+        \end{tabular}
+      \end{figure}
+      
+      La presicion de los valores de la realidad con respecto a los ideales tiene que ver con las resistencias de
+      contacto al colocar los elementos en la Protoboard y las puntas del multimetro, y las tolerancias de fabricacion
+      de los resistores (en este caso, 5\%).
 
 
 \end{document}
