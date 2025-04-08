@@ -8,6 +8,10 @@
 \usepackage[spanish]{babel}
 \renewcommand{\arraystretch}{2} % Escala la altura de las filas
 \usepackage{multirow}
+\usepackage{tabularx}
+
+\usepackage[table]{xcolor}
+\definecolor{grisclaro}{gray}{0.9}
 
 \usepackage{amsmath}%para entornos de alineación
 \usepackage{amsfonts}%para las letras lindas de matemática
@@ -15,8 +19,6 @@
 \allowdisplaybreaks
 \setlength{\jot}{8pt}%modifica el interlineado
 \usepackage[font=footnotesize,labelfont=bf]{caption}
-
-\usepackage{pgfplots}
 
 \usepackage{tikz} %Librería para gráficos
 \usetikzlibrary{calc, arrows.meta, positioning}
@@ -76,7 +78,7 @@
 \setlength{\headheight}{15pt}  % Ajusta la altura del encabezado
 \setlength{\headsep}{10pt}     % Ajusta la separación entre el encabezado y el contenido
   \fontsize{25}{0}\selectfont Universidad Tecnológica Nacional \\
-  \fontsize{22}{30}\selectfont Dispositivos Electrónicos I \\
+  \fontsize{22}{30}\selectfont Dispositivos Electronicos I \\
   \fontsize{20}{25}\selectfont Trabajo Practico N° 1
 }
 \author{
@@ -96,31 +98,20 @@
 
   \myemptypage
 
-  \chapter{Introducción}
-    En este trabajo de laboratorio se propuso el análisis y medición de un circuito puramente resistivo, constando así de 3
-    partes fundamentales.
+  \chapter{Introduccion}
+    En este trabajo de laboratorio se nos asigno el analisis y medicion de un circuito resistivo, constando asi de 3 partes fundamentales.
 
-    El primero es el calculo tanto de la corriente como el voltaje que es atravesada/caída por cada resistor,
-    teniendo así que utilizar las leyes de Kirchoff, las leyes de Ohm, y la posterior deducción de un sistema de
-    ecuaciones para el calculo de todos los parámetros.
+    
+    El primero es el calculo tanto de la corriente que pasa por el circuito como el voltaje atraviesa cada resistencia, teniendo asi que utilizar ecuaciones de malla y ley de Ohm para el calculo.
 
-    Luego, utilizando el programa LTSpice, se arma el mismo circuito, se simula y mide nuevamente la corriente y el
-    voltaje, teniendo así una forma de verificar los valores ideales que calculamos previamente utilizando las leyes
-    de Kirchoff y Ohm.
+    Luego en el programa LTSpice se arma el mismo circuito, se simula y mide nuevamente la corriente y el voltaje, teniendo asi nuevos valores ideales que nos ayudan a preveer los valores cuando armemos y midamos en el laboratorio.
 
-    Como una actividad anexa, el profesor propuso que utilizando un generador de funciones y un osciloscopio, podamos
-    experimentar con corriente alterna, y ver como se comportan dichos componentes resistivos cuando se les aplican ese
-    tipo de corrientes. También, la actividad anexa sirve el propósito de aprender a usar herramientas nuevas.
+    Por ultimo, en la facultad se realiza el procedimiento de armado del circuito y medida del mismo, utilizando para esto el multimetro de la marca UNI-T modelo UT33A+ y la fuente que nos proporciona el establecimiento registrada como F-44, luego de tomar las medidas, junto con un osciloscopio LEADER 40 MHz y un generador de frecuencia Gwinstek SFG-2120 ambas tambien proporcionadas por el laboratorio y registradas como O-98 y G-174 se observaron los valores y la onda que nos proporcionaba el generador en el osciloscopio.
+    
 
-    Por ultimo, en la facultad se realiza el procedimiento de armado del circuito y toma de mediciones del mismo.
-    La facultad nos proporciono diferentes elementos, entre ellos, una fuente de alimentación de corriente continua,
-    registrada como F-44, un generador de funciones GwInstek SFG-2120, registrado como G-174, y por ultimo, el
-    osciloscopio LEADER 8041 de 40MHz, registrado como O-98 en conjunto con una sonda. Para la medición de parámetros
-    continuos, alternos y corrientes, el grupo proporciono un voltímetro UNI-T modelo UT33A+.
 
-  \myemptypage
   \chapter{Actividad Practica}
-    \section{Cálculos}
+    \section{Calculos}
     \vspace{-0.6cm}
       \begin{figure}[h]
         \centering
@@ -167,12 +158,12 @@
         \end{cases}
       \end{gather*}
 
-      Sabiendo que, por ley de Ohm, la caída de tensión en cualquier resistor es:
+      Sabiendo que, por ley de Ohm, la caida de tension en cualquier resistor es:
       \begin{equation}
         V_R = R I
       \end{equation}
       donde $R$ es la resistencia de dicho resistor, e $I$ la intensidad de corriente que pasa por ese resistor,
-      podemos entonces despejar la caída de tensión en la $R_1$ reemplazando la caída de tensión de la $R_2$ en la ec.
+      podemos entonces despejar la caida de tension en la $R_1$ reemplazando la caida de tension de la $R_2$ en la ec.
       de la malla $M_1$:
       \begin{figure}[!h]
         \centering
@@ -193,7 +184,7 @@
         \centering
         \begin{minipage}{0.35\textwidth}
           \centering
-          \textit{Cálculos Auxiliares}
+          \textit{Calculos Auxiliares}
           \begin{align}
             I_2 + I_3 &= I_t\nonumber\\
             I_2 &= I_t - I_3\tag{a}
@@ -217,8 +208,8 @@
         \end{minipage}
       \end{figure}
 
-      Con la ecuación para $V_{R_1}$ podemos despejar $V_{R_2}$, y por consecuente $V_{R_3}$, que son iguales debido a
-      que la caída de tensión para resistores en paralelo es la misma. Entonces, reemplazando valores obtenemos:
+      Con la ecuacion para $V_{R_1}$ podemos despejar $V_{R_2}$, y por consecuente $V_{R_3}$, que son iguales debido a
+      que la caida de tension para resistores en paralelo es la misma. Entonces, reemplazando valores obtenemos:
       \begin{figure}[!h]
         \centering
         \begin{minipage}{0.4\textwidth}
@@ -270,41 +261,41 @@
       \end{minipage}
       \end{figure}
       
-      \section{Simulación}
-      Para la simulación, se utilizo el software LTSpice, en el cual se modelo el circuito, y utilizando el análisis de
-      punto de operación (op ó operating point) podemos obtener las corrientes de los resistores y la caída de
-      tensión del paralelo de resistores:
+      \section{Simulacion}
+      Para la simulacion, se utilizo el software LTSpice, en el cual se modelo el circuito, y utilizando el analisis de
+      punto de operacion (op ó operating point) podemos obtener las corrientes de los resistores y la caida de
+      tension del paralelo de resistores:
       \begin{figure}[!h]
         \centering
         \includegraphics[width=0.8\linewidth]{images/sim_dc.png}
 
-        \caption{Simulación de punto de operación del circuito.}
+        \caption{Simulacion de punto de operacion del circuito.}
       \end{figure}
 
-      \section{Implementación y Mediciones}
+      \section{Implementacion y Mediciones}
       \begin{figure}[!h]
         \centering
         \includegraphics[angle=270, width=0.8\textwidth]{pictures/prot-crkt.jpg}
-        \caption{Implementación del circuito.}
+        \caption{Implementacion del circuito.}
         \label{prot-crkt}
       \end{figure}
       \begin{wrapfigure}{r}{0.3\textwidth}
         \vspace{-0.3cm}
         \centering
         \includegraphics[width=0.25\textwidth]{pictures/mult-vs.jpeg}
-        \caption{Calibración de la Fuente.}
+        \caption{Calibracion de la Fuente.}
         \label{mult-vs}
       \end{wrapfigure}
-      Para la implementación del circuito utilizamos una Protoboard, en conjunto con cables unifilares para hacer 
+      Para la implementacion del circuito utilizamos una Protoboard, en conjunto con cables unifilares para hacer 
       las conexiones, y resistores de carbono de $\tfrac{1}{4}W$. El circuito quedo como se ve en la figura 
       \ref{prot-crkt}.
 
       Seguido al ensamblaje del circuito, procedimos a conectar la fuente y calibrar la salida de voltaje lo mas
-      próximo a 10V usando el multimetro, como se ve en la figura \ref{mult-vs}. La medición exacta es $9,98V$.
+      proximo a 10V usando el multimetro, como se ve en la figura \ref{mult-vs}. La medicion excta es $9,98V$.
 
-      Después de haber calibrado la fuente, procedimos a conectar los cables banana-cocodrilo al circuito ensamblado
-      en la Protoboard y comenzar con las mediciones. A continuación se muestran una serie de imágenes en las que por
-      un lado se muestra la medición del multimetro y por otro lado se muestra donde estaban tocando las puntas del
+      Despues de haber calibrado la fuente, procedimos a conectar los cables banana-cocodrilo al circuito ensamblado
+      en la Protoboard y comenzar con las mediciones. A continuacion se muestran una serie de imagenes en las que por
+      un lado se muestra la medicion del multimetro y por otro lado se muestra donde estaban tocando las puntas del
       multimetro.
       \begin{figure}[H]
         \centering
@@ -312,19 +303,19 @@
             \centering
             \includegraphics[width=1\linewidth]{pictures/mult-v_r1.jpg}
             \includegraphics[width=1\linewidth]{pictures/prot-v_r1.jpg}
-            \caption{Medición $V_{R_1}$.}
+            \caption{Medicion $V_{R_1}$.}
           \end{minipage}
           \begin{minipage}{0.3\textwidth}
             \centering
             \includegraphics[width=1\linewidth]{pictures/mult-v_r2-r3.jpg}
             \includegraphics[width=1\linewidth]{pictures/prot-v_r2-r3.jpg}
-            \caption{Medición $V_{R_2}$.}
+            \caption{Medicion $V_{R_2}$.}
           \end{minipage}
           \begin{minipage}{0.3\textwidth}
             \centering
             \includegraphics[width=1\linewidth]{pictures/mult-it.jpg}
             \includegraphics[width=1\linewidth]{pictures/prot-it.jpg}
-            \caption{Medición $I_t$.}
+            \caption{Medicion $I_t$.}
           \end{minipage}
       \end{figure}
       \vspace{-0.5cm}
@@ -334,18 +325,18 @@
             \centering
             \includegraphics[width=1\linewidth]{pictures/mult-i2.jpg}
             \includegraphics[width=1\linewidth]{pictures/prot-i2.jpg}
-            \caption{Medición $I_2$.}
+            \caption{Medicion $I_2$.}
           \end{minipage}
           \begin{minipage}{0.3\textwidth}
             \centering
             \includegraphics[width=1\linewidth]{pictures/mult-i3.jpg}
             \includegraphics[width=1\linewidth]{pictures/prot-i3.jpg}
-            \caption{Medición $I_3$.}
+            \caption{Medicion $I_3$.}
           \end{minipage}
       \end{figure}
 
 
-      Con el objetivo de comparar, se presenta a continuación una tabla de los valores calculados con resistores y
+      Con el objetivo de comparar, se presenta a continuacion una tabla de los valores calculados con resistores y
       fuentes ideales y los valores medidos en la practica de laboratorio:
       \begin{figure}[!h]
         \centering
@@ -355,71 +346,57 @@
           \hline
                     & $V_s$         & $R_1$         & $R_2$         & $R_3$         & \\
           \hline
-          Tensión   & $10V$         & $8,3760V$     & \multicolumn{2}{|c||}{$1,6239V$} & \multirow{2}{*}{Ideal}\\
+          Tension   & $10V$         & $8,3760V$     & \multicolumn{2}{|c||}{$1,6239V$} & \multirow{2}{*}{Ideal}\\
           \cline{1-5}
           Corriente &               & $837,6\mu A$  & $345,5\mu A$  & $492\mu A$    & \\
           \hline
-          Tensión   & $9,98V$       & $8,36V$       & \multicolumn{2}{|c||}{$1,611V$}  & \multirow{2}{*}{Real}\\
+          Tension   & $9,98V$       & $8,36V$       & \multicolumn{2}{|c||}{$1,611V$}  & \multirow{2}{*}{Real}\\
           \cline{1-5}
           Corriente &               & $829\mu A$    & $340\mu A$    & $481\mu A$    & \\
           \hline
         \end{tabular}
       \end{figure}
       
-      La precisión de los valores de la realidad con respecto a los ideales tiene que ver con las resistencias de
-      contacto al colocar los elementos en la Protoboard y las puntas del multimetro, y las tolerancias de fabricación
+      La presicion de los valores de la realidad con respecto a los ideales tiene que ver con las resistencias de
+      contacto al colocar los elementos en la Protoboard y las puntas del multimetro, y las tolerancias de fabricacion
       de los resistores (en este caso, 5\%).
-
-    \myemptypage
-    \chapter{Actividad Anexa}
-      El profesor propuso, a modo de interiorizarse con las herramientas de trabajo del laboratorio, reemplazar la
-      fuente de corriente continua por un generador de funciones. Este mismo, configurado a $10Vpp$, onda sinusoidal y
-      frecuencia de $50Hz$ simula un transformador de corriente alterna. De esta forma, podemos emplear el Osciloscopio
-      para poder ver como se comportan los resistores bajo corrientes alternas.
-
-      \section{Simulación}
-      Para la simulación utilizamos nuevamente el software LTSpice, esta vez con el comando spice .tran (transient
-      analysis) con $0.04s$ de muestra para ver dos ciclos de la señal alterna:
-      \begin{figure}[!h]
-        \centering
-        \includegraphics[width=1\linewidth]{images/sim_ac.png}
-        \caption{Simulación en corriente alterna.}
-      \end{figure}
-
-      Podemos entonces observar que la caída de tensión pico-pico en el resistor $R_1$ es de aproximadamente $8,376V$,
-      y en el resistor $R_2$ es de aproximadamente $1,623V$. Así mismo, las corrientes tienen valores pico-pico
-      similares a los calculados en corriente continua. Para $i_t$ son $837,6\mu A$, para $i_2$, $345,4\mu A$ y para
-      $i_3$, $491,9\mu A$.
-
       \newpage
-      \section{Mediciones}
-      Configurando el generador de funciones, y después de haber calibrado el osciloscopio, podemos ver la siguiente
-      señal en el mismo:
-      \begin{figure}[!h]
-        \centering
-        \includegraphics[width=0.8\linewidth]{pictures/osc-ac_vs.jpeg}
-        \caption{Calibración del generador de funciones. Osciloscopio configurado a 2V/div, 5mS/div.}
-      \end{figure}
+      \chapter{Conclusion}
+      En este primer trabajo se logro reforzar conocimientos acerca de medicion tanto del multimetro como del osciloscopio, teniendo en cuenta esto tuvimos algunas dudas a la hora de conectar la masa del osciloscopio con el generador de frecuencia en el circuito por miedo a algun corto, duda que se resolvio en el mismo laboratorio.
 
-      Si conectamos ahora la salida del generador de funciones a nuestro circuito, podemos observar las caídas de
-      tensión en cada resistor:
-      \begin{figure}[!h]
-        \centering
-        \begin{minipage}{0.45\textwidth}
-          \includegraphics[width=1\linewidth]{pictures/osc-mult-ac_v_r1.jpeg}
-          \caption{$V_{R_1}$. Osciloscopio configurado a 1V/div, 5mS/div. Lectura: $3,54V$}
-        \end{minipage}
-        \hspace{0.5cm}
-        \begin{minipage}{0.45\textwidth}
-          \includegraphics[width=1\linewidth]{pictures/osc-ac-mult-v_r2-r3.jpeg}
-          \caption{$V_{R_2}$. Osciloscopio configurado a 1V/div, 5mS/div. Lectura: $0,576V$}
-        \end{minipage}
-      \end{figure}
+      \section{Rubrica}
+      
+      \renewcommand\tabularxcolumn[1]{>{\centering\arraybackslash}m{#1}}
+      \begin{tabularx}{\textwidth}{|X|X|X|X|X|X|X|X|}
+      \hline
+      \rowcolor{gray!30}
+      \textbf{Tarea} & \textbf{Puntuacion} & \textbf{Maximo}\\    
+      \hline
+      Presentacion del informe & \void & 30\%\\
+      \hline
+      Explicacion del proceso de medicion & \void & 40\%\\
+      \hline
+      Defensa de las conclusiones & \void & 30\%\\
+      \hline
+      \textbf{Total} & \void & \textbf{100\%}\\
+      \hline
+      
+      \end{tabularx}
+      \section{Planilla de Seguimiento}
+      \centering
+      \begin{tabular}{|>{\centering\arraybackslash}p{1.5cm}|>{\centering\arraybackslash}p{1.5cm}|>{\centering\arraybackslash}p{1.5cm}|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|}
+      \hline
+      
+      \small{{Version del TP} & 
+      \small{Fecha  de inicio} & 
+      \small{Revisado por} & 
+      \small{Resumen Observaciones/Correcciones/Propuestas} & \small{Fecha de retroalimentacion valida} & 
+      \small{Cambios realizados por JTP(si/no)} & 
+      \small{Fecha de entrega de version corregida} &  \small{Aprobado por el jefe de catedra (si/no)}\\   
+     
+      \hline
+      1.0(2025) &  &  &  &  &  &  & \\
+      \hline
 
-      Naturalmente, los números no coinciden, esto es debido a que el multimetro esta midiendo el valor eficaz de la
-      caída de tensión en las resistencias, y no el valor pico o el valor pico-pico. Así y todo, al momento de escribir
-      el informe, quisimos corroborar esas mediciones, y nos dimos cuenta que posiblemente hayamos calibrado mal el
-      osciloscopio, y por lo tanto el generador de funciones, ya que los valores eficaces, pasados a valores pico-pico,
-      no se acercan por algunos volts a los valores simulados.
-
+      \end{tabular}    
 \end{document}
