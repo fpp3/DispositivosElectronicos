@@ -636,7 +636,8 @@ sorting=ynt
   \part{Comportamiento del diodo en función de la temperatura}
     \chapter{Actividad de simulacion}
         Se pide simular el diodo 1N3198 pero esta vez para poder corroborar como afecta la temperatura la curva
-        caracteristica. Para la simulacion se utilizaran las siguientes temperaturas: 20$°C$,100$°C$ y 125$°C$. Ademas de los siguientes parametros que se muestran a continuacion con el circuito a simular
+        caracteristica. Para la simulacion se utilizaran las siguientes temperaturas: $20°C$, $100°C$ y $125°C$. Ademas
+        de los siguientes parametros que se muestran a continuacion con el circuito a simular
 
         \begin{figure}[!ht]
           \centering
@@ -646,17 +647,17 @@ sorting=ynt
                             to [short, -, i>^=$i_D$]         (1, 3)
                             to [R=$R_1$, v=$V_{R_1}$]        (4, 3)
                             to [short, -]                    (5, 3)
-                            to [D=$1N60$, v=$v_D$]           (5, -1)
+                            to [zzD=$1N3198$, v=$v_D$]       (5, -1)
                             to [short, -]                    (5, -1)
                             to [short, -]                    (0, -1)
                             ;
             \end{circuitikz}
             \caption{Circuito con diodo de silicio 1N3198.}
-            \label{crkt.Ge.directa}
+            \label{crkt.zener.directa}
           \end{minipage}
           \hfill
           \begin{minipage}{0.45\textwidth}
-            \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list.Ge.directa]
+            \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list.zenner.directa]
               .dc V1 0 800m 10m
               .model 1N3198 D (IS=2.0e-7 N=1.20 RS=1.0 EG=1.11 XTI=-2 CJO=40p VJ=0.75 M=0.333 BV=2.25 IBV=5m KF=0 AF=1 FC=0.5)
               .step temp list 20 100 125
@@ -678,7 +679,7 @@ sorting=ynt
         voltaje para lograr pasar al estado de conmutacion. Sabiendo que los graficos que nos brinda el 
         fabricante en la hoja de datos es en una temperatura promedio de 25$°C°$ en el grafico se observa 
         perfectamente  los otros 2 casos.
-        
+
 
 
         A su vez hay otra variable que termina siendo afectada por la temperatura y esta es la corriente de fuga,
@@ -691,17 +692,20 @@ sorting=ynt
         generando la corriente de fuga.
 
 
-        
 
-  
+
+
   \part{Circuitos recortadores con diodos Zener}
     \chapter{Actividad de simulacion}
-        En este ejercicio se pide analizar dos circuitos compuestos por dos diodos zener configurados como "back-to-back" implica conectar dos diodos Zener en sentido opuesto, con el ánodo de un diodo conectado al cátodo del otro. Esta configuracion se utiliza principalmente para proteger contra sobretensiones en ambas polaridades.
-        
+        En este ejercicio se pide analizar dos circuitos compuestos por dos diodos zener configurados como
+        "back-to-back" implica conectar dos diodos Zener en sentido opuesto, con el ánodo de un diodo conectado al
+        cátodo del otro. Esta configuracion se utiliza principalmente para proteger contra sobretensiones en ambas
+        polaridades.
+
         \subsection{Circuito 1}
 
             En el primer circuito  se plantea lo siguiente:
-    
+
             \begin{figure}[!ht]
               \centering
               \begin{minipage}{0.45\textwidth}
@@ -710,35 +714,35 @@ sorting=ynt
                                 to [short, -, i<^=$i_D$]         (1, 3)
                                 to [R=$R_1$, v<=$V_{R_1}$]       (4, 3)
                                 to [short, -]                    (5, 3)
-                                to [zD=$1N60$, v<=$v_D$]          (5, -1)
+                                to [zzD=$1N60$, v<=$v_D$]        (5, -1)
                                 to [short, -]                    (5, -1)
                                 to [short, -]                    (0, -1)
                                 ;
                 \end{circuitikz}
                 \caption{Circuito con diodo de silicio 1N60 en inversa.}
-                \label{crkt.Ge.inversa}
+                \label{crkt.recortador.btb}
               \end{minipage}
               \hfill
               \begin{minipage}{0.45\textwidth}
-                \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list.Ge.inversa]
+                \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list.recortador.btb]
                   .model 1N5338B D(IS=1n RS=1 N=1.3 BV=5.1 IBV=240m CJO=200p TT=1u)
                   .model 1N5357B D(IS=1n RS=1 N=1.3 BV=20 IBV=65m CJO=200p TT=1u)
                   .tran .04
                 \end{lstlisting}
               \end{minipage}
             \end{figure}
-            
-            
-            
+
+
+
             Y el grafico que presenta es el siguiente:
-    
-    
-    
+
+
+
             Como se puede observar, los diodos zener recortan las ondas dependiendo de los valores de los mismos, en 
             este caso los diodos son de 5.1$V$ y 20$V$. En el semiciclo positivo, el Zener de 20$V$ está en inversa y
             conduce solamente si $Vin > 20.7V$, por otro lado en el semiciclo negativo, el Zener de 5.1$V$ esta en 
             inversa y conduce solamente si $Vin <-5.8V$. Por lo tanto recorta la señal entre $+20.7V$ y $-5.8V$.
-            
+
 
         \subsection{Circuito 2}
 
@@ -758,11 +762,11 @@ sorting=ynt
                                 ;
                 \end{circuitikz}
                 \caption{Circuito con diodo de silicio 1N60 en inversa.}
-                \label{crkt.Ge.inversa}
+                \label{crkt.recortador.ftf}
               \end{minipage}
               \hfill
               \begin{minipage}{0.45\textwidth}
-                \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list.Ge.inversa]
+                \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list.recortador.ftf]
                   .model 1N5342B D(IS=1n RS=1 N=1.3 BV=6.8 IBV=175m CJO=200p TT=1u)
                   .model 1N5349B D(IS=1n RS=1 N=1.3 BV=12 IBV=100m CJO=200p TT=1u)
                   .tran .04
@@ -774,9 +778,10 @@ sorting=ynt
 
             Y el grafico que presenta es el siguiente:
 
-            En este caso al variar los valores de los diodos zener lo que ocurre es lo siguiente: Se presentan dos zener con los valores de $6.8V$ y $12V$. En el semiciclo positivo, el Zener de $6V$ está en inversa y
-            conduce solamente si $Vin > 7.5V$, por otro lado en el semiciclo negativo, el Zener de $12V$ esta en 
-            inversa y conduce solamente si $Vin <12.7V$. Por lo tanto recorta la señal entre $+7.5V$ y $12.7V$.
+            En este caso al variar los valores de los diodos zener lo que ocurre es lo siguiente: Se presentan dos
+            zener con los valores de $6.8V$ y $12V$. En el semiciclo positivo, el Zener de $6V$ está en inversa y
+            conduce solamente si $Vin \leq 7.5V$, por otro lado en el semiciclo negativo, el Zener de $12V$ esta en 
+            inversa y conduce solamente si $Vin < 12.7V$. Por lo tanto recorta la señal entre $+7.5V$ y $12.7V$.
             
         
 
@@ -797,10 +802,14 @@ sorting=ynt
         Regimenes Maximos:
         
         \begin{enumerate}
-            \item V_RRM: Es la tension inversa de pico de trabajo. Es la que puede ser soportada por el diodo sin llegar a la zona de ruptura.
-            \item V_RSM: Es la tension inversa de pico no repetitiva. Es la maxima tension inversa transitoria que puede ser soportada  por el diodo en forma no repetitiva.
-            \item I_FRMS: Es la corriente directa de pico repetitiva. Corriente que puede ser soportada cada 20ms con un pico de duracion de 1ms a T=25$°C$.
-            \item I_FSM: Corriente directa de pico no repetitiva. Maximo pico de intensidad de corriente que puede soportar el dispoitivo.
+          \item $V_{RRM}$: Es la tension inversa de pico de trabajo. Es la que puede ser soportada por el diodo sin
+              llegar a la zona de ruptura.\\
+            \item $V_{RSM}$: Es la tension inversa de pico no repetitiva. Es la maxima tension inversa transitoria que
+              puede ser soportada  por el diodo en forma no repetitiva.\\
+            \item $I_{FRMS}$: Es la corriente directa de pico repetitiva. Corriente que puede ser soportada cada 20ms
+              con un pico de duracion de 1ms a $T=25°C$.\\
+            \item $I_{FSM}$: Corriente directa de pico no repetitiva. Maximo pico de intensidad de corriente que puede
+              soportar el dispoitivo.
         \end{enumerate}
 
 
@@ -808,11 +817,12 @@ sorting=ynt
         Regimenes Caracteristicos:
 
         \begin{enumerate}
-            \item V_BR: Es la tension inversa continua. Maxima tension que soporta el diodo en estado de bloqueo.
-            \item I_R: Maxima corriente inversa. Valor de orriente que circula en estado de bloqueo.
-            \item V_F: Tension en directa. Tension en estado de circulacion.
-            \item I_RM: Es la corriente máxima que fluye en sentido inverso cuando se cambia de polarización directa a inversa en un diodo. 
-            \item I_F: Corriente directa. Corriente que circula en estado de conduccion.
+          \item $V_{BR}$: Es la tension inversa continua. Maxima tension que soporta el diodo en estado de bloqueo.\\
+            \item $I_R$: Maxima corriente inversa. Valor de orriente que circula en estado de bloqueo.\\
+            \item $V_F$: Tension en directa. Tension en estado de circulacion.\\
+            \item $I_{RM}$: Es la corriente máxima que fluye en sentido inverso cuando se cambia de polarización
+              directa a inversa en un diodo.\\
+            \item $I_F$: Corriente directa. Corriente que circula en estado de conduccion.
         \end{enumerate}
 
 
@@ -820,19 +830,24 @@ sorting=ynt
         Caracteristicas Termicas.
 
         \begin{enumerate}
-            \item T_J: Es la temperatura de la union. Temperatura maxima del componente antes de que se dañe.
-            \item T_STG: Es la temperatura de almacenamiento. Temperatura que se almacena en el dispositivo cuando no se le aplica potencia.
-            \item T_A: Es la temperatura del ambiente. Temperatura a la que el diodo trabaja y se almacena.
-            \item R_thjc: Es la resistencia térmica que se encuentra entre la unión semiconductora del diodo y la carcasa externa del dispositivo. Mide la eficiencia con la que el calor generado dentro del diodo se transfiere a la carcasa, donde puede ser disipado. 
+            \item $T_J$: Es la temperatura de la union. Temperatura maxima del componente antes de que se dañe.\\
+            \item $T_{STG}$: Es la temperatura de almacenamiento. Temperatura que se almacena en el dispositivo cuando
+              no se le aplica potencia.\\
+            \item $T_A$: Es la temperatura del ambiente. Temperatura a la que el diodo trabaja y se almacena.\\
+            \item $R_{thjc}$: Es la resistencia térmica que se encuentra entre la unión semiconductora del diodo y la
+              carcasa externa del dispositivo. Mide la eficiencia con la que el calor generado dentro del diodo se 
+              transfiere a la carcasa, donde puede ser disipado.
         \end{enumerate}
 
 
         Caracteristicas de Uso.
 
         \begin{enumerate}
-            \item V_RMS: Es el valor eficaz de la tensión que se aplica a un diodo. Es el valor que representa el voltaje que, al ser aplicado a una carga, produciría el mismo efecto energético que la corriente alterna.
-            \item P_tot: Potencia maxima que puede disipar el diodo.
-            \item T_rr: Es el tiempo que tarda un diodo en dejar de conducir cuando se le aplica una polarización inversa después de estar inicialmente en polarización directa.
+          \item $V_{RMS}$: Es el valor eficaz de la tensión que se aplica a un diodo. Es el valor que representa el
+            voltaje que, al ser aplicado a una carga, produciría el mismo efecto energético que la corriente alterna.\\
+          \item $P_{tot}$: Potencia maxima que puede disipar el diodo.\\
+          \item $T_{rr}$: Es el tiempo que tarda un diodo en dejar de conducir cuando se le aplica una polarización
+            inversa después de estar inicialmente en polarización directa.
         \end{enumerate}
 
   \printbibliography
