@@ -7,6 +7,9 @@ sorting=ynt
 ]{biblatex}
 \addbibresource{fuentes.bib}
 
+\usepgfplotslibrary{external}
+\tikzexternalize
+
 % Datos del informe
 \materia{Dispositivos Electronicos}
 \titulo{Trabajo Práctico}
@@ -56,6 +59,7 @@ sorting=ynt
 
     \begin{equation}
       i_D = I_0 \left(e^{\frac{v_d}{V_T}} - 1 \right)
+      \label{eq.caracteristica}
     \end{equation}
 
     Las variaciones suelen estar en el termino $I_0$ que es la corriente de polarizacion en inversa, y el termino $V_T$
@@ -74,9 +78,8 @@ sorting=ynt
       diodo va teniendo menos "resistencia equivalente" a medida que el voltaje o la corriente aumentan.
 
       \subsection{Diodo de Silicio}
-        Para corroborar la curva caracteristica del diodo de silicio, y como esta responde a los cambios de voltaje y
-        temperatura, se creo un circuito en el software LTSpice muy basico para probar la polarizacion del diodo de
-        silicio.
+        Para corroborar la curva caracteristica del diodo de silicio, y como esta responde a los cambios de voltaje, se
+        creo un circuito en el software LTSpice muy basico para probar la polarizacion del diodo de silicio.
 
         El programa, de manera automatica, genera un barrido de tension que arranca en los $-2V$ y termina en los $10V$,
         haciendo pasos de $100mV$ por muestra. De esta forma hay suficiente resolucion para considerarla una buena
@@ -84,7 +87,8 @@ sorting=ynt
 
         Se selecciono el diodo 1N4007 como diodo de pruebas de silicio y $R_1 = 1K\Omega$. El circuito armado en
         LTSpice se puede ver en figura (\ref{crkt.Si.directa}) y se han empleado las directivas mostradas en el
-        listado (\ref{list.Si.directa}).
+        listado (\ref{list.Si.directa}) para la simulacion.
+
         \begin{figure}[H]
           \centering
           \begin{minipage}{0.45\textwidth}
@@ -146,12 +150,12 @@ sorting=ynt
               ] {simulations/TP2_1_graph.txt};
               \end{axis}
             \end{tikzpicture}
-            \caption{Grafico de la curva caracteristica del simulador}
+            \caption{Grafico de la curva caracteristica del simulador.}
             \label{graph.simulation.Si.directa}
           \end{minipage}
           \hfill
           \begin{minipage}{0.45\textwidth}
-            \includegraphics[width=1\textwidth]{pictures/Curva_Datash_Si.jpg}
+            \includegraphics[width=1\textwidth]{images/Curva_Datash_Si_dir.png}
             \caption{Grafico de la curva caracteristica de la hoja de datos.}
             \label{graph.datasheet.Si.directa}
           \end{minipage}
@@ -171,14 +175,15 @@ sorting=ynt
         debido a la proximidad con el limite operativo del diodo.
 
       \subsection{Diodo de Germanio}
-        Para corroborar la curva caracteristica del diodo de germanio, y como esta responde a los cambios de voltaje y
-        temperatura, nuevamente se creo un circuito en el software LTSpice muy basico para probar la polarizacion del 
-        diodo de germanio. El programa, realiza el mismo barrido que para el circuito del diodo de silicio con la misma
+        Para corroborar la curva caracteristica del diodo de germanio, y como esta responde a los cambios de voltaje,
+        nuevamente se creo un circuito en el software LTSpice muy basico para probar la polarizacion del diodo de
+        germanio. El programa, realiza el mismo barrido que para el circuito del diodo de silicio con la misma
         resolucion.
 
         Se selecciono el diodo 1N60 como diodo de pruebas de germanio y $R_1 = 1K\Omega$. El circuito armado en
         LTSpice se puede ver en figura (\ref{crkt.Ge.directa}) y se han empleado las directivas mostradas en el
-        listado (\ref{list.Ge.directa}).
+        listado (\ref{list.Ge.directa}) para la simulacion.
+
         \begin{figure}[!ht]
           \centering
           \begin{minipage}{0.45\textwidth}
@@ -199,15 +204,14 @@ sorting=ynt
           \begin{minipage}{0.45\textwidth}
             \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list.Ge.directa]
               .dc V1 -2 10 100m
-              .model 1N60 D RS=50.0559 EG=1.11 XTI=3 VJ=0.8 M=0.1 FC=0.5 BV=40 CJO=1.75p IS=1.37773u N=2 TT=100n type=germanium
+              .model 1N60 D (RS=50.0559 EG=1.11 XTI=3 VJ=0.8 M=0.1 FC=0.5 BV=40 CJO=1.75p IS=1.37773u N=2 TT=100n type=germanium)
             \end{lstlisting}
           \end{minipage}
         \end{figure}
 
-        Habiendo simulado el circuito anterior, se extrayeron los resultados para ser mostrados en la figura
-        (\ref{graph.simulation.Ge.directa}).
+        Los resultados de la simulacion estan presentes en la figura (\ref{graph.simulation.Ge.directa}).
 
-        \begin{figure}[H]
+        \begin{figure}[!ht]
           \centering
           \begin{minipage}{0.45\textwidth}
             \begin{tikzpicture}
@@ -241,12 +245,12 @@ sorting=ynt
               ] {simulations/TP2_2_graph.txt};
               \end{axis}
             \end{tikzpicture}
-            \caption{Grafico de la curva caracteristica del simulador}
+            \caption{Grafico de la curva caracteristica del simulador.}
             \label{graph.simulation.Ge.directa}
           \end{minipage}
           \hfill
           \begin{minipage}{0.45\textwidth}
-            \includegraphics[width=1\textwidth]{pictures/Curva_Datash_Ge.png}
+            \includegraphics[width=1\textwidth]{images/Curva_Datash_Ge_dir.png}
             \caption{Grafico de la curva caracteristica de la hoja de datos.}
             \label{graph.datasheet.Ge.directa}
           \end{minipage}
@@ -260,102 +264,368 @@ sorting=ynt
 
       \subsection{Comparacion de ambas simulaciones}
 
-        \begin{figure}[!h]
+        \begin{figure}[!ht]
           \centering
-          \begin{minipage}[b]{0.4\textwidth}
-            \includegraphics[width=1.1\linewidth]{pictures/Curva_Datash_Si.jpg}
-            \caption{Grafico de la curva del simulador}
-          \end{minipage}
+          \begin{tikzpicture}
+            \begin{axis}[
+              width=14cm,
+              height=7cm,
+              xlabel={$v_D$ [V]},
+              ylabel={$i_D$ [mA]},
+              grid=both,
+              minor tick num=1,
+              scale only axis,
+              enlargelimits=false,
+              scaled ticks=false,
+              restrict x to domain=-0.2:1.4,
+            ]
+            \addplot[
+              color=blue,
+              mark=none,
+              thick,
+            ] table[
+              col sep=tab,
+              header=true,
+              x=V1,
+              y expr=\thisrow{I(D1)}*1000
+            ] {simulations/TP2_1_graph.txt};
+            \addlegendentry{Si}
+            \addplot[
+              color=red,
+              mark=none,
+              thick,
+            ] table[
+              col sep=tab,
+              header=true,
+              x=V1,
+              y expr=\thisrow{I(D1)}*1000
+            ] {simulations/TP2_2_graph.txt};
+            \addlegendentry{Ge}
+            \end{axis}
+          \end{tikzpicture}
+          \caption{Grafico de las curvas caracteristicas simuladas de los diodos de Silicio y Germanio utilizados.}
+          \label{graph.simulation.comparativa.directa}
         \end{figure}
 
-        Cuando se observa de esta forma ambas curvas se logra apreciar una clara diferencia en cuanto al voltaje
-        necesario para lograr poner los diodos en conduccion, siendo la de Germanio alrededor de los $0.2V$ y $0.3V$
-        mientras que el de Silicio se encuentra entre $0.6V$ y $0.7V$.Esta diferencia en el codo de conmutacion se
-        debe principalmente a la diferencia de energia necesaria para que los electrones pasen de la banda de
-        valencia a la banda de conduccion, a su vez tambien se le atribuye a que el Germanio posee mayor corriente de
-        fuga, generando asi que la curva se pronuncie mucho antes que la del Silicio. Esto tiene implicaciones a la
-        hora de elegir que tipo de diodo usar, ya que el de Germanio se utiliza para circuitos con poco voltaje, sin
-        embargo, el de Silicio es el mas utilizado ya que posee menor corriente de fuga y mayor estabilidad a los
-        cambios de temperatura.
+        En la figura (\ref{graph.simulation.comparativa.directa}) se puede apreciar una clara diferencia en cuanto al voltaje
+        necesario para lograr poner los diodos en conduccion, siendo la de Germanio alrededor de los $0.2V$ a $0.3V$
+        mientras que el de Silicio se encuentra entre $0.6V$ a $0.7V$. Esta diferencia en el codo de conmutacion se
+        debe principalmente al potencial de umbral impuesto por la region de empobrecimiento. Los portadores
+        mayoritarios de cada region pueden estar circulando libremente por su region, pero mientras que su energia
+        sea menor a la energia potencial umbral, estos no seran recombinados en su region opuesta y no habra flujo de
+        portadores. La variacion del potencial umbral es debido a la energia necesaria para que un electron en la capa
+        de valencia sea repelido de su atomo.
+
+        El menor requerimiento de energia en los diodos de Germanio, implica que el potencial que se debe aplicar en los
+        terminales del diodo es menor, lo que puede significar un beneficio en polarizacion directa, pero como se vera
+        mas adelante, puede implicar una complicacion en polarizacion inversa.
 
     \section{Polarizacion en inversa}
-      \subsection{Diodo de silicio}
-        A continuacion se presenta el circuito utilizado en LTspice para visualizar la curva caracteristica del diodo de Silicio en inversa.
+      La polarizacion en inversa del diodo implica que la region de empobrecimiento del mismo se dilate a causa del
+      potencial aplicado a los terminales del diodo. Este potencial genera que los portadores mayoritarios en vez de
+      querer acercarce a la region de empobrecimiento, quieran acercarse a los terminales de cada region. Esto, en
+      efecto produce que la region de empobrecimiento se ensanche debido a la fuerza de atraccion causada por la
+      diferencia de potencial de signo opuesto.
 
-        \begin{itemize}
-          \item Una fuente DC que realiza un barrido lineal de 100$mV$ desde -2 $V$ hasta los 1200 $V$ 
-          \item Resistencia de 1$k$
-          \item Diodo 1N4007
-        \end{itemize}
-        \begin{figure}[h]
+      A medida que se aumente el potencial inverso, mayor va a ser la atraccion que perciben los portadores
+      mayoritarios a los terminales respectivos, y mayor va a ser el ensanchamiento de la region de empobrecimiento.
+      A pesar de que practicamente no va a haber flujo de portadores mayoritarios en el diodo, hay un flujo de
+      portadores minoritarios. Ese flujo esta dictado por la ecuacion (\ref{eq.caracteristica}), que si consideramos
+      el termino exponencial proximo a cero por el exponente negativo, quedaria:
+      \begin{equation*}
+        i_D = -I_0
+      \end{equation*}
+
+      Llega un momento en el que el potencial inverso sobrepasa las capacidades fisicas del diodo, generando la
+      ruptura de la union PN y destruyendo el diodo.
+
+      \subsection{Diodo de Silicio}
+        Para corroborar la curva caracteristica en inversa del diodo de silicio, y como esta responde a los cambios de
+        voltaje, se creo un circuito en el software LTSpice muy basico para probar la polarizacion del diodo de
+        silicio.
+
+        El programa, de manera automatica, genera un barrido de tension que arranca en los $-1200V$ y termina en los
+        $10V$, haciendo pasos de $100mV$ por muestra. De esta forma hay suficiente resolucion para considerarla una
+        buena aproximacion de la curva caracteristica en inversa del diodo.
+
+        Se selecciono nuevamente el diodo 1N4007 como diodo de pruebas de silicio y $R_1 = 1K\Omega$. El circuito
+        armado en LTSpice se puede ver en figura (\ref{crkt.Si.inversa}) y se han empleado las directivas mostradas
+        en el listado (\ref{list.Si.inversa}) para la simulacion.
+
+        \begin{figure}[!ht]
           \centering
-          \begin{minipage}{0.7\textwidth}
-            \centering
+          \begin{minipage}{0.45\textwidth}
             \begin{circuitikz}[american voltages]
-              % nodos
-              \draw
-              (0, -1) to [V=$V_1$, invert]          (0, 3)
-                      to [short, -, i>^=$I_t$]              (1, 3)
-                      to [R=$R_1$, v=$V_{R_1}$]             (4, 3)
-                      to [short, -]                         (5, 3)
-                      to [D=$1N4007$, v=$V_{D}$]            (5, -1)
-                      to [short, -]                         (5, -1)
-                      to [short, -]                         (0, -1)
-                      ;
+              \draw (0, -1) to [V=$V_1$]                     (0, 3)
+                            to [short, -, i<^=$i_D$]         (1, 3)
+                            to [R=$R_1$, v<=$V_{R_1}$]       (4, 3)
+                            to [short, -]                    (5, 3)
+                            to [D=$1N4007$, v<=$v_D$]        (5, -1)
+                            to [short, -]                    (5, -1)
+                            to [short, -]                    (0, -1)
+                            ;
             \end{circuitikz}
+            \caption{Circuito con diodo de silicio 1N4007 en inversa.}
+            \label{crkt.Si.inversa}
           \end{minipage}
-          \centering
-          \caption{Circuito con diodo de Silicio en inversa}
+          \hfill
+          \begin{minipage}{0.45\textwidth}
+            \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list.Si.inversa]
+              .dc V1 -1200 10 100m
+              .model 1N4007 D (IS=76.9p RS=42.0m BV=1.00k IBV=5.00u CJO=26.5p  M=0.333 N=1.45 TT=4.32u)
+            \end{lstlisting}
+          \end{minipage}
         \end{figure}
 
-        \begin{figure}[!h]
+        Los resultados de la simulacion estan presentes en la figura (\ref{graph.simulation.Si.inversa}).
+
+        \begin{figure}[!ht]
           \centering
-          \begin{minipage}[b]{0.4\textwidth}
-            \includegraphics[width=1.1\linewidth]{pictures/Curva_Datash_Si.jpg}
-            \caption{Grafico de la curva del diodo de Silicio en inversa}
+          \begin{minipage}{0.45\textwidth}
+            \begin{tikzpicture}
+              \begin{axis}[
+                width=6cm,
+                height=5.5cm,
+                xlabel={$v_D$ [V]},
+                ylabel={$i_D$ [mA]},
+                grid=both,
+                minor tick num=1,
+                scale only axis,
+                enlargelimits=false,
+                scaled ticks=false,
+                extra x ticks={-1000},
+                extra x tick style={
+                  grid style={red, thick, dashed},
+                  tick style={red},
+                  tick label style={opacity=0}
+                 },
+                restrict x to domain=-1200:10,
+                xtick distance=300,
+              ]
+              \addplot[
+                color=blue,
+                mark=none,
+                thick,
+              ] table[
+                col sep=tab,
+                header=true,
+                x=V1,
+                y expr=\thisrow{I(D1)}*1000
+              ] {simulations/TP2_1_graph_inv.txt};
+              \end{axis}
+            \end{tikzpicture}
+            \caption{Grafico de la curva caracteristica del simulador.}
+            \label{graph.simulation.Si.inversa}
+          \end{minipage}
+          \hfill
+          \begin{minipage}{0.45\textwidth}
+            \includegraphics[width=1\textwidth]{images/Curva_Datash_Si_inv.png}
+            \caption{Grafico de la curva caracteristica de la hoja de datos.}
+            \label{graph.datasheet.Si.inversa}
           \end{minipage}
         \end{figure}
+
+        En la hoja de datos del diodo de silicio \cite{DS0}, se especifica que el voltaje maximo de polarizacion en
+        inversa esta en los $1000V$ para el 1N4007. Como se puede ver en la grafica simulada, el punto de ruptura esta
+        exactamente al voltaje especificado por el fabricante. Despues de ese voltaje, el diodo entra en region zener,
+        y empieza a dejar pasar corriente en inversa, generando una caida de tension especifica. La limitacion de la
+        simulacion es que no indica exactamente cuando el diodo va a romperse, por lo que no serviria como una
+        aproximacion valida para determinar las condiciones maximas de trabajo.
+
+        Por otro lado, la grafica provista por el fabricante no se parece en nada a la grafica obtenida. Si se observa
+        el eje independiente, este indica que dado un porcentaje de corriente de polarizacion inversa, hay una
+        corriente de polarizacion inversa asociada, y al mismo tiempo esta corriente depende de la temperatura de la
+        juntura. A $25°C$, y al 100\% del voltaje de polarizacion inversa, el diodo deberia dejar pasar aproximadamente
+        $200\mu A$ de corriente. Esa corriente no es apreciable en el grafico simulado, pero mas adelante, en la
+        comparacion de diodos se va a poder apreciar mejor.
 
       \subsection{Diodo de Germanio}
-        A continuacion se presenta el circuito utilizado en LTspice para visualizar la curva caracteristica del diodo
-        de Germanio en inversa.
+        Para corroborar la curva caracteristica en inversa del diodo de germanio, y como esta responde a los cambios de
+        voltaje, nuevamente se creo un circuito en el software LTSpice muy basico para probar la polarizacion del diodo
+        de germanio.
 
-        \begin{itemize}
-          \item Una fuente DC que realiza un barrido lineal de 100$mV$ desde -2 $V$ hasta los 45 $V$ 
-          \item Resistencia de 1$k$
-          \item Diodo 1N60
-        \end{itemize}
-        \begin{figure}[h]
+        El programa, realiza el mismo tipo de barrido que para el diodo de silicio, solamente que ahora el rango es
+        desde $-60V$ hasta $10V$.
+
+        Se selecciono nuevamente el diodo 1N60 como diodo de pruebas de germanio y $R_1 = 1K\Omega$. El circuito
+        armado en LTSpice se puede ver en figura (\ref{crkt.Ge.inversa}) y se han empleado las directivas mostradas
+        en el listado (\ref{list.Ge.inversa}) para la simulacion.
+
+        \begin{figure}[!ht]
           \centering
-          \begin{minipage}{0.7\textwidth}
-            \centering
+          \begin{minipage}{0.45\textwidth}
             \begin{circuitikz}[american voltages]
-              % nodos
-              \draw
-                  (0, -1) to [V=$V_1$, invert]           (0, 3)
-                          to [short, -, i>^=$I_t$]       (1, 3)
-                          to [R=$R_1$, v=$V_{R_1}$]      (4, 3)
-                          to [short, -]                  (5, 3)
-                          to [D=$1N4007$, v=$V_{D}$]     (5, -1)
-                          to [short, -]                  (5, -1)
-                          to [short, -]                  (0, -1)
-                          ;
+              \draw (0, -1) to [V=$V_1$]                     (0, 3)
+                            to [short, -, i<^=$i_D$]         (1, 3)
+                            to [R=$R_1$, v<=$V_{R_1}$]       (4, 3)
+                            to [short, -]                    (5, 3)
+                            to [D=$1N60$, v<=$v_D$]          (5, -1)
+                            to [short, -]                    (5, -1)
+                            to [short, -]                    (0, -1)
+                            ;
             \end{circuitikz}
+            \caption{Circuito con diodo de silicio 1N60 en inversa.}
+            \label{crkt.Ge.inversa}
           \end{minipage}
-          \centering
-          \caption{Circuito con diodo de Germanio en inversa}
+          \hfill
+          \begin{minipage}{0.45\textwidth}
+            \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list.Ge.inversa]
+              .dc V1 -60 10 100m
+              .model 1N60 D (RS=50.0559 EG=1.11 XTI=3 VJ=0.8 M=0.1 FC=0.5 BV=40 CJO=1.75p IS=1.37773u N=2 TT=100n type=germanium)
+            \end{lstlisting}
+          \end{minipage}
         \end{figure}
 
-        \begin{figure}[!h]
+        Los resultados de la simulacion estan presentes en la figura (\ref{graph.simulation.Ge.inversa}).
+
+        \begin{figure}[!ht]
           \centering
-          \begin{minipage}[b]{0.4\textwidth}
-            \includegraphics[width=1.1\linewidth]{pictures/Curva_Datash_Ge.png}
-            \caption{Grafico de la curva del diodo de Germanio en inversa}
+          \begin{minipage}{0.45\textwidth}
+            \begin{tikzpicture}
+              \begin{axis}[
+                width=6cm,
+                height=5.5cm,
+                xlabel={$v_D$ [V]},
+                ylabel={$i_D$ [mA]},
+                grid=both,
+                minor tick num=1,
+                scale only axis,
+                enlargelimits=false,
+                scaled ticks=false,
+                extra x ticks={-40},
+                extra x tick style={
+                  grid style={red, thick, dashed},
+                  tick style={red},
+                  tick label style={opacity=0}
+                 },
+                restrict x to domain=-60:11,
+              ]
+              \addplot[
+                color=blue,
+                mark=none,
+                thick,
+              ] table[
+                col sep=tab,
+                header=true,
+                x=V1,
+                y expr=\thisrow{I(D1)}*1000
+              ] {simulations/TP2_2_graph_inv.txt};
+              \end{axis}
+            \end{tikzpicture}
+            \caption{Grafico de la curva caracteristica del simulador.}
+            \label{graph.simulation.Ge.inversa}
+          \end{minipage}
+          \hfill
+          \begin{minipage}{0.45\textwidth}
+            \includegraphics[width=1\textwidth]{images/Curva_Datash_Ge_inv.png}
+            \caption{Grafico de la curva caracteristica de la hoja de datos.}
+            \label{graph.datasheet.Ge.inversa}
           \end{minipage}
         \end{figure}
 
-        Conociendo los datos que nos brinda el fabricante, sabemos que la tension inversa maxima es de 45$V$, por lo
-        tanto se llega a observar que cerca de ese valor el diodo tiende a la region Zenner.
+        En la hoja de datos del diodo de germanio \cite{DS1}, se especifica que el voltaje maximo de polarizacion en
+        inversa esta en los $40V$ para el 1N60. Como se puede ver en la grafica simulada, el punto de ruptura esta
+        exactamente al voltaje especificado por el fabricante. Despues de ese voltaje, el diodo entra en region zener,
+        y empieza a dejar pasar corriente en inversa, generando una caida de tension especifica. La limitacion de la
+        simulacion es que no indica exactamente cuando el diodo va a romperse, por lo que no serviria como una
+        aproximacion valida para determinar las condiciones maximas de trabajo.
+
+        Por otro lado, la grafica provista por el fabricante no se parece en nada a la grafica obtenida. La grafica
+        indica que a $-30V$ del voltaje de polarizacion inversa, el diodo deberia dejar pasar aproximadamente
+        $0.6\mu A$ de corriente. Esa corriente no es apreciable en el grafico simulado, pero mas adelante, en la
+        comparacion de diodos se va a poder apreciar mejor.
+
+      \subsection{Comparacion de ambas simulaciones}
+        \begin{figure}[!ht]
+          \centering
+          \begin{minipage}{0.45\textwidth}
+            \begin{tikzpicture}
+              \begin{axis}[
+                width=6cm,
+                height=5.5cm,
+                xlabel={$v_D$ [V]},
+                ylabel={$i_D$ [nA]},
+                grid=both,
+                minor tick num=1,
+                scale only axis,
+                enlargelimits=false,
+                scaled ticks=false,
+                extra x ticks={-1000},
+                extra x tick style={
+                  grid style={red, thick, dashed},
+                  tick style={red},
+                  tick label style={opacity=0}
+                 },
+                restrict x to domain=-1005:-995,
+                restrict y to domain=-100:100,
+                ymin=-2, ymax=0.5,
+                xmin=-1003, xmax=-997,
+              ]
+              \addplot[
+                color=blue,
+                mark=none,
+                thick,
+              ] table[
+                col sep=tab,
+                header=true,
+                x=V1,
+                y expr=\thisrow{I(D1)}*1000000000
+              ] {simulations/TP2_1_graph_inv.txt};
+                \addlegendentry{Si}
+              \end{axis}
+            \end{tikzpicture}
+          \end{minipage}
+          \hfill
+          \begin{minipage}{0.45\textwidth}
+            \begin{tikzpicture}
+              \begin{axis}[
+                width=6cm,
+                height=5.5cm,
+                xlabel={$v_D$ [V]},
+                ylabel={$i_D$ [$\mu A$]},
+                grid=both,
+                minor tick num=1,
+                scale only axis,
+                enlargelimits=false,
+                scaled ticks=false,
+                extra x ticks={-40},
+                extra x tick style={
+                  grid style={red, thick, dashed},
+                  tick style={red},
+                  tick label style={opacity=0}
+                 },
+                restrict x to domain=-45:-35,
+                restrict y to domain=-100:100,
+                ymin=-5, ymax=2,
+                xmin=-43, xmax=-37,
+              ]
+              \addplot[
+                color=blue,
+                mark=none,
+                thick,
+              ] table[
+                col sep=tab,
+                header=true,
+                x=V1,
+                y expr=\thisrow{I(D1)}*1000000
+              ] {simulations/TP2_2_graph_inv.txt};
+              \addlegendentry{Ge}
+              \end{axis}
+            \end{tikzpicture}
+          \end{minipage}
+          \caption{Grafico de las curvas caracteristicas simuladas de los diodos de Silicio y Germanio utilizados.}
+          \label{graph.simulation.comparativa.inversa}
+        \end{figure}
+
+        Se puede apreciar las diferencias principales de los diodos de germanio contra los diodos de silicio con mucha
+        claridad. El diodo de germanio, a pesar de tener una tension de polarizacion baja comparada con el diodo de
+        silicio, tiene una corriente de fuga 1000 veces mas grande que la corriente de fuga del silicio. Esto puede
+        significar un problema, ya que puede producir corrientes indeseadas en circuitos donde un diodo de silicio
+        practicamente no permitiria el paso de la misma.
+
+        Como el diodo se lo considera idealmente como un elemento que deja pasar la corriente para un lado y no para
+        el otro, el diodo de silicio se comporta mejor como ese componente que el diodo de germanio.
+
 
   \chapter{Actividad de laboratorio}
     Se pide poner en practica y corroborar los datos conseguidos en el simulador y armar el mismo circuito
