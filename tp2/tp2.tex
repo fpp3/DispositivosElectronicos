@@ -164,7 +164,7 @@ sorting=ynt
     de aqui en adelante.
 
 
-  \chapter{Curva caracteristica del Diodo}
+  \chapter{Curva caracteristica del Diodo: Simulacion}
     La curva caracteristica del diodo permite establecer una relacion facil de entender entre la corriente que circula
     por el diodo y la caida de tension que se genera. Diferentes diodos tienen diferentes curvas caracteristicas, pero
     casi todas siguen la curva exponencial definida como:
@@ -248,7 +248,7 @@ sorting=ynt
                   tick label style={red}
                  },
                 scaled ticks=false,
-                restrict x to domain=-1:4,
+                restrict x to domain=0:4,
               ]
               \addplot[
                 color=blue,
@@ -257,7 +257,7 @@ sorting=ynt
               ] table[
                 col sep=tab,
                 header=true,
-                x=V1,
+                x=V(d1),
                 y expr=\thisrow{I(D1)}*1000
               ] {simulations/TP2_1_graph.txt};
               \end{axis}
@@ -343,7 +343,7 @@ sorting=ynt
                   tick label style={red}
                  },
                 scaled ticks=false,
-                restrict x to domain=-1:4,
+                restrict x to domain=0:4,
               ]
               \addplot[
                 color=blue,
@@ -352,7 +352,7 @@ sorting=ynt
               ] table[
                 col sep=tab,
                 header=true,
-                x=V1,
+                x=V(d1),
                 y expr=\thisrow{I(D1)}*1000
               ] {simulations/TP2_2_graph.txt};
               \end{axis}
@@ -398,7 +398,7 @@ sorting=ynt
             ] table[
               col sep=tab,
               header=true,
-              x=V1,
+              x=V(d1),
               y expr=\thisrow{I(D1)}*1000
             ] {simulations/TP2_1_graph.txt};
             \addlegendentry{Si}
@@ -409,7 +409,7 @@ sorting=ynt
             ] table[
               col sep=tab,
               header=true,
-              x=V1,
+              x=V(d1),
               y expr=\thisrow{I(D1)}*1000
             ] {simulations/TP2_2_graph.txt};
             \addlegendentry{Ge}
@@ -513,6 +513,7 @@ sorting=ynt
                  },
                 restrict x to domain=-1200:10,
                 xtick distance=300,
+                xmin=-1200, xmax=10,
               ]
               \addplot[
                 color=blue,
@@ -521,7 +522,7 @@ sorting=ynt
               ] table[
                 col sep=tab,
                 header=true,
-                x=V1,
+                x=V(d1),
                 y expr=\thisrow{I(D1)}*1000
               ] {simulations/TP2_1_graph_inv.txt};
               \end{axis}
@@ -611,6 +612,7 @@ sorting=ynt
                   tick label style={opacity=0}
                  },
                 restrict x to domain=-60:11,
+                xmin=-60, xmax=10,
               ]
               \addplot[
                 color=blue,
@@ -619,7 +621,7 @@ sorting=ynt
               ] table[
                 col sep=tab,
                 header=true,
-                x=V1,
+                x=V(d1),
                 y expr=\thisrow{I(D1)}*1000
               ] {simulations/TP2_2_graph_inv.txt};
               \end{axis}
@@ -680,7 +682,7 @@ sorting=ynt
               ] table[
                 col sep=tab,
                 header=true,
-                x=V1,
+                x=V(d1),
                 y expr=\thisrow{I(D1)}*1000000000
               ] {simulations/TP2_1_graph_inv.txt};
                 \addlegendentry{Si}
@@ -718,7 +720,7 @@ sorting=ynt
               ] table[
                 col sep=tab,
                 header=true,
-                x=V1,
+                x=V(d1),
                 y expr=\thisrow{I(D1)}*1000000
               ] {simulations/TP2_2_graph_inv.txt};
               \addlegendentry{Ge}
@@ -739,11 +741,268 @@ sorting=ynt
         el otro, el diodo de silicio se comporta mejor como ese componente que el diodo de germanio.
 
 
-  \chapter{Actividad de laboratorio}
+  \chapter{Curva caracteristica del Diodo: Laboratorio}
     Se pide poner en practica y corroborar los datos conseguidos en el simulador y armar el mismo circuito
-    propuesto y anotar los valores conseguidos.
+    propuesto y anotar los valores conseguidos. Para ello, se armaron los circuitos correspondientes y se tomo nota de
+    los valores de caida de tension del diodo, desde 0v hasta 5v, tomando mas muestras cerca del codo de conduccion
+    para el diodo de silicio y germanio.
 
-      \subsection{Diodo de Silicio}
+    Como no disponemos de equipamento con la presicion necesaria para medir la corriente de polarizacion inversa, se
+    omitio la prueba. Ademas, en el caso del diodo de silicio, es peligroso intentar hacer la prueba de polarizacion
+    inversa debido a que el voltaje es excesivamente elevado.
+
+    \section{Diodo de Silicio}
+      Se armo el circuito de la figura (\ref{crkt.Si.directa}) para realizar las pruebas.
+      \begin{figure}[!ht]
+        \centering
+        \includegraphics[angle=180, width=.8\textwidth]{pictures/prot_crkt-1.jpg}
+        \caption{Circuito de prueba con el 1N4007}
+        \label{crkt.Si.prot}
+      \end{figure}
+
+      Para poder realizar las mediciones de corriente, tension de entrada, y caida de tension del diodo, se utilizaron
+      tres multimetros en conjunto, con sus puntas dispuestas como se ve en las figuras (\ref{crkt.Si.mult.curr}),
+      (\ref{crkt.Si.mult.vi}) y (\ref{crkt.Si.mult.vd}).
+      \begin{figure}[H]
+        \centering
+        \begin{minipage}{0.3\textwidth}
+          \includegraphics[angle=180, width=1\textwidth]{pictures/prot_crkt-1_curr.jpg}
+          \caption{Medicion de corriente del circuito.}
+          \label{crkt.Si.mult.curr}
+        \end{minipage}
+        \begin{minipage}{0.3\textwidth}
+          \includegraphics[angle=180, width=1\textwidth]{pictures/prot_crkt-1_vi.jpg}
+          \caption{Medicion de tension de la fuente.}
+          \label{crkt.Si.mult.vi}
+        \end{minipage}
+        \begin{minipage}{0.3\textwidth}
+          \includegraphics[angle=180, width=1\textwidth]{pictures/prot_crkt-1_vd.jpg}
+          \caption{Medicion de caida de tension del diodo.}
+          \label{crkt.Si.mult.vd}
+        \end{minipage}
+      \end{figure}
+
+      Con el circuito de la figura (\ref{crkt.Si.prot}), y los tres multimetros midiendo al mismo tiempo, procedimos a
+      hacer las variaciones de voltaje de entrada y tomar muestras de todas los valores.
+
+      \begin{figure}[!ht]
+        \centering
+        \begin{minipage}{0.25\textwidth}
+          \includegraphics[width=1\textwidth]{pictures/mult_crkt-1_03.jpg}
+        \end{minipage}
+        \begin{minipage}{0.25\textwidth}
+          \includegraphics[width=1\textwidth]{pictures/mult_crkt-1_05.jpg}
+        \end{minipage}
+        \begin{minipage}{0.25\textwidth}
+          \includegraphics[width=1\textwidth]{pictures/mult_crkt-1_07.jpg}
+        \end{minipage}
+        \caption{Algunas fotos de las mediciones de los tres multimetros. El de la izquierda mide corriente en mA, el
+        del medio mide la caida de tension del diodo y el de la derecha mide la entrada de la fuente}
+      \end{figure}
+
+      \begin{table}[H]
+        \resizebox{\textwidth}{!}{\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+          \hline
+          $V_{in}$ & 100mV & 280mV & 400mV & 450mV & 500mV & 550mV & 600mV & 640mV & 700mV & 1V & 3V & 5V\\
+          \hline
+          $I_t$    & 0A & 0A & 0.01mA & 0.02mA & 0.05mA & 0.07mA & 0.11mA & 0.15mA & 0.2mA & 0.46mA & 2.36mA & 4.33mA\\
+          \hline
+          $v_D$    & 100mV & 280mV & 390mV & 420mV & 440mV & 460mV & 480mV & 490mV & 500mV & 550mV & 640mV & 680mV\\
+          \hline
+        \end{tabular}}
+        \caption{Tabla de valores medidos del diodo de silicio.}
+        \label{table.Si}
+      \end{table}
+
+      Con los datos de la tabla (\ref{table.Si}), podemos hacer una curva y compararla con la curva simulada.
+      \begin{figure}[!ht]
+        \centering
+        \begin{tikzpicture}
+          \begin{axis}[
+            width=14cm,
+            height=7cm,
+            xlabel={$v_D$ [V]},
+            ylabel={$i_D$ [mA]},
+            grid=both,
+            minor tick num=1,
+            scale only axis,
+            enlargelimits=false,
+            scaled ticks=false,
+            restrict x to domain=-0.2:1,
+          ]
+          \addplot[
+            color=blue,
+            mark=none,
+            thick,
+          ] table[
+            col sep=tab,
+            header=true,
+            x=V(d1),
+            y expr=\thisrow{I(D1)}*1000
+          ] {simulations/TP2_1_graph.txt};
+          \addlegendentry{Simulada}
+          \addplot[
+            color=red,
+            mark=none,
+            thick,
+          ] coordinates {(.1, 0)(.28, 0)(.39, 0.01)(.42, 0.02)(.44, 0.05)(.46, 0.07)(.48, 0.11)(.49, 0.15)(.5, 0.2)(0.55, 0.46)(0.64, 2.36)(0.68, 4.33)};
+          \addlegendentry{Medida}
+          \end{axis}
+        \end{tikzpicture}
+        \caption{Grafico de la curva caracteristica simulada y la medida experimentalmente del diodo de Silicio.}
+        \label{graph.comparativa.Si}
+      \end{figure}
+
+      Como se puede ver en la figura (\ref{graph.comparativa.Si}), la curva medida se acerca bastante a la curva
+      simulada, por lo que podemos afirmar que para la polarizacion en directa, el modelo de simulacion es lo
+      suficientemente preciso. Es muy posible que la pequeña variacion de la corriente se deba por alguna resistencia
+      de contacto, ya sea en el circuito o en los cables del multimetro.
+
+    \section{Diodo de Germanio}
+      Se armo el circuito de la figura (\ref{crkt.Ge.directa}) para realizar las pruebas.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[angle=180, width=.8\textwidth]{pictures/prot_crkt-2.jpg}
+        \caption{Circuito de prueba con el 1N60}
+        \label{crkt.Ge.prot}
+      \end{figure}
+
+      Para poder realizar las mediciones de corriente, tension de entrada, y caida de tension del diodo, se utilizaron
+      tres multimetros en conjunto, con sus puntas dispuestas como se ve en las figuras (\ref{crkt.Ge.mult.curr}),
+      (\ref{crkt.Ge.mult.vi}) y (\ref{crkt.Ge.mult.vd}).
+      \begin{figure}[H]
+        \centering
+        \begin{minipage}{0.3\textwidth}
+          \includegraphics[angle=180, width=1\textwidth]{pictures/prot_crkt-2_curr.jpg}
+          \caption{Medicion de corriente del circuito.}
+          \label{crkt.Ge.mult.curr}
+        \end{minipage}
+        \begin{minipage}{0.3\textwidth}
+          \includegraphics[angle=180, width=1\textwidth]{pictures/prot_crkt-2_vi.jpg}
+          \caption{Medicion de tension de la fuente.}
+          \label{crkt.Ge.mult.vi}
+        \end{minipage}
+        \begin{minipage}{0.3\textwidth}
+          \includegraphics[angle=180, width=1\textwidth]{pictures/prot_crkt-2_vd.jpg}
+          \caption{Medicion de caida de tension del diodo.}
+          \label{crkt.Ge.mult.vd}
+        \end{minipage}
+      \end{figure}
+
+      Con el circuito de la figura (\ref{crkt.Ge.prot}), y los tres multimetros midiendo al mismo tiempo, procedimos a
+      hacer las variaciones de voltaje de entrada y tomar muestras de todas los valores.
+
+      \begin{figure}[!ht]
+        \centering
+        \begin{minipage}{0.25\textwidth}
+          \includegraphics[width=1\textwidth]{pictures/mult_crkt-2_03.jpg}
+        \end{minipage}
+        \begin{minipage}{0.25\textwidth}
+          \includegraphics[width=1\textwidth]{pictures/mult_crkt-2_05.jpg}
+        \end{minipage}
+        \begin{minipage}{0.25\textwidth}
+          \includegraphics[width=1\textwidth]{pictures/mult_crkt-2_07.jpg}
+        \end{minipage}
+        \caption{Algunas fotos de las mediciones de los tres multimetros. El de la izquierda mide corriente en mA, el
+        del medio mide la caida de tension del diodo y el de la derecha mide la entrada de la fuente}
+      \end{figure}
+
+      \begin{table}[H]
+        \resizebox{\textwidth}{!}{\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+          \hline
+          $V_{in}$ & 110mV  & 160mV & 200mV   & 250mV & 300mV   & 350mV & 400mV   & 450mV & 500mV & 600mV      & 800mV      & 1V & 3V & 5V\\
+          \hline
+          $I_t$    & 0A     & 0A    & 0.02mA & 0.05mA & 0.08mA  & 0.12mA & 0.16mA & 0.21mA & 0.26mA & 0.35mA  & 0.54mA  & 0.73mA & 2.73mA & 4.69mA\\
+          \hline
+          $v_D$    & 100mV  & 150mV & 170mV   & 190mV & 210mV   & 220mV & 230mV   & 240mV & 240mV & 250mV   & 270mV   & 280mV & 330mV & 370mV\\
+          \hline
+        \end{tabular}}
+        \caption{Tabla de valores medidos del diodo de germanio.}
+        \label{table.Ge}
+      \end{table}
+
+      Con los datos de la tabla (\ref{table.Ge}), podemos hacer una curva y compararla con la curva simulada.
+      \begin{figure}[!ht]
+        \centering
+        \begin{tikzpicture}
+          \begin{axis}[
+            width=14cm,
+            height=7cm,
+            xlabel={$v_D$ [V]},
+            ylabel={$i_D$ [mA]},
+            grid=both,
+            minor tick num=1,
+            scale only axis,
+            enlargelimits=false,
+            scaled ticks=false,
+            restrict x to domain=-0.2:1,
+          ]
+          \addplot[
+            color=blue,
+            mark=none,
+            thick,
+          ] table[
+            col sep=tab,
+            header=true,
+            x=V(d1),
+            y expr=\thisrow{I(D1)}*1000
+          ] {simulations/TP2_2_graph.txt};
+          \addlegendentry{Simulada}
+          \addplot[
+            color=red,
+            mark=none,
+            thick,
+          ] coordinates {(0.1, 0)(0.15, 0)(0.17, 0.02)(0.19, 0.05)(0.21, 0.08)(0.22, 0.12)(0.23, 0.16)(0.24, 0.21)(0.245, 0.26)(0.25, 0.35)(0.27, 0.54)(0.28, 0.73)(0.33, 2.73)(0.37, 4.96)};
+          \addlegendentry{Medida}
+          \end{axis}
+        \end{tikzpicture}
+        \caption{Grafico de la curva caracteristica simulada y la medida experimentalmente del diodo de Germanio.}
+        \label{graph.comparativa.Ge}
+      \end{figure}
+
+      Como se puede ver, la figura (\ref{graph.comparativa.Ge}), no parece tener tantas similitudes con la curva
+      simulada. Esto puede ser porque el diodo 1N60 fue descontinuado hace muchos años, y fue reemplazado por otro
+      diodo. Es muy posible que este nuevo diodo tenga otras caracteristicas diferentes, como por ejemplo menor
+      resistencia interna cuando se pone en conduccion. Tambien puede ser un problema del modelo. No hay un modelo
+      oficial provisto por un fabricante de semiconductores.
+
+      \section{Comparativa de las dos curvas medidas}
+      \begin{figure}[!ht]
+        \centering
+        \begin{tikzpicture}
+          \begin{axis}[
+            width=14cm,
+            height=7cm,
+            xlabel={$v_D$ [V]},
+            ylabel={$i_D$ [mA]},
+            grid=both,
+            minor tick num=1,
+            scale only axis,
+            enlargelimits=false,
+            scaled ticks=false,
+            restrict x to domain=-0.2:1,
+          ]
+          \addplot[
+            color=blue,
+            mark=none,
+            thick,
+          ] coordinates {(.1, 0)(.28, 0)(.39, 0.01)(.42, 0.02)(.44, 0.05)(.46, 0.07)(.48, 0.11)(.49, 0.15)(.5, 0.2)(0.55, 0.46)(0.64, 2.36)(0.68, 4.33)};
+          \addlegendentry{Si}
+          \addplot[
+            color=red,
+            mark=none,
+            thick,
+          ] coordinates {(0.1, 0)(0.15, 0)(0.17, 0.02)(0.19, 0.05)(0.21, 0.08)(0.22, 0.12)(0.23, 0.16)(0.24, 0.21)(0.245, 0.26)(0.25, 0.35)(0.27, 0.54)(0.28, 0.73)(0.33, 2.73)(0.37, 4.96)};
+          \addlegendentry{Ge}
+          \end{axis}
+        \end{tikzpicture}
+        \caption{Grafico de la curva caracteristica medida del diodo de Germanio y Silicio.}
+        \label{graph.comparativa.medida}
+      \end{figure}
+
+      En la figura (\ref{graph.comparativa.medida}), nuevamente podemos apreciar las diferencias en los codos de
+      conmutacion de ambos semiconductores. Las ventajas y desventajas son las mismas que cuando se hizo la comparativa
+      de la figura (\ref{graph.simulation.comparativa.directa}).
 
   \part{Comportamiento del diodo en función de la temperatura}
     \chapter{Actividad de simulacion}
