@@ -10,6 +10,11 @@ sorting=ynt
 \usepgfplotslibrary{external}
 \tikzexternalize
 
+\usepackage{subcaption}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{multirow}
+
 % Datos del informe
 \materia{Dispositivos Electronicos}
 \titulo{Trabajo Práctico}
@@ -51,6 +56,113 @@ sorting=ynt
     Luego se propone un circuito con diodos Zener en CA, para ello se nos exige utilizar el simulador LTspice para
     visualizar su uso para limitar las excursiones de voltaje a niveles deseados. Luego en el laboratorio se nos pide
     armar el mismo circuito para poder visualizar y analizar su uso como recortadores.
+
+  \chapter{Identificacion de pines}
+    El diodo viene en diferentes empaquetados, pero todos tienen en comun la cantidad de pines. Esto esta dictado por
+    la estructura interna del diodo, que siempre es una region P pegada a una region N. Para este trabajo practico
+    utilizamos dos modelos diferentes de diodos, donde ambos tienen el empaquetado axial, pero cambia la variante del
+    empaquetado.
+    \begin{figure}[!ht]
+      \centering
+      \includegraphics[width=.9\textwidth]{images/empaquetados_diodos.jpg}
+      \caption{Diferentes empaquetados de diodos.}
+    \end{figure}
+
+    Para la identificacion de pines, utilizamos dos diodos 1N4007 y dos diodos 1N60, en empaquetados DO-15 y DO-35
+    respectivamente.
+
+    \begin{figure}[!ht]
+      \centering
+      \includegraphics[angle=-90, width=.5\textwidth]{pictures/prot_diod-all.jpg}
+      \caption{Diodos 1N60 (superior) y 1N4007 (inferior).}
+    \end{figure}
+
+    Se sabe que el diodo permite el paso de la corriente solo en un sentido. Si con el multimetro probamos las unicas
+    dos posibilidades de circulacion de corriente, podremos identificar cual es el anodo y cual es el catodo:
+    \begin{figure}[!ht]
+      \begin{subfigure}[b]{1\textwidth}
+        \centering
+        \caption{Diodos polarizados en directa y sus caidas.}
+        \begin{minipage}[b]{0.24\textwidth}
+          \centering
+          \includegraphics[angle=-90, width=1\textwidth]{pictures/prot_diod-1d.jpg}
+          \includegraphics[width=1\textwidth]{pictures/mult_diod-1d.jpg}
+        \end{minipage}
+        \begin{minipage}[b]{0.24\textwidth}
+          \centering
+          \includegraphics[angle=-90, width=1\textwidth]{pictures/prot_diod-2d.jpg}
+          \includegraphics[width=1\textwidth]{pictures/mult_diod-2d.jpg}
+        \end{minipage}
+        \begin{minipage}[b]{0.24\textwidth}
+          \centering
+          \includegraphics[angle=-90, width=1\textwidth]{pictures/prot_diod-3d.jpg}
+          \includegraphics[width=1\textwidth]{pictures/mult_diod-3d.jpg}
+        \end{minipage}
+        \begin{minipage}[b]{0.24\textwidth}
+          \centering
+          \includegraphics[angle=-90, width=1\textwidth]{pictures/prot_diod-4d.jpg}
+          \includegraphics[width=1\textwidth]{pictures/mult_diod-4d.jpg}
+        \end{minipage}
+      \end{subfigure}
+      \begin{subfigure}[b]{1\textwidth}
+        \centering
+        \caption{Diodos polarizados en inversa y sus caidas.}
+        \begin{minipage}[b]{0.24\textwidth}
+          \centering
+          \includegraphics[angle=-90, width=1\textwidth]{pictures/prot_diod-1i.jpg}
+          \includegraphics[width=1\textwidth]{pictures/mult_diod-i.jpg}
+        \end{minipage}
+        \begin{minipage}[b]{0.24\textwidth}
+          \centering
+          \includegraphics[angle=-90, width=1\textwidth]{pictures/prot_diod-2i.jpg}
+          \includegraphics[width=1\textwidth]{pictures/mult_diod-i.jpg}
+        \end{minipage}
+        \begin{minipage}[b]{0.24\textwidth}
+          \centering
+          \includegraphics[angle=-90, width=1\textwidth]{pictures/prot_diod-3i.jpg}
+          \includegraphics[width=1\textwidth]{pictures/mult_diod-i.jpg}
+        \end{minipage}
+        \begin{minipage}[b]{0.24\textwidth}
+          \centering
+          \includegraphics[angle=-90, width=1\textwidth]{pictures/prot_diod-4i.jpg}
+          \includegraphics[width=1\textwidth]{pictures/mult_diod-i.jpg}
+        \end{minipage}
+      \end{subfigure}
+    \end{figure}
+
+    Despues de haber hecho todas las pruebas, se puede confeccionar la siguiente tabla:
+    \begin{table}[H]
+      \centering
+      \begin{tabular}{|>{\centering\arraybackslash}m{3cm}|*{4}{>{\centering\arraybackslash}m{2cm}|}}
+        \hline
+        \textbf{Sentido de las puntas del multimetro} & \multicolumn{2}{c|}{\textbf{Diodo de germanio}} & \multicolumn{2}{c|}{\textbf{Diodo de silicio}} \\
+        \cline{2-5}
+        & \textbf{D1} & \textbf{D2} & \textbf{D1} & \textbf{D2} \\
+        \hline
+
+        \includegraphics[height=1.8cm]{images/punta1.png} & $280\mV$ & $281\mV$ & $565\mV$ & $564\mV$ \\
+        \hline
+        \includegraphics[height=1.8cm]{images/punta2.png} & OL & OL & OL & OL \\
+        \hline
+      \end{tabular}
+      \caption{Mediciones con el multimetro en diferentes polaridades}
+    \end{table}
+
+    Queda claro que la marca negra en el empaquetado DO-35 y la marca plateada en el empaquetado DO-15 indican el
+    catodo del diodo, y la parte que no tiene nada indica el anodo. Es importante destacar que, a pesar de que el
+    procedimiento de dopado del diodo puede parecer un proceso totalmente controlado, esto no suele ser asi. El
+    multimetro utilizado posiblemente no tiene buena resolucion para sacar estos desperfectos a flote, pero
+    generalmente las caidas de tension suelen variar mas de un diodo a otro. Es posible que tambien hayamos tenido
+    suerte, y que nos hayan tocado dos diodos de cada uno de los modelos, adyacentes uno de otro en la materia prima
+    de la cual se fabricaron.
+
+    Por otro lado, se puede apreciar que cuando polarizamos el diodo en inversa, el multimetro marcaba OL. Esto es la
+    abreviatura para "carga abierta" (open load), lo que significa que para el multimetro, lo que estamos midiendo es
+    lo mismo que un circuito que no esta cerrado.
+
+    En cualquier caso, queda claramente definido cuales son los pines del diodo y cual es el comportamiento esperado
+    de aqui en adelante.
+
 
   \chapter{Curva caracteristica del Diodo}
     La curva caracteristica del diodo permite establecer una relacion facil de entender entre la corriente que circula
@@ -673,22 +785,22 @@ sorting=ynt
 
 
 
-        Se puede observar y comprobar lo visto en el marco teorico, a mayor temperatura que se le aplique al diodo, 
-        el codo de conmutacion se puede observar con menor voltaje aplicado sobre el circuito, asi como lo afecta 
-        cuando aumenta la temperatura tambien lo afecta a menor temperatura, siendo asi que el diodo necesita mas 
-        voltaje para lograr pasar al estado de conmutacion. Sabiendo que los graficos que nos brinda el 
-        fabricante en la hoja de datos es en una temperatura promedio de 25$°C°$ en el grafico se observa 
+        Se puede observar y comprobar lo visto en el marco teorico, a mayor temperatura que se le aplique al diodo,
+        el codo de conmutacion se puede observar con menor voltaje aplicado sobre el circuito, asi como lo afecta
+        cuando aumenta la temperatura tambien lo afecta a menor temperatura, siendo asi que el diodo necesita mas
+        voltaje para lograr pasar al estado de conmutacion. Sabiendo que los graficos que nos brinda el
+        fabricante en la hoja de datos es en una temperatura promedio de 25$°C°$ en el grafico se observa
         perfectamente  los otros 2 casos.
 
 
 
         A su vez hay otra variable que termina siendo afectada por la temperatura y esta es la corriente de fuga,
-        sabiendo que esto es la pequeña corriente que fluye cuando el diodo está polarizado en inversa. Idealmente 
-        debería ser cero, pero debido a la generación de pares electrón-hueco en el material, existe una pequeña 
-        corriente. La corriente de fuga inversa aumenta exponencialmente con la temperatura, aproximadamente se 
-        duplica por cada aumento de 10$°C$, esto se debe a que el aumento de la temperatura reduce la zona de 
-        agotamiento del semiconductor PN, provocando tambien que la barrera de potencial disminuya (por eso a mayor 
-        temperatura se logra conmutar con menor voltaje), facilitando el paso de los electrones a traves de esta 
+        sabiendo que esto es la pequeña corriente que fluye cuando el diodo está polarizado en inversa. Idealmente
+        debería ser cero, pero debido a la generación de pares electrón-hueco en el material, existe una pequeña
+        corriente. La corriente de fuga inversa aumenta exponencialmente con la temperatura, aproximadamente se
+        duplica por cada aumento de 10$°C$, esto se debe a que el aumento de la temperatura reduce la zona de
+        agotamiento del semiconductor PN, provocando tambien que la barrera de potencial disminuya (por eso a mayor
+        temperatura se logra conmutar con menor voltaje), facilitando el paso de los electrones a traves de esta
         generando la corriente de fuga.
 
 
@@ -738,9 +850,9 @@ sorting=ynt
 
 
 
-            Como se puede observar, los diodos zener recortan las ondas dependiendo de los valores de los mismos, en 
+            Como se puede observar, los diodos zener recortan las ondas dependiendo de los valores de los mismos, en
             este caso los diodos son de 5.1$V$ y 20$V$. En el semiciclo positivo, el Zener de 20$V$ está en inversa y
-            conduce solamente si $Vin > 20.7V$, por otro lado en el semiciclo negativo, el Zener de 5.1$V$ esta en 
+            conduce solamente si $Vin > 20.7V$, por otro lado en el semiciclo negativo, el Zener de 5.1$V$ esta en
             inversa y conduce solamente si $Vin <-5.8V$. Por lo tanto recorta la señal entre $+20.7V$ y $-5.8V$.
 
 
@@ -774,21 +886,21 @@ sorting=ynt
               \end{minipage}
             \end{figure}
 
-            
+
 
             Y el grafico que presenta es el siguiente:
 
             En este caso al variar los valores de los diodos zener lo que ocurre es lo siguiente: Se presentan dos
             zener con los valores de $6.8V$ y $12V$. En el semiciclo positivo, el Zener de $6V$ está en inversa y
-            conduce solamente si $Vin \leq 7.5V$, por otro lado en el semiciclo negativo, el Zener de $12V$ esta en 
+            conduce solamente si $Vin \leq 7.5V$, por otro lado en el semiciclo negativo, el Zener de $12V$ esta en
             inversa y conduce solamente si $Vin < 12.7V$. Por lo tanto recorta la señal entre $+7.5V$ y $12.7V$.
-            
-        
 
 
 
 
-        
+
+
+
     \chapter{Actividad de laboratorio}
     \chapter{Analisis sobre parametros de hoja de datos}
 
@@ -797,10 +909,10 @@ sorting=ynt
 
 
         Caracteristicas Electricas.
-        
+
 
         Regimenes Maximos:
-        
+
         \begin{enumerate}
           \item $V_{RRM}$: Es la tension inversa de pico de trabajo. Es la que puede ser soportada por el diodo sin
               llegar a la zona de ruptura.\\
@@ -835,7 +947,7 @@ sorting=ynt
               no se le aplica potencia.\\
             \item $T_A$: Es la temperatura del ambiente. Temperatura a la que el diodo trabaja y se almacena.\\
             \item $R_{thjc}$: Es la resistencia térmica que se encuentra entre la unión semiconductora del diodo y la
-              carcasa externa del dispositivo. Mide la eficiencia con la que el calor generado dentro del diodo se 
+              carcasa externa del dispositivo. Mide la eficiencia con la que el calor generado dentro del diodo se
               transfiere a la carcasa, donde puede ser disipado.
         \end{enumerate}
 
