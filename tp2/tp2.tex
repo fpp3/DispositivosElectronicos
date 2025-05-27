@@ -1004,174 +1004,307 @@ sorting=ynt
       conmutacion de ambos semiconductores. Las ventajas y desventajas son las mismas que cuando se hizo la comparativa
       de la figura (\ref{graph.simulation.comparativa.directa}).
 
-  \part{Comportamiento del diodo en función de la temperatura}
-    \chapter{Actividad de simulacion}
-        Se pide simular el diodo 1N3198 pero esta vez para poder corroborar como afecta la temperatura la curva
-        caracteristica. Para la simulacion se utilizaran las siguientes temperaturas: $20°C$, $100°C$ y $125°C$. Ademas
-        de los siguientes parametros que se muestran a continuacion con el circuito a simular
+    \chapter{Comportamiento del Diodo en funcion de la temperatura}
+      Se pide simular el diodo 1N3198 pero esta vez para poder corroborar como afecta la temperatura la curva
+      caracteristica. Para la simulacion se utilizaran las siguientes temperaturas: $20°C$, $100°C$ y $125°C$. Ademas
+      de los siguientes parametros que se muestran a continuacion con el circuito a simular
 
-        \begin{figure}[!ht]
+      \begin{figure}[!ht]
+        \centering
+        \begin{minipage}{0.45\textwidth}
+          \begin{circuitikz}[american voltages]
+            \draw (0, -1) to [V=$V_1$, invert]             (0, 3)
+                          to [short, -, i>^=$i_D$]         (1, 3)
+                          to [R=$R_1$, v=$V_{R_1}$]        (4, 3)
+                          to [short, -]                    (5, 3)
+                          to [zzD=$1N3198$, v=$v_D$]       (5, -1)
+                          to [short, -]                    (5, -1)
+                          to [short, -]                    (0, -1)
+                          ;
+          \end{circuitikz}
+          \caption{Circuito con diodo de silicio 1N3198.}
+          \label{crkt.zener.directa}
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.45\textwidth}
+          \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list.zenner.directa]
+            .dc V1 0 800m 10m
+            .model 1N3198 D (IS=2.0e-7 N=1.20 RS=1.0 EG=1.11 XTI=-2 CJO=40p VJ=0.75 M=0.333 BV=2.25 IBV=5m KF=0 AF=1 FC=0.5)
+            .step temp list 20 100 125
+          \end{lstlisting}
+        \end{minipage}
+      \end{figure}
+
+
+      A continuacion se presenta el grafico con cada variante de la curva caracteristica con su respectiva temperatura:
+      \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+          \begin{axis}[
+            width=14cm,
+            height=7cm,
+            xlabel={$v_D$ [mV]},
+            ylabel={$i_D$ [$\mu A$]},
+            grid=both,
+            minor tick num=1,
+            scale only axis,
+            enlargelimits=false,
+            scaled ticks=false,
+            restrict x to domain=-2000:10000,
+          ]
+          \addplot[
+            color=blue,
+            mark=none,
+            thick,
+          ] table[
+            col sep=tab,
+            header=true,
+            x expr=\thisrow{V(d1)}*1000,
+            y expr=\thisrow{I(D1)}*1000000
+          ] {simulations/TP2_3_temp_20.txt};
+          \addlegendentry{20°C}
+          \addplot[
+            color=red,
+            mark=none,
+            thick,
+          ] table[
+            col sep=tab,
+            header=true,
+            x expr=\thisrow{V(d1)}*1000,
+            y expr=\thisrow{I(D1)}*1000000
+          ] {simulations/TP2_3_temp_100.txt};
+          \addlegendentry{100°C}
+          \addplot[
+            color=green,
+            mark=none,
+            thick,
+          ] table[
+            col sep=tab,
+            header=true,
+            x expr=\thisrow{V(d1)}*1000,
+            y expr=\thisrow{I(D1)}*1000000
+          ] {simulations/TP2_3_temp_125.txt};
+          \addlegendentry{125°C}
+          \end{axis}
+        \end{tikzpicture}
+        \caption{Grafico de las curvas caracteristicas simuladas en diferentes temperaturas.}
+        \label{graph.simulation.temperatura}
+      \end{figure}
+
+      Se puede observar y comprobar lo visto en el marco teorico, a mayor temperatura que se le aplique al diodo,
+      el codo de conmutacion se puede observar con menor voltaje aplicado sobre el circuito, asi como lo afecta
+      cuando aumenta la temperatura tambien lo afecta a menor temperatura, siendo asi que el diodo necesita mas
+      voltaje para lograr pasar al estado de conmutacion. Sabiendo que los graficos que nos brinda el
+      fabricante en la hoja de datos es en una temperatura promedio de 25$°C°$ en el grafico se observa
+      perfectamente  los otros 2 casos.
+
+      A su vez hay otra variable que termina siendo afectada por la temperatura y esta es la corriente de fuga,
+      sabiendo que esto es la pequeña corriente que fluye cuando el diodo está polarizado en inversa. Idealmente
+      debería ser cero, pero debido a la generación de pares electrón-hueco en el material, existe una pequeña
+      corriente. La corriente de fuga inversa aumenta exponencialmente con la temperatura, aproximadamente se
+      duplica por cada aumento de 10$°C$, esto se debe a que el aumento de la temperatura reduce la zona de
+      agotamiento del semiconductor PN, provocando tambien que la barrera de potencial disminuya (por eso a mayor
+      temperatura se logra conmutar con menor voltaje), facilitando el paso de los electrones a traves de esta
+      generando la corriente de fuga.
+
+    \chapter{Circuitos recortadores con diodos Zener: Simulacion}
+      Los circuitos recortadores con diodos Zener son utilizados para limitar el voltaje de una señal dentro de un
+      rango definido. A diferencia de los diodos comunes, los Zener pueden conducir en inversa cuando se supera su
+      voltaje de ruptura, lo que los hace ideales para recortar tanto los picos positivos como negativos de una señal.
+      Este comportamiento permite proteger circuitos sensibles o modelar señales, especialmente en aplicaciones con
+      señales alternas.
+
+      En la configuración \textit{back-to-back}, se conectan dos Zener en paralelo pero en sentidos opuestos. Cuando la
+      señal supera el voltaje Zener en cualquier dirección, uno de los diodos conduce, limitando el voltaje de salida
+      a aproximadamente $\pm V_Z$. Esta disposición recorta simétricamente la señal y es útil para mantenerla dentro de
+      un rango definido, como por ejemplo $\pm 5.1\,\text{V}$ si se usan Zener de $5.1\,\text{V}$.
+
+      La configuración \textit{front-to-front} conecta los Zener en serie con los cátodos (o los ánodos) unidos. Aquí,
+      uno de los diodos se polariza directamente (caída de $\sim 0.7\,\text{V}$) y el otro en inversa (a $V_Z$). Por lo
+      tanto, la señal se recorta en ambos extremos a aproximadamente $\pm (V_Z + 0.7\,\text{V})$. Este arreglo también
+      limita la señal pero con un umbral ligeramente más alto y es menos común que el \textit{back-to-back} en
+      aplicaciones prácticas.
+
+      \section{Circuito Back-to-Back}
+        En este ejercicio se pide analizar dos circuitos compuestos por dos diodos Zener configurados como
+        \textit{back-to-back}, lo cual implica conectar los diodos en sentido opuesto, con el ánodo de un diodo
+        conectado al cátodo del otro. En esta disposición, cuando la tensión de entrada supera el voltaje Zener en
+        cualquiera de las dos polaridades, uno de los diodos conduce en inversa y recorta la señal. De esta forma, la
+        salida se limita a aproximadamente $\pm V_Z$, protegiendo al circuito de sobrevoltajes tanto positivos como
+        negativos. Esta configuración es ampliamente utilizada en sistemas donde se requiere una protección simétrica
+        contra picos de tensión.
+
+        En el primer circuito  se plantea lo siguiente:
+        \begin{figure}[H]
           \centering
           \begin{minipage}{0.45\textwidth}
             \begin{circuitikz}[american voltages]
-              \draw (0, -1) to [V=$V_1$, invert]             (0, 3)
-                            to [short, -, i>^=$i_D$]         (1, 3)
-                            to [R=$R_1$, v=$V_{R_1}$]        (4, 3)
+              \draw (0, -1) to [V=$V_1$]                     (0, 3)
+                            to [short, -, i<^=$i_D$]         (1, 3)
+                            to [R=$R_1$, v<=$V_{R_1}$]       (4, 3)
                             to [short, -]                    (5, 3)
-                            to [zzD=$1N3198$, v=$v_D$]       (5, -1)
+                            to [zzD=$1N60$, v<=$v_D$]        (5, -1)
                             to [short, -]                    (5, -1)
                             to [short, -]                    (0, -1)
                             ;
             \end{circuitikz}
-            \caption{Circuito con diodo de silicio 1N3198.}
-            \label{crkt.zener.directa}
+            \caption{Circuito con diodo de silicio 1N60 en inversa.}
+            \label{crkt.recortador.btb}
           \end{minipage}
           \hfill
           \begin{minipage}{0.45\textwidth}
-            \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list.zenner.directa]
-              .dc V1 0 800m 10m
-              .model 1N3198 D (IS=2.0e-7 N=1.20 RS=1.0 EG=1.11 XTI=-2 CJO=40p VJ=0.75 M=0.333 BV=2.25 IBV=5m KF=0 AF=1 FC=0.5)
-              .step temp list 20 100 125
+            \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list.recortador.btb]
+              .model 1N5338B D(IS=1n RS=1 N=1.3 BV=5.1 IBV=240m CJO=200p TT=1u)
+              .model 1N5357B D(IS=1n RS=1 N=1.3 BV=20 IBV=65m CJO=200p TT=1u)
+              .tran .04
             \end{lstlisting}
           \end{minipage}
         \end{figure}
 
+        Y el grafico que presenta es el siguiente:
+        \begin{figure}[!ht]
+          \centering
+          \begin{tikzpicture}
+            \begin{axis}[
+              width=14cm,
+              height=7cm,
+              xlabel={$v_D$ [V]},
+              ylabel={$i_D$ [mA]},
+              grid=both,
+              minor tick num=1,
+              scale only axis,
+              enlargelimits=false,
+              scaled ticks=false,
+              restrict x to domain=0:40,
+              ymin=-35, ymax=35,
+            ]
+            \addplot[
+              color=blue,
+              mark=none,
+              thick,
+            ] table[
+              col sep=tab,
+              header=true,
+              x expr=\thisrow{time}*1000,
+              y=V(vo)
+            ] {simulations/TP2_4_graph.txt};
+            \addlegendentry{Vo}
+            \addplot[
+              color=red,
+              mark=none,
+              dashed,
+            ] table[
+              col sep=tab,
+              header=true,
+              x expr=\thisrow{time}*1000,
+              y=V(n001)
+            ] {simulations/TP2_4_graph.txt};
+            \addlegendentry{Vi}
+            \end{axis}
+          \end{tikzpicture}
+          \caption{Grafico de las curvas caracteristicas simuladas de los diodos de Silicio y Germanio utilizados.}
+          \label{graph.simulation.recortador.btb}
+        \end{figure}
 
-        A continuacion se presenta el grafico con cada variante de la curva caracteristica con su respectiva temperatura:
+        Como se puede observar, los diodos zener recortan las ondas dependiendo de los valores de los mismos, en
+        este caso los diodos son de 5.1$V$ y 20$V$. En el semiciclo positivo, el Zener de 20$V$ está en inversa y
+        conduce solamente si $Vin > 20.7V$, por otro lado en el semiciclo negativo, el Zener de 5.1$V$ esta en
+        inversa y conduce solamente si $Vin <-5.8V$. Por lo tanto recorta la señal entre $+20.7V$ y $-5.8V$.
 
+        \section{Circuito Front-to-Front}
+          En este ejercicio se pide analizar dos circuitos compuestos por dos diodos Zener configurados como 
+          \textit{front-to-front}, lo cual implica conectar ambos diodos con sus cátodos (o sus ánodos) unidos entre
+          sí. Esta configuración permite que, ante una señal alterna, uno de los diodos se polarice directamente
+          mientras el otro entra en conducción Zener. Como resultado, la señal se recorta cuando supera aproximadamente
+          el valor de $V_Z + 0.7\,\text{V}$, limitando así la amplitud de la señal tanto en el semiciclo positivo como
+          en el negativo. Este tipo de recortador se utiliza principalmente cuando se requiere una protección o
+          conformación de señal con un umbral ligeramente superior al del montaje \textit{back-to-back}.
 
+          En el segundo circuito se plantea lo siguiente:
+          \begin{figure}[!ht]
+            \centering
+            \begin{minipage}{0.45\textwidth}
+              \begin{circuitikz}[american voltages]
+                \draw (0, -1) to [V=$V_1$]                     (0, 3)
+                              to [short, -, i<^=$i_D$]         (1, 3)
+                              to [R=$R_1$, v<=$V_{R_1}$]       (4, 3)
+                              to [short, -]                    (5, 3)
+                              to [zD=$1N60$, v<=$v_D$]          (5, -1)
+                              to [short, -]                    (5, -1)
+                              to [short, -]                    (0, -1)
+                              ;
+              \end{circuitikz}
+              \caption{Circuito con diodo de silicio 1N60 en inversa.}
+              \label{crkt.recortador.ftf}
+            \end{minipage}
+            \hfill
+            \begin{minipage}{0.45\textwidth}
+              \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list.recortador.ftf]
+                .model 1N5342B D(IS=1n RS=1 N=1.3 BV=6.8 IBV=175m CJO=200p TT=1u)
+                .model 1N5349B D(IS=1n RS=1 N=1.3 BV=12 IBV=100m CJO=200p TT=1u)
+                .tran .04
+              \end{lstlisting}
+            \end{minipage}
+          \end{figure}
 
+          Y el grafico que presenta es el siguiente:
+          \begin{figure}[!ht]
+            \centering
+            \begin{tikzpicture}
+              \begin{axis}[
+                width=14cm,
+                height=7cm,
+                xlabel={$v_D$ [V]},
+                ylabel={$i_D$ [mA]},
+                grid=both,
+                minor tick num=1,
+                scale only axis,
+                enlargelimits=false,
+                scaled ticks=false,
+                restrict x to domain=0:40,
+                ymin=-35, ymax=35,
+              ]
+              \addplot[
+                color=blue,
+                mark=none,
+                thick,
+              ] table[
+                col sep=tab,
+                header=true,
+                x expr=\thisrow{time}*1000,
+                y=V(vo)
+              ] {simulations/TP2_5_graph.txt};
+              \addlegendentry{Vo}
+              \addplot[
+                color=red,
+                mark=none,
+                dashed,
+              ] table[
+                col sep=tab,
+                header=true,
+                x expr=\thisrow{time}*1000,
+                y=V(n001)
+              ] {simulations/TP2_5_graph.txt};
+              \addlegendentry{Vi}
+              \end{axis}
+            \end{tikzpicture}
+            \caption{Grafico de las curvas caracteristicas simuladas de los diodos de Silicio y Germanio utilizados.}
+            \label{graph.simulation.recortador.ftf}
+          \end{figure}
 
+          En este caso al variar los valores de los diodos zener lo que ocurre es lo siguiente: Se presentan dos
+          zener con los valores de $6.8V$ y $12V$. En el semiciclo positivo, el Zener de $6V$ está en inversa y
+          conduce solamente si $Vin \leq 7.5V$, por otro lado en el semiciclo negativo, el Zener de $12V$ esta en
+          inversa y conduce solamente si $Vin < 12.7V$. Por lo tanto recorta la señal entre $+7.5V$ y $12.7V$.
 
-
-        Se puede observar y comprobar lo visto en el marco teorico, a mayor temperatura que se le aplique al diodo,
-        el codo de conmutacion se puede observar con menor voltaje aplicado sobre el circuito, asi como lo afecta
-        cuando aumenta la temperatura tambien lo afecta a menor temperatura, siendo asi que el diodo necesita mas
-        voltaje para lograr pasar al estado de conmutacion. Sabiendo que los graficos que nos brinda el
-        fabricante en la hoja de datos es en una temperatura promedio de 25$°C°$ en el grafico se observa
-        perfectamente  los otros 2 casos.
-
-
-
-        A su vez hay otra variable que termina siendo afectada por la temperatura y esta es la corriente de fuga,
-        sabiendo que esto es la pequeña corriente que fluye cuando el diodo está polarizado en inversa. Idealmente
-        debería ser cero, pero debido a la generación de pares electrón-hueco en el material, existe una pequeña
-        corriente. La corriente de fuga inversa aumenta exponencialmente con la temperatura, aproximadamente se
-        duplica por cada aumento de 10$°C$, esto se debe a que el aumento de la temperatura reduce la zona de
-        agotamiento del semiconductor PN, provocando tambien que la barrera de potencial disminuya (por eso a mayor
-        temperatura se logra conmutar con menor voltaje), facilitando el paso de los electrones a traves de esta
-        generando la corriente de fuga.
-
-
-
-
-
-  \part{Circuitos recortadores con diodos Zener}
-    \chapter{Actividad de simulacion}
-        En este ejercicio se pide analizar dos circuitos compuestos por dos diodos zener configurados como
-        "back-to-back" implica conectar dos diodos Zener en sentido opuesto, con el ánodo de un diodo conectado al
-        cátodo del otro. Esta configuracion se utiliza principalmente para proteger contra sobretensiones en ambas
-        polaridades.
-
-        \subsection{Circuito 1}
-
-            En el primer circuito  se plantea lo siguiente:
-
-            \begin{figure}[!ht]
-              \centering
-              \begin{minipage}{0.45\textwidth}
-                \begin{circuitikz}[american voltages]
-                  \draw (0, -1) to [V=$V_1$]                     (0, 3)
-                                to [short, -, i<^=$i_D$]         (1, 3)
-                                to [R=$R_1$, v<=$V_{R_1}$]       (4, 3)
-                                to [short, -]                    (5, 3)
-                                to [zzD=$1N60$, v<=$v_D$]        (5, -1)
-                                to [short, -]                    (5, -1)
-                                to [short, -]                    (0, -1)
-                                ;
-                \end{circuitikz}
-                \caption{Circuito con diodo de silicio 1N60 en inversa.}
-                \label{crkt.recortador.btb}
-              \end{minipage}
-              \hfill
-              \begin{minipage}{0.45\textwidth}
-                \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list.recortador.btb]
-                  .model 1N5338B D(IS=1n RS=1 N=1.3 BV=5.1 IBV=240m CJO=200p TT=1u)
-                  .model 1N5357B D(IS=1n RS=1 N=1.3 BV=20 IBV=65m CJO=200p TT=1u)
-                  .tran .04
-                \end{lstlisting}
-              \end{minipage}
-            \end{figure}
-
-
-
-            Y el grafico que presenta es el siguiente:
-
-
-
-            Como se puede observar, los diodos zener recortan las ondas dependiendo de los valores de los mismos, en
-            este caso los diodos son de 5.1$V$ y 20$V$. En el semiciclo positivo, el Zener de 20$V$ está en inversa y
-            conduce solamente si $Vin > 20.7V$, por otro lado en el semiciclo negativo, el Zener de 5.1$V$ esta en
-            inversa y conduce solamente si $Vin <-5.8V$. Por lo tanto recorta la señal entre $+20.7V$ y $-5.8V$.
-
-
-        \subsection{Circuito 2}
-
-            En el segundo circuito se plantea lo siguiente:
-
-            \begin{figure}[!ht]
-              \centering
-              \begin{minipage}{0.45\textwidth}
-                \begin{circuitikz}[american voltages]
-                  \draw (0, -1) to [V=$V_1$]                     (0, 3)
-                                to [short, -, i<^=$i_D$]         (1, 3)
-                                to [R=$R_1$, v<=$V_{R_1}$]       (4, 3)
-                                to [short, -]                    (5, 3)
-                                to [zD=$1N60$, v<=$v_D$]          (5, -1)
-                                to [short, -]                    (5, -1)
-                                to [short, -]                    (0, -1)
-                                ;
-                \end{circuitikz}
-                \caption{Circuito con diodo de silicio 1N60 en inversa.}
-                \label{crkt.recortador.ftf}
-              \end{minipage}
-              \hfill
-              \begin{minipage}{0.45\textwidth}
-                \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list.recortador.ftf]
-                  .model 1N5342B D(IS=1n RS=1 N=1.3 BV=6.8 IBV=175m CJO=200p TT=1u)
-                  .model 1N5349B D(IS=1n RS=1 N=1.3 BV=12 IBV=100m CJO=200p TT=1u)
-                  .tran .04
-                \end{lstlisting}
-              \end{minipage}
-            \end{figure}
-
-
-
-            Y el grafico que presenta es el siguiente:
-
-            En este caso al variar los valores de los diodos zener lo que ocurre es lo siguiente: Se presentan dos
-            zener con los valores de $6.8V$ y $12V$. En el semiciclo positivo, el Zener de $6V$ está en inversa y
-            conduce solamente si $Vin \leq 7.5V$, por otro lado en el semiciclo negativo, el Zener de $12V$ esta en
-            inversa y conduce solamente si $Vin < 12.7V$. Por lo tanto recorta la señal entre $+7.5V$ y $12.7V$.
-
-
-
-
-
-
-
-    \chapter{Actividad de laboratorio}
+    \chapter{Circuitos recortadores con diodos Zener: Laboratorio}
     \chapter{Analisis sobre parametros de hoja de datos}
 
         Se pide  determinar el significado de cada sigla y cual es su interpretación en el uso.
 
+        \section{Caracteristicas Electricas}
 
-
-        Caracteristicas Electricas.
-
-
-        Regimenes Maximos:
-
+        \subsection{Regimenes Maximos}
         \begin{enumerate}
           \item $V_{RRM}$: Es la tension inversa de pico de trabajo. Es la que puede ser soportada por el diodo sin
               llegar a la zona de ruptura.\\
@@ -1183,10 +1316,7 @@ sorting=ynt
               soportar el dispoitivo.
         \end{enumerate}
 
-
-
-        Regimenes Caracteristicos:
-
+        \subsection{Regimenes Caracteristicos}
         \begin{enumerate}
           \item $V_{BR}$: Es la tension inversa continua. Maxima tension que soporta el diodo en estado de bloqueo.\\
             \item $I_R$: Maxima corriente inversa. Valor de orriente que circula en estado de bloqueo.\\
@@ -1196,10 +1326,7 @@ sorting=ynt
             \item $I_F$: Corriente directa. Corriente que circula en estado de conduccion.
         \end{enumerate}
 
-
-
-        Caracteristicas Termicas.
-
+        \subsection{Caracteristicas Termicas}
         \begin{enumerate}
             \item $T_J$: Es la temperatura de la union. Temperatura maxima del componente antes de que se dañe.\\
             \item $T_{STG}$: Es la temperatura de almacenamiento. Temperatura que se almacena en el dispositivo cuando
@@ -1211,7 +1338,7 @@ sorting=ynt
         \end{enumerate}
 
 
-        Caracteristicas de Uso.
+        \section{Caracteristicas de Uso}
 
         \begin{enumerate}
           \item $V_{RMS}$: Es el valor eficaz de la tensión que se aplica a un diodo. Es el valor que representa el
