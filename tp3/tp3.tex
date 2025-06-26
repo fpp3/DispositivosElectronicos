@@ -1,0 +1,47 @@
+\documentclass[chaptersright]{informeutn}
+\usepackage{listings}
+\usepackage[
+backend=bibtex,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+\addbibresource{fuentes.bib}
+
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\usepackage{subcaption}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{multirow}
+
+% Datos del informe
+\materia{Dispositivos Electronicos}
+\titulo{Trabajo Práctico 3}
+\comision{3R2}
+\autores{
+          Santino Noccetti, 405927 - Operario y Documentador\\
+          Franco Palombo, 401910 - Coordinador}
+\fecha{01/07/2025}
+
+\begin{document}
+  \maketitle
+
+  \tableofcontents
+  \setcounter{page}{1}
+  \thispagestyle{plain}
+
+  \input{chapters/1_introduccion.tex}
+  \input{chapters/2_bjt_corte.tex}
+  \input{chapters/3_bjt_polariz.tex}
+  \input{chapters/4_curva_caract.tex}
+  \input{chapters/5_transf_corr.tex}
+  \input{chapters/6_interpr_datash.tex}
+  \input{chapters/7_conclusiones.tex}
+  \printbibliography[
+    heading=bibintoc,
+    title={Fuentes}
+  ]
+  \input{chapters/8_anexos.tex}
+
+\end{document}
