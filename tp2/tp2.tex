@@ -46,20 +46,20 @@ sorting=ynt
   \setcounter{page}{1}
   \thispagestyle{plain}
 
-  \chapter{Introduccion}
-    En este trabajo practico se divide en el analisis de dos componentes. Por un lado en la simulacion del diodo
-    rectificador, se busca visualizar el comportamiento de este y la curva caracteristica para asi comparar el codo de
-    conmutacion entre el estado de bloqueo y conduccion que nos presenta el fabricante, luego armar un circuito en el
-    laboratorio para poder medir y corroborar lo visto en el simulador. Ademas se incluye en la simulacion el factor de
+  \chapter{Introducción}
+    En este trabajo practico se divide en el análisis de dos componentes. Por un lado en la simulación del diodo
+    rectificador, se busca visualizar el comportamiento de este y la curva característica para así comparar el codo de
+    conmutación entre el estado de bloqueo y conducción que nos presenta el fabricante, luego armar un circuito en el
+    laboratorio para poder medir y corroborar lo visto en el simulador. Ademas se incluye en la simulación el factor de
     la temperatura, para poder ver como afecta al comportamiento.
 
     Luego se propone un circuito con diodos Zener en CA, para ello se nos exige utilizar el simulador LTspice para
     visualizar su uso para limitar las excursiones de voltaje a niveles deseados. Luego en el laboratorio se nos pide
-    armar el mismo circuito para poder visualizar y analizar su uso como recortadores.
+    armar el mismo circuito para poder visualizar y analizar su uso como recordadores.
 
-  \chapter{Identificacion de pines}
-    El diodo viene en diferentes empaquetados, pero todos tienen en comun la cantidad de pines. Esto esta dictado por
-    la estructura interna del diodo, que siempre es una region P pegada a una region N. Para este trabajo practico
+  \chapter{Identificación de pines}
+    El diodo viene en diferentes empaquetados, pero todos tienen en común la cantidad de pines. Esto esta dictado por
+    la estructura interna del diodo, que siempre es una región P pegada a una región N. Para este trabajo practico
     utilizamos dos modelos diferentes de diodos, donde ambos tienen el empaquetado axial, pero cambia la variante del
     empaquetado.
     \begin{figure}[!ht]
@@ -68,7 +68,7 @@ sorting=ynt
       \caption{Diferentes empaquetados de diodos.}
     \end{figure}
 
-    Para la identificacion de pines, utilizamos dos diodos 1N4007 y dos diodos 1N60, en empaquetados DO-15 y DO-35
+    Para la identificación de pines, utilizamos dos diodos 1N4007 y dos diodos 1N60, en empaquetados DO-15 y DO-35
     respectivamente.
 
     \begin{figure}[!ht]
@@ -77,12 +77,12 @@ sorting=ynt
       \caption{Diodos 1N60 (superior) y 1N4007 (inferior).}
     \end{figure}
 
-    Se sabe que el diodo permite el paso de la corriente solo en un sentido. Si con el multimetro probamos las unicas
-    dos posibilidades de circulacion de corriente, podremos identificar cual es el anodo y cual es el catodo:
+    Se sabe que el diodo permite el paso de la corriente solo en un sentido. Si con el multimetro probamos las únicas
+    dos posibilidades de circulación de corriente, podremos identificar cual es el ánodo y cual es el cátodo:
     \begin{figure}[!ht]
       \begin{subfigure}[b]{1\textwidth}
         \centering
-        \caption{Diodos polarizados en directa y sus caidas.}
+        \caption{Diodos polarizados en directa y sus caídas.}
         \begin{minipage}[b]{0.24\textwidth}
           \centering
           \includegraphics[angle=-90, width=1\textwidth]{pictures/prot_diod-1d.jpg}
@@ -106,7 +106,7 @@ sorting=ynt
       \end{subfigure}
       \begin{subfigure}[b]{1\textwidth}
         \centering
-        \caption{Diodos polarizados en inversa y sus caidas.}
+        \caption{Diodos polarizados en inversa y sus caídas.}
         \begin{minipage}[b]{0.24\textwidth}
           \centering
           \includegraphics[angle=-90, width=1\textwidth]{pictures/prot_diod-1i.jpg}
@@ -130,7 +130,7 @@ sorting=ynt
       \end{subfigure}
     \end{figure}
 
-    Despues de haber hecho todas las pruebas, se puede confeccionar la siguiente tabla:
+    Después de haber hecho todas las pruebas, se puede confeccionar la siguiente tabla:
     \begin{table}[H]
       \centering
       \begin{tabular}{|>{\centering\arraybackslash}m{3cm}|*{4}{>{\centering\arraybackslash}m{2cm}|}}
@@ -149,10 +149,10 @@ sorting=ynt
     \end{table}
 
     Queda claro que la marca negra en el empaquetado DO-35 y la marca plateada en el empaquetado DO-15 indican el
-    catodo del diodo, y la parte que no tiene nada indica el anodo. Es importante destacar que, a pesar de que el
-    procedimiento de dopado del diodo puede parecer un proceso totalmente controlado, esto no suele ser asi. El
-    multimetro utilizado posiblemente no tiene buena resolucion para sacar estos desperfectos a flote, pero
-    generalmente las caidas de tension suelen variar mas de un diodo a otro. Es posible que tambien hayamos tenido
+    cátodo del diodo, y la parte que no tiene nada indica el ánodo. Es importante destacar que, a pesar de que el
+    procedimiento de dopado del diodo puede parecer un proceso totalmente controlado, esto no suele ser así. El
+    multimetro utilizado posiblemente no tiene buena resolución para sacar estos desperfectos a flote, pero
+    generalmente las caídas de tensión suelen variar mas de un diodo a otro. Es posible que también hayamos tenido
     suerte, y que nos hayan tocado dos diodos de cada uno de los modelos, adyacentes uno de otro en la materia prima
     de la cual se fabricaron.
 
@@ -161,12 +161,12 @@ sorting=ynt
     lo mismo que un circuito que no esta cerrado.
 
     En cualquier caso, queda claramente definido cuales son los pines del diodo y cual es el comportamiento esperado
-    de aqui en adelante.
+    de aquí en adelante.
 
 
-  \chapter{Curva caracteristica del Diodo: Simulacion}
-    La curva caracteristica del diodo permite establecer una relacion facil de entender entre la corriente que circula
-    por el diodo y la caida de tension que se genera. Diferentes diodos tienen diferentes curvas caracteristicas, pero
+  \chapter{Curva característica del Diodo: Simulación}
+    La curva característica del diodo permite establecer una relación fácil de entender entre la corriente que circula
+    por el diodo y la caída de tensión que se genera. Diferentes diodos tienen diferentes curvas características, pero
     casi todas siguen la curva exponencial definida como:
 
     \begin{equation}
@@ -174,32 +174,32 @@ sorting=ynt
       \label{eq.caracteristica}
     \end{equation}
 
-    Las variaciones suelen estar en el termino $I_0$ que es la corriente de polarizacion en inversa, y el termino $V_T$
-    que es la variacion de voltaje por grado celsius.
+    Las variaciones suelen estar en el termino $I_0$ que es la corriente de polarización en inversa, y el termino $V_T$
+    que es la variación de voltaje por grado celsius.
 
-    \section{Polarizacion en directa}
-      La polarizacion en directa del diodo implica que la region de empobrecimiento del diodo se contraiga a causa del
+    \section{Polarización en directa}
+      La polarización en directa del diodo implica que la región de empobrecimiento del diodo se contraiga a causa del
       potencial colocado en el diodo. Este potencial, que tiene un flujo de corriente convencional que ingresa por la
-      region P y egresa por la region N (en flujo no convencional, los $e^-$ ingresan por N y egresan por P). Este
-      flujo de corriente provoca que haya un exceso de portadores mayoritarios en la region P, haciendo que aquellos
-      que tienen suficiente energia potencial puedan sobrepasar la region de empobrecimiento, recombinandose con los
-      portadores mayoritarios de la region N y generando un movimiento de cargas. Esto pasa tambien en la region N.
+      región P y egresa por la región N (en flujo no convencional, los $e^-$ ingresan por N y egresan por P). Este
+      flujo de corriente provoca que haya un exceso de portadores mayoritarios en la región P, haciendo que aquellos
+      que tienen suficiente energía potencial puedan sobrepasar la región de empobrecimiento, recombinándose con los
+      portadores mayoritarios de la región N y generando un movimiento de cargas. Esto pasa también en la región N.
 
-      A medida que mas portadores mayoritarios fluyen, mas se contrae la region de empobrecimiento, causando que los
-      portadores mayoritarios requieran menos potencial para sobrepasar la barrera. Este fenomeno es por el cual el
+      A medida que mas portadores mayoritarios fluyen, mas se contrae la región de empobrecimiento, causando que los
+      portadores mayoritarios requieran menos potencial para sobrepasar la barrera. Este fenómeno es por el cual el
       diodo va teniendo menos "resistencia equivalente" a medida que el voltaje o la corriente aumentan.
 
       \subsection{Diodo de Silicio}
-        Para corroborar la curva caracteristica del diodo de silicio, y como esta responde a los cambios de voltaje, se
-        creo un circuito en el software LTSpice muy basico para probar la polarizacion del diodo de silicio.
+        Para corroborar la curva característica del diodo de silicio, y como esta responde a los cambios de voltaje, se
+        creo un circuito en el software LTSpice muy básico para probar la polarización del diodo de silicio.
 
-        El programa, de manera automatica, genera un barrido de tension que arranca en los $-2V$ y termina en los $10V$,
-        haciendo pasos de $100mV$ por muestra. De esta forma hay suficiente resolucion para considerarla una buena
-        aproximacion de la curva caracteristica del diodo.
+        El programa, de manera automática, genera un barrido de tensión que arranca en los $-2V$ y termina en los $10V$,
+        haciendo pasos de $100mV$ por muestra. De esta forma hay suficiente resolución para considerarla una buena
+        aproximación de la curva característica del diodo.
 
         Se selecciono el diodo 1N4007 como diodo de pruebas de silicio y $R_1 = 1K\Omega$. El circuito armado en
         LTSpice se puede ver en figura (\ref{crkt.Si.directa}) y se han empleado las directivas mostradas en el
-        listado (\ref{list.Si.directa}) para la simulacion.
+        listado (\ref{list.Si.directa}) para la simulación.
 
         \begin{figure}[H]
           \centering
@@ -225,7 +225,7 @@ sorting=ynt
           \end{minipage}
         \end{figure}
 
-        Habiendo simulado el circuito anterior, se extrayeron los resultados para ser mostrados en la figura
+        Habiendo simulado el circuito anterior, se extrajeron los resultados para ser mostrados en la figura
         (\ref{graph.simulation.Si.directa}).
 
         \begin{figure}[!ht]
@@ -262,39 +262,39 @@ sorting=ynt
               ] {simulations/TP2_1_graph.txt};
               \end{axis}
             \end{tikzpicture}
-            \caption{Grafico de la curva caracteristica del simulador.}
+            \caption{Gráfico de la curva característica del simulador.}
             \label{graph.simulation.Si.directa}
           \end{minipage}
           \hfill
           \begin{minipage}{0.45\textwidth}
             \includegraphics[width=1\textwidth]{images/Curva_Datash_Si_dir.png}
-            \caption{Grafico de la curva caracteristica de la hoja de datos.}
+            \caption{Gráfico de la curva característica de la hoja de datos.}
             \label{graph.datasheet.Si.directa}
           \end{minipage}
         \end{figure}
 
-        Se puede observar que la grafica proveniente de la hoja de datos del diodo de silicio \cite{DS0} es muy poco
-        similar a la obtenida con la simulacion. Esto se debe a que el analisis de baja corriente/voltaje que se esta
+        Se puede observar que la gráfica proveniente de la hoja de datos del diodo de silicio \cite{DS0} es muy poco
+        similar a la obtenida con la simulación. Esto se debe a que el análisis de baja corriente/voltaje que se esta
         haciendo para este trabajo practico no suele ser importante (por lo menos para el diodo seleccionado) debido a
-        que el rango operativo esta a mas de 100 veces la corriente (por eso la escala es logaritmica) a la que se
-        sometido el diodo en la simulacion.
+        que el rango operativo esta a mas de 100 veces la corriente (por eso la escala es logarítmica) a la que se
+        sometido el diodo en la simulación.
 
-        De todas formas, se puede apreciar que el "codo de conmutacion" efectivamente ocurre a los 0.7V en ambas
-        graficas. Se puede apreciar con mayor presicion en el grafico simulado la curva de corriente la cual
-        el diodo experimenta cuando pasa de no estar polarizado a cuando conduce. En la grafica del fabricante, se
-        puede apreciar mejor, como es que lo que se ve en la simulacion como una rampa lineal, en altas
+        De todas formas, se puede apreciar que el "codo de conmutación" efectivamente ocurre a los 0.7V en ambas
+        gráficas. Se puede apreciar con mayor precisión en el gráfico simulado la curva de corriente la cual
+        el diodo experimenta cuando pasa de no estar polarizado a cuando conduce. En la gráfica del fabricante, se
+        puede apreciar mejor, como es que lo que se ve en la simulación como una rampa lineal, en altas
         corrientes en realidad no es tan lineal, y empieza a experimentar un aumento de la "resistencia equivalente"
         debido a la proximidad con el limite operativo del diodo.
 
       \subsection{Diodo de Germanio}
-        Para corroborar la curva caracteristica del diodo de germanio, y como esta responde a los cambios de voltaje,
-        nuevamente se creo un circuito en el software LTSpice muy basico para probar la polarizacion del diodo de
+        Para corroborar la curva característica del diodo de germanio, y como esta responde a los cambios de voltaje,
+        nuevamente se creo un circuito en el software LTSpice muy básico para probar la polarización del diodo de
         germanio. El programa, realiza el mismo barrido que para el circuito del diodo de silicio con la misma
-        resolucion.
+        resolución.
 
         Se selecciono el diodo 1N60 como diodo de pruebas de germanio y $R_1 = 1K\Omega$. El circuito armado en
         LTSpice se puede ver en figura (\ref{crkt.Ge.directa}) y se han empleado las directivas mostradas en el
-        listado (\ref{list.Ge.directa}) para la simulacion.
+        listado (\ref{list.Ge.directa}) para la simulación.
 
         \begin{figure}[!ht]
           \centering
@@ -321,7 +321,7 @@ sorting=ynt
           \end{minipage}
         \end{figure}
 
-        Los resultados de la simulacion estan presentes en la figura (\ref{graph.simulation.Ge.directa}).
+        Los resultados de la simulación están presentes en la figura (\ref{graph.simulation.Ge.directa}).
 
         \begin{figure}[!ht]
           \centering
@@ -357,24 +357,24 @@ sorting=ynt
               ] {simulations/TP2_2_graph.txt};
               \end{axis}
             \end{tikzpicture}
-            \caption{Grafico de la curva caracteristica del simulador.}
+            \caption{Gráfico de la curva característica del simulador.}
             \label{graph.simulation.Ge.directa}
           \end{minipage}
           \hfill
           \begin{minipage}{0.45\textwidth}
             \includegraphics[width=1\textwidth]{images/Curva_Datash_Ge_dir.png}
-            \caption{Grafico de la curva caracteristica de la hoja de datos.}
+            \caption{Gráfico de la curva característica de la hoja de datos.}
             \label{graph.datasheet.Ge.directa}
           \end{minipage}
         \end{figure}
 
-        Se puede observar que, a diferencia del diodo de silicio, la grafica provista por la hoja de datos del diodo de
-        germanio \cite{DS1} tiene mas correlacion con los datos simulados. Se puede apreciar que el "codo de
-        conmutacion" ocurre mas o menos a los $0.3V$ en ambos graficos. Ademas, debido a que el diodo es de menor
-        potencia, la grafica tiene valores un poco mas proximos a los que realizamos en las pruebas con el simulador
+        Se puede observar que, a diferencia del diodo de silicio, la gráfica provista por la hoja de datos del diodo de
+        germanio \cite{DS1} tiene mas correlación con los datos simulados. Se puede apreciar que el "codo de
+        conmutación" ocurre mas o menos a los $0.3V$ en ambos gráficos. Ademas, debido a que el diodo es de menor
+        potencia, la gráfica tiene valores un poco mas próximos a los que realizamos en las pruebas con el simulador
         respecto al 1N4007.
 
-      \subsection{Comparacion de ambas simulaciones}
+      \subsection{Comparación de ambas simulaciones}
 
         \begin{figure}[!ht]
           \centering
@@ -415,54 +415,54 @@ sorting=ynt
             \addlegendentry{Ge}
             \end{axis}
           \end{tikzpicture}
-          \caption{Grafico de las curvas caracteristicas simuladas de los diodos de Silicio y Germanio utilizados.}
+          \caption{Gráfico de las curvas características simuladas de los diodos de Silicio y Germanio utilizados.}
           \label{graph.simulation.comparativa.directa}
         \end{figure}
 
         En la figura (\ref{graph.simulation.comparativa.directa}) se puede apreciar una clara diferencia en cuanto al voltaje
-        necesario para lograr poner los diodos en conduccion, siendo la de Germanio alrededor de los $0.2V$ a $0.3V$
-        mientras que el de Silicio se encuentra entre $0.6V$ a $0.7V$. Esta diferencia en el codo de conmutacion se
-        debe principalmente al potencial de umbral impuesto por la region de empobrecimiento. Los portadores
-        mayoritarios de cada region pueden estar circulando libremente por su region, pero mientras que su energia
-        sea menor a la energia potencial umbral, estos no seran recombinados en su region opuesta y no habra flujo de
-        portadores. La variacion del potencial umbral es debido a la energia necesaria para que un electron en la capa
-        de valencia sea repelido de su atomo.
+        necesario para lograr poner los diodos en conducción, siendo la de Germanio alrededor de los $0.2V$ a $0.3V$
+        mientras que el de Silicio se encuentra entre $0.6V$ a $0.7V$. Esta diferencia en el codo de conmutación se
+        debe principalmente al potencial de umbral impuesto por la región de empobrecimiento. Los portadores
+        mayoritarios de cada región pueden estar circulando libremente por su región, pero mientras que su energía
+        sea menor a la energía potencial umbral, estos no serán recombinados en su región opuesta y no habrá flujo de
+        portadores. La variación del potencial umbral es debido a la energía necesaria para que un electrón en la capa
+        de valencia sea repelido de su átomo.
 
-        El menor requerimiento de energia en los diodos de Germanio, implica que el potencial que se debe aplicar en los
-        terminales del diodo es menor, lo que puede significar un beneficio en polarizacion directa, pero como se vera
-        mas adelante, puede implicar una complicacion en polarizacion inversa.
+        El menor requerimiento de energía en los diodos de Germanio, implica que el potencial que se debe aplicar en los
+        terminales del diodo es menor, lo que puede significar un beneficio en polarización directa, pero como se vera
+        mas adelante, puede implicar una complicación en polarización inversa.
 
-    \section{Polarizacion en inversa}
-      La polarizacion en inversa del diodo implica que la region de empobrecimiento del mismo se dilate a causa del
+    \section{Polarización en inversa}
+      La polarización en inversa del diodo implica que la región de empobrecimiento del mismo se dilate a causa del
       potencial aplicado a los terminales del diodo. Este potencial genera que los portadores mayoritarios en vez de
-      querer acercarce a la region de empobrecimiento, quieran acercarse a los terminales de cada region. Esto, en
-      efecto produce que la region de empobrecimiento se ensanche debido a la fuerza de atraccion causada por la
+      querer acercarse a la región de empobrecimiento, quieran acercarse a los terminales de cada región. Esto, en
+      efecto produce que la región de empobrecimiento se ensanche debido a la fuerza de atracción causada por la
       diferencia de potencial de signo opuesto.
 
-      A medida que se aumente el potencial inverso, mayor va a ser la atraccion que perciben los portadores
-      mayoritarios a los terminales respectivos, y mayor va a ser el ensanchamiento de la region de empobrecimiento.
-      A pesar de que practicamente no va a haber flujo de portadores mayoritarios en el diodo, hay un flujo de
-      portadores minoritarios. Ese flujo esta dictado por la ecuacion (\ref{eq.caracteristica}), que si consideramos
-      el termino exponencial proximo a cero por el exponente negativo, quedaria:
+      A medida que se aumente el potencial inverso, mayor va a ser la atracción que perciben los portadores
+      mayoritarios a los terminales respectivos, y mayor va a ser el ensanchamiento de la región de empobrecimiento.
+      A pesar de que prácticamente no va a haber flujo de portadores mayoritarios en el diodo, hay un flujo de
+      portadores minoritarios. Ese flujo esta dictado por la ecuación (\ref{eq.caracteristica}), que si consideramos
+      el termino exponencial próximo a cero por el exponente negativo, quedaría:
       \begin{equation*}
         i_D = -I_0
       \end{equation*}
 
-      Llega un momento en el que el potencial inverso sobrepasa las capacidades fisicas del diodo, generando la
-      ruptura de la union PN y destruyendo el diodo.
+      Llega un momento en el que el potencial inverso sobrepasa las capacidades físicas del diodo, generando la
+      ruptura de la unión PN y destruyendo el diodo.
 
       \subsection{Diodo de Silicio}
-        Para corroborar la curva caracteristica en inversa del diodo de silicio, y como esta responde a los cambios de
-        voltaje, se creo un circuito en el software LTSpice muy basico para probar la polarizacion del diodo de
+        Para corroborar la curva característica en inversa del diodo de silicio, y como esta responde a los cambios de
+        voltaje, se creo un circuito en el software LTSpice muy básico para probar la polarización del diodo de
         silicio.
 
-        El programa, de manera automatica, genera un barrido de tension que arranca en los $-1200V$ y termina en los
-        $10V$, haciendo pasos de $100mV$ por muestra. De esta forma hay suficiente resolucion para considerarla una
-        buena aproximacion de la curva caracteristica en inversa del diodo.
+        El programa, de manera automática, genera un barrido de tensión que arranca en los $-1200V$ y termina en los
+        $10V$, haciendo pasos de $100mV$ por muestra. De esta forma hay suficiente resolución para considerarla una
+        buena aproximación de la curva característica en inversa del diodo.
 
         Se selecciono nuevamente el diodo 1N4007 como diodo de pruebas de silicio y $R_1 = 1K\Omega$. El circuito
         armado en LTSpice se puede ver en figura (\ref{crkt.Si.inversa}) y se han empleado las directivas mostradas
-        en el listado (\ref{list.Si.inversa}) para la simulacion.
+        en el listado (\ref{list.Si.inversa}) para la simulación.
 
         \begin{figure}[!ht]
           \centering
@@ -489,7 +489,7 @@ sorting=ynt
           \end{minipage}
         \end{figure}
 
-        Los resultados de la simulacion estan presentes en la figura (\ref{graph.simulation.Si.inversa}).
+        Los resultados de la simulación están presentes en la figura (\ref{graph.simulation.Si.inversa}).
 
         \begin{figure}[!ht]
           \centering
@@ -527,34 +527,34 @@ sorting=ynt
               ] {simulations/TP2_1_graph_inv.txt};
               \end{axis}
             \end{tikzpicture}
-            \caption{Grafico de la curva caracteristica del simulador.}
+            \caption{Gráfico de la curva característica del simulador.}
             \label{graph.simulation.Si.inversa}
           \end{minipage}
           \hfill
           \begin{minipage}{0.45\textwidth}
             \includegraphics[width=1\textwidth]{images/Curva_Datash_Si_inv.png}
-            \caption{Grafico de la curva caracteristica de la hoja de datos.}
+            \caption{Gráfico de la curva característica de la hoja de datos.}
             \label{graph.datasheet.Si.inversa}
           \end{minipage}
         \end{figure}
 
-        En la hoja de datos del diodo de silicio \cite{DS0}, se especifica que el voltaje maximo de polarizacion en
-        inversa esta en los $1000V$ para el 1N4007. Como se puede ver en la grafica simulada, el punto de ruptura esta
-        exactamente al voltaje especificado por el fabricante. Despues de ese voltaje, el diodo entra en region zener,
-        y empieza a dejar pasar corriente en inversa, generando una caida de tension especifica. La limitacion de la
-        simulacion es que no indica exactamente cuando el diodo va a romperse, por lo que no serviria como una
-        aproximacion valida para determinar las condiciones maximas de trabajo.
+        En la hoja de datos del diodo de silicio \cite{DS0}, se especifica que el voltaje máximo de polarización en
+        inversa esta en los $1000V$ para el 1N4007. Como se puede ver en la gráfica simulada, el punto de ruptura esta
+        exactamente al voltaje especificado por el fabricante. Después de ese voltaje, el diodo entra en región Zener,
+        y empieza a dejar pasar corriente en inversa, generando una caída de tensión especifica. La limitación de la
+        simulación es que no indica exactamente cuando el diodo va a romperse, por lo que no serviría como una
+        aproximación valida para determinar las condiciones máximas de trabajo.
 
-        Por otro lado, la grafica provista por el fabricante no se parece en nada a la grafica obtenida. Si se observa
-        el eje independiente, este indica que dado un porcentaje de corriente de polarizacion inversa, hay una
-        corriente de polarizacion inversa asociada, y al mismo tiempo esta corriente depende de la temperatura de la
-        juntura. A $25°C$, y al 100\% del voltaje de polarizacion inversa, el diodo deberia dejar pasar aproximadamente
-        $200\mu A$ de corriente. Esa corriente no es apreciable en el grafico simulado, pero mas adelante, en la
-        comparacion de diodos se va a poder apreciar mejor.
+        Por otro lado, la gráfica provista por el fabricante no se parece en nada a la gráfica obtenida. Si se observa
+        el eje independiente, este indica que dado un porcentaje de corriente de polarización inversa, hay una
+        corriente de polarización inversa asociada, y al mismo tiempo esta corriente depende de la temperatura de la
+        juntura. A $25°C$, y al 100\% del voltaje de polarización inversa, el diodo debería dejar pasar aproximadamente
+        $200\mu A$ de corriente. Esa corriente no es apreciable en el gráfico simulado, pero mas adelante, en la
+        comparación de diodos se va a poder apreciar mejor.
 
       \subsection{Diodo de Germanio}
-        Para corroborar la curva caracteristica en inversa del diodo de germanio, y como esta responde a los cambios de
-        voltaje, nuevamente se creo un circuito en el software LTSpice muy basico para probar la polarizacion del diodo
+        Para corroborar la curva característica en inversa del diodo de germanio, y como esta responde a los cambios de
+        voltaje, nuevamente se creo un circuito en el software LTSpice muy básico para probar la polarización del diodo
         de germanio.
 
         El programa, realiza el mismo tipo de barrido que para el diodo de silicio, solamente que ahora el rango es
@@ -562,7 +562,7 @@ sorting=ynt
 
         Se selecciono nuevamente el diodo 1N60 como diodo de pruebas de germanio y $R_1 = 1K\Omega$. El circuito
         armado en LTSpice se puede ver en figura (\ref{crkt.Ge.inversa}) y se han empleado las directivas mostradas
-        en el listado (\ref{list.Ge.inversa}) para la simulacion.
+        en el listado (\ref{list.Ge.inversa}) para la simulación.
 
         \begin{figure}[!ht]
           \centering
@@ -589,7 +589,7 @@ sorting=ynt
           \end{minipage}
         \end{figure}
 
-        Los resultados de la simulacion estan presentes en la figura (\ref{graph.simulation.Ge.inversa}).
+        Los resultados de la simulación están presentes en la figura (\ref{graph.simulation.Ge.inversa}).
 
         \begin{figure}[!ht]
           \centering
@@ -626,30 +626,30 @@ sorting=ynt
               ] {simulations/TP2_2_graph_inv.txt};
               \end{axis}
             \end{tikzpicture}
-            \caption{Grafico de la curva caracteristica del simulador.}
+            \caption{Gráfico de la curva característica del simulador.}
             \label{graph.simulation.Ge.inversa}
           \end{minipage}
           \hfill
           \begin{minipage}{0.45\textwidth}
             \includegraphics[width=1\textwidth]{images/Curva_Datash_Ge_inv.png}
-            \caption{Grafico de la curva caracteristica de la hoja de datos.}
+            \caption{Gráfico de la curva característica de la hoja de datos.}
             \label{graph.datasheet.Ge.inversa}
           \end{minipage}
         \end{figure}
 
-        En la hoja de datos del diodo de germanio \cite{DS1}, se especifica que el voltaje maximo de polarizacion en
-        inversa esta en los $40V$ para el 1N60. Como se puede ver en la grafica simulada, el punto de ruptura esta
-        exactamente al voltaje especificado por el fabricante. Despues de ese voltaje, el diodo entra en region zener,
-        y empieza a dejar pasar corriente en inversa, generando una caida de tension especifica. La limitacion de la
-        simulacion es que no indica exactamente cuando el diodo va a romperse, por lo que no serviria como una
-        aproximacion valida para determinar las condiciones maximas de trabajo.
+        En la hoja de datos del diodo de germanio \cite{DS1}, se especifica que el voltaje máximo de polarización en
+        inversa esta en los $40V$ para el 1N60. Como se puede ver en la gráfica simulada, el punto de ruptura esta
+        exactamente al voltaje especificado por el fabricante. Después de ese voltaje, el diodo entra en región Zener,
+        y empieza a dejar pasar corriente en inversa, generando una caída de tensión especifica. La limitación de la
+        simulación es que no indica exactamente cuando el diodo va a romperse, por lo que no serviría como una
+        aproximación valida para determinar las condiciones máximas de trabajo.
 
-        Por otro lado, la grafica provista por el fabricante no se parece en nada a la grafica obtenida. La grafica
-        indica que a $-30V$ del voltaje de polarizacion inversa, el diodo deberia dejar pasar aproximadamente
-        $0.6\mu A$ de corriente. Esa corriente no es apreciable en el grafico simulado, pero mas adelante, en la
-        comparacion de diodos se va a poder apreciar mejor.
+        Por otro lado, la gráfica provista por el fabricante no se parece en nada a la gráfica obtenida. La gráfica
+        indica que a $-30V$ del voltaje de polarización inversa, el diodo debería dejar pasar aproximadamente
+        $0.6\mu A$ de corriente. Esa corriente no es apreciable en el gráfico simulado, pero mas adelante, en la
+        comparación de diodos se va a poder apreciar mejor.
 
-      \subsection{Comparacion de ambas simulaciones}
+      \subsection{Comparación de ambas simulaciones}
         \begin{figure}[!ht]
           \centering
           \begin{minipage}{0.45\textwidth}
@@ -727,28 +727,28 @@ sorting=ynt
               \end{axis}
             \end{tikzpicture}
           \end{minipage}
-          \caption{Grafico de las curvas caracteristicas simuladas de los diodos de Silicio y Germanio utilizados.}
+          \caption{Gráfico de las curvas características simuladas de los diodos de Silicio y Germanio utilizados.}
           \label{graph.simulation.comparativa.inversa}
         \end{figure}
 
         Se puede apreciar las diferencias principales de los diodos de germanio contra los diodos de silicio con mucha
-        claridad. El diodo de germanio, a pesar de tener una tension de polarizacion baja comparada con el diodo de
+        claridad. El diodo de germanio, a pesar de tener una tensión de polarización baja comparada con el diodo de
         silicio, tiene una corriente de fuga 1000 veces mas grande que la corriente de fuga del silicio. Esto puede
         significar un problema, ya que puede producir corrientes indeseadas en circuitos donde un diodo de silicio
-        practicamente no permitiria el paso de la misma.
+        prácticamente no permitiría el paso de la misma.
 
         Como el diodo se lo considera idealmente como un elemento que deja pasar la corriente para un lado y no para
         el otro, el diodo de silicio se comporta mejor como ese componente que el diodo de germanio.
 
 
-  \chapter{Curva caracteristica del Diodo: Laboratorio}
+  \chapter{Curva característica del Diodo: Laboratorio}
     Se pide poner en practica y corroborar los datos conseguidos en el simulador y armar el mismo circuito
     propuesto y anotar los valores conseguidos. Para ello, se armaron los circuitos correspondientes y se tomo nota de
-    los valores de caida de tension del diodo, desde 0v hasta 5v, tomando mas muestras cerca del codo de conduccion
+    los valores de caída de tensión del diodo, desde 0v hasta 5v, tomando mas muestras cerca del codo de conducción
     para el diodo de silicio y germanio.
 
-    Como no disponemos de equipamento con la presicion necesaria para medir la corriente de polarizacion inversa, se
-    omitio la prueba. Ademas, en el caso del diodo de silicio, es peligroso intentar hacer la prueba de polarizacion
+    Como no disponemos de equipamiento con la precisión necesaria para medir la corriente de polarización inversa, se
+    omitió la prueba. Ademas, en el caso del diodo de silicio, es peligroso intentar hacer la prueba de polarización
     inversa debido a que el voltaje es excesivamente elevado.
 
     \section{Diodo de Silicio}
@@ -760,29 +760,29 @@ sorting=ynt
         \label{crkt.Si.prot}
       \end{figure}
 
-      Para poder realizar las mediciones de corriente, tension de entrada, y caida de tension del diodo, se utilizaron
-      tres multimetros en conjunto, con sus puntas dispuestas como se ve en las figuras (\ref{crkt.Si.mult.curr}),
+      Para poder realizar las mediciones de corriente, tensión de entrada, y caída de tensión del diodo, se utilizaron
+      tres multimetro en conjunto, con sus puntas dispuestas como se ve en las figuras (\ref{crkt.Si.mult.curr}),
       (\ref{crkt.Si.mult.vi}) y (\ref{crkt.Si.mult.vd}).
       \begin{figure}[H]
         \centering
         \begin{minipage}{0.3\textwidth}
           \includegraphics[angle=180, width=1\textwidth]{pictures/prot_crkt-1_curr.jpg}
-          \caption{Medicion de corriente del circuito.}
+          \caption{Medición de corriente del circuito.}
           \label{crkt.Si.mult.curr}
         \end{minipage}
         \begin{minipage}{0.3\textwidth}
           \includegraphics[angle=180, width=1\textwidth]{pictures/prot_crkt-1_vi.jpg}
-          \caption{Medicion de tension de la fuente.}
+          \caption{Medición de tensión de la fuente.}
           \label{crkt.Si.mult.vi}
         \end{minipage}
         \begin{minipage}{0.3\textwidth}
           \includegraphics[angle=180, width=1\textwidth]{pictures/prot_crkt-1_vd.jpg}
-          \caption{Medicion de caida de tension del diodo.}
+          \caption{Medición de caída de tensión del diodo.}
           \label{crkt.Si.mult.vd}
         \end{minipage}
       \end{figure}
 
-      Con el circuito de la figura (\ref{crkt.Si.prot}), y los tres multimetros midiendo al mismo tiempo, procedimos a
+      Con el circuito de la figura (\ref{crkt.Si.prot}), y los tres multimetro midiendo al mismo tiempo, procedimos a
       hacer las variaciones de voltaje de entrada y tomar muestras de todas los valores.
 
       \begin{figure}[!ht]
@@ -796,8 +796,8 @@ sorting=ynt
         \begin{minipage}{0.25\textwidth}
           \includegraphics[width=1\textwidth]{pictures/mult_crkt-1_07.jpg}
         \end{minipage}
-        \caption{Algunas fotos de las mediciones de los tres multimetros. El de la izquierda mide corriente en mA, el
-        del medio mide la caida de tension del diodo y el de la derecha mide la entrada de la fuente}
+        \caption{Algunas fotos de las mediciones de los tres multimetro. El de la izquierda mide corriente en mA, el
+        del medio mide la caída de tensión del diodo y el de la derecha mide la entrada de la fuente}
       \end{figure}
 
       \begin{table}[H]
@@ -849,13 +849,13 @@ sorting=ynt
           \addlegendentry{Medida}
           \end{axis}
         \end{tikzpicture}
-        \caption{Grafico de la curva caracteristica simulada y la medida experimentalmente del diodo de Silicio.}
+        \caption{Gráfico de la curva característica simulada y la medida experimentalmente del diodo de Silicio.}
         \label{graph.comparativa.Si}
       \end{figure}
 
       Como se puede ver en la figura (\ref{graph.comparativa.Si}), la curva medida se acerca bastante a la curva
-      simulada, por lo que podemos afirmar que para la polarizacion en directa, el modelo de simulacion es lo
-      suficientemente preciso. Es muy posible que la pequeña variacion de la corriente se deba por alguna resistencia
+      simulada, por lo que podemos afirmar que para la polarización en directa, el modelo de simulación es lo
+      suficientemente preciso. Es muy posible que la pequeña variación de la corriente se deba por alguna resistencia
       de contacto, ya sea en el circuito o en los cables del multimetro.
 
     \section{Diodo de Germanio}
@@ -867,29 +867,29 @@ sorting=ynt
         \label{crkt.Ge.prot}
       \end{figure}
 
-      Para poder realizar las mediciones de corriente, tension de entrada, y caida de tension del diodo, se utilizaron
-      tres multimetros en conjunto, con sus puntas dispuestas como se ve en las figuras (\ref{crkt.Ge.mult.curr}),
+      Para poder realizar las mediciones de corriente, tensión de entrada, y caída de tensión del diodo, se utilizaron
+      tres multimetro en conjunto, con sus puntas dispuestas como se ve en las figuras (\ref{crkt.Ge.mult.curr}),
       (\ref{crkt.Ge.mult.vi}) y (\ref{crkt.Ge.mult.vd}).
       \begin{figure}[H]
         \centering
         \begin{minipage}{0.3\textwidth}
           \includegraphics[angle=180, width=1\textwidth]{pictures/prot_crkt-2_curr.jpg}
-          \caption{Medicion de corriente del circuito.}
+          \caption{Medición de corriente del circuito.}
           \label{crkt.Ge.mult.curr}
         \end{minipage}
         \begin{minipage}{0.3\textwidth}
           \includegraphics[angle=180, width=1\textwidth]{pictures/prot_crkt-2_vi.jpg}
-          \caption{Medicion de tension de la fuente.}
+          \caption{Medición de tensión de la fuente.}
           \label{crkt.Ge.mult.vi}
         \end{minipage}
         \begin{minipage}{0.3\textwidth}
           \includegraphics[angle=180, width=1\textwidth]{pictures/prot_crkt-2_vd.jpg}
-          \caption{Medicion de caida de tension del diodo.}
+          \caption{Medición de caída de tensión del diodo.}
           \label{crkt.Ge.mult.vd}
         \end{minipage}
       \end{figure}
 
-      Con el circuito de la figura (\ref{crkt.Ge.prot}), y los tres multimetros midiendo al mismo tiempo, procedimos a
+      Con el circuito de la figura (\ref{crkt.Ge.prot}), y los tres multimetro midiendo al mismo tiempo, procedimos a
       hacer las variaciones de voltaje de entrada y tomar muestras de todas los valores.
 
       \begin{figure}[!ht]
@@ -903,8 +903,8 @@ sorting=ynt
         \begin{minipage}{0.25\textwidth}
           \includegraphics[width=1\textwidth]{pictures/mult_crkt-2_07.jpg}
         \end{minipage}
-        \caption{Algunas fotos de las mediciones de los tres multimetros. El de la izquierda mide corriente en mA, el
-        del medio mide la caida de tension del diodo y el de la derecha mide la entrada de la fuente}
+        \caption{Algunas fotos de las mediciones de los tres multimetro. El de la izquierda mide corriente en mA, el
+        del medio mide la caída de tensión del diodo y el de la derecha mide la entrada de la fuente}
       \end{figure}
 
       \begin{table}[H]
@@ -956,14 +956,14 @@ sorting=ynt
           \addlegendentry{Medida}
           \end{axis}
         \end{tikzpicture}
-        \caption{Grafico de la curva caracteristica simulada y la medida experimentalmente del diodo de Germanio.}
+        \caption{Gráfico de la curva característica simulada y la medida experimentalmente del diodo de Germanio.}
         \label{graph.comparativa.Ge}
       \end{figure}
 
       Como se puede ver, la figura (\ref{graph.comparativa.Ge}), no parece tener tantas similitudes con la curva
       simulada. Esto puede ser porque el diodo 1N60 fue descontinuado hace muchos años, y fue reemplazado por otro
-      diodo. Es muy posible que este nuevo diodo tenga otras caracteristicas diferentes, como por ejemplo menor
-      resistencia interna cuando se pone en conduccion. Tambien puede ser un problema del modelo. No hay un modelo
+      diodo. Es muy posible que este nuevo diodo tenga otras características diferentes, como por ejemplo menor
+      resistencia interna cuando se pone en conducción. También puede ser un problema del modelo. No hay un modelo
       oficial provisto por un fabricante de semiconductores.
 
       \section{Comparativa de las dos curvas medidas}
@@ -996,18 +996,18 @@ sorting=ynt
           \addlegendentry{Ge}
           \end{axis}
         \end{tikzpicture}
-        \caption{Grafico de la curva caracteristica medida del diodo de Germanio y Silicio.}
+        \caption{Gráfico de la curva característica medida del diodo de Germanio y Silicio.}
         \label{graph.comparativa.medida}
       \end{figure}
 
       En la figura (\ref{graph.comparativa.medida}), nuevamente podemos apreciar las diferencias en los codos de
-      conmutacion de ambos semiconductores. Las ventajas y desventajas son las mismas que cuando se hizo la comparativa
+      conmutación de ambos semiconductores. Las ventajas y desventajas son las mismas que cuando se hizo la comparativa
       de la figura (\ref{graph.simulation.comparativa.directa}).
 
-    \chapter{Comportamiento del Diodo en funcion de la temperatura}
+    \chapter{Comportamiento del Diodo en función de la temperatura}
       Se pide simular el diodo 1N3198 pero esta vez para poder corroborar como afecta la temperatura la curva
-      caracteristica. Para la simulacion se utilizaran las siguientes temperaturas: $20°C$, $100°C$ y $125°C$. Ademas
-      de los siguientes parametros que se muestran a continuacion con el circuito a simular
+      característica. Para la simulación se utilizaran las siguientes temperaturas: $20°C$, $100°C$ y $125°C$. Ademas
+      de los siguientes parámetros que se muestran a continuación con el circuito a simular
 
       \begin{figure}[!ht]
         \centering
@@ -1036,7 +1036,7 @@ sorting=ynt
       \end{figure}
 
 
-      A continuacion se presenta el grafico con cada variante de la curva caracteristica con su respectiva temperatura:
+      A continuación se presenta el gráfico con cada variante de la curva característica con su respectiva temperatura:
       \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -1087,15 +1087,15 @@ sorting=ynt
           \addlegendentry{125°C}
           \end{axis}
         \end{tikzpicture}
-        \caption{Grafico de las curvas caracteristicas simuladas en diferentes temperaturas.}
+        \caption{Gráfico de las curvas características simuladas en diferentes temperaturas.}
         \label{graph.simulation.temperatura}
       \end{figure}
 
-      Se puede observar y comprobar lo visto en el marco teorico, a mayor temperatura que se le aplique al diodo,
-      el codo de conmutacion se puede observar con menor voltaje aplicado sobre el circuito, asi como lo afecta
-      cuando aumenta la temperatura tambien lo afecta a menor temperatura, siendo asi que el diodo necesita mas
-      voltaje para lograr pasar al estado de conmutacion. Sabiendo que los graficos que nos brinda el
-      fabricante en la hoja de datos es en una temperatura promedio de 25$°C°$ en el grafico se observa
+      Se puede observar y comprobar lo visto en el marco teórico, a mayor temperatura que se le aplique al diodo,
+      el codo de conmutación se puede observar con menor voltaje aplicado sobre el circuito, así como lo afecta
+      cuando aumenta la temperatura también lo afecta a menor temperatura, siendo así que el diodo necesita mas
+      voltaje para lograr pasar al estado de conmutación. Sabiendo que los gráficos que nos brinda el
+      fabricante en la hoja de datos es en una temperatura promedio de 25$°C°$ en el gráfico se observa
       perfectamente  los otros 2 casos.
 
       A su vez hay otra variable que termina siendo afectada por la temperatura y esta es la corriente de fuga,
@@ -1103,11 +1103,11 @@ sorting=ynt
       debería ser cero, pero debido a la generación de pares electrón-hueco en el material, existe una pequeña
       corriente. La corriente de fuga inversa aumenta exponencialmente con la temperatura, aproximadamente se
       duplica por cada aumento de 10$°C$, esto se debe a que el aumento de la temperatura reduce la zona de
-      agotamiento del semiconductor PN, provocando tambien que la barrera de potencial disminuya (por eso a mayor
-      temperatura se logra conmutar con menor voltaje), facilitando el paso de los electrones a traves de esta
+      agotamiento del semiconductor PN, provocando también que la barrera de potencial disminuya (por eso a mayor
+      temperatura se logra conmutar con menor voltaje), facilitando el paso de los electrones a través de esta
       generando la corriente de fuga.
 
-    \chapter{Circuitos recortadores con diodos Zener: Simulacion}
+    \chapter{Circuitos recortadores con diodos Zener: Simulación}
       Los circuitos recortadores con diodos Zener son utilizados para limitar el voltaje de una señal dentro de un
       rango definido. A diferencia de los diodos comunes, los Zener pueden conducir en inversa cuando se supera su
       voltaje de ruptura, lo que los hace ideales para recortar tanto los picos positivos como negativos de una señal.
@@ -1138,17 +1138,17 @@ sorting=ynt
         \begin{figure}[H]
           \centering
           \begin{minipage}{0.45\textwidth}
-            \begin{circuitikz}[american voltages]
-              \draw (0, -1) to [V=$V_1$]                     (0, 3)
-                            to [short, -, i<^=$i_D$]         (1, 3)
-                            to [R=$R_1$, v<=$V_{R_1}$]       (4, 3)
-                            to [short, -]                    (5, 3)
-                            to [zzD=$1N60$, v<=$v_D$]        (5, -1)
-                            to [short, -]                    (5, -1)
-                            to [short, -]                    (0, -1)
-                            ;
-            \end{circuitikz}
-            \caption{Circuito con diodo de silicio 1N60 en inversa.}
+                \begin{circuitikz}[american voltages]
+                  \draw (0, -1) to [sV=$V_1$]                      (0, 3)
+                                to [R=$R_1$, v<=$V_{R_1}$]         (5, 3)
+                                to [short, -*, l_=Vo]              (5, 3)
+                                to [zD=$1N5338B$, v<=$v_D$]        (5, 1)
+                                to [zD=$1N5357B$,invert, v<=$v_D$] (5, -0.5)
+                                to [short, -]                      (5, -1)
+                                to [short, -]                      (0, -1)
+                                ;
+                \end{circuitikz}
+                \caption{Circuito con diodos Zener enfrentados cátodo-cátodo}
             \label{crkt.recortador.btb}
           \end{minipage}
           \hfill
@@ -1161,7 +1161,7 @@ sorting=ynt
           \end{minipage}
         \end{figure}
 
-        Y el grafico que presenta es el siguiente:
+        Y el gráfico que presenta es el siguiente:
         \begin{figure}[!ht]
           \centering
           \begin{tikzpicture}
@@ -1202,11 +1202,11 @@ sorting=ynt
             \addlegendentry{Vi}
             \end{axis}
           \end{tikzpicture}
-          \caption{Grafico de las curvas caracteristicas simuladas de los diodos de Silicio y Germanio utilizados.}
+          \caption{Gráfico de las curvas características simuladas de los diodos de Silicio y Germanio utilizados.}
           \label{graph.simulation.recortador.btb}
         \end{figure}
 
-        Como se puede observar, los diodos zener recortan las ondas dependiendo de los valores de los mismos, en
+        Como se puede observar, los diodos Zener recortan las ondas dependiendo de los valores de los mismos, en
         este caso los diodos son de 5.1$V$ y 20$V$. En el semiciclo positivo, el Zener de 20$V$ está en inversa y
         conduce solamente si $Vin > 20.7V$, por otro lado en el semiciclo negativo, el Zener de 5.1$V$ esta en
         inversa y conduce solamente si $Vin <-5.8V$. Por lo tanto recorta la señal entre $+20.7V$ y $-5.8V$.
@@ -1224,17 +1224,17 @@ sorting=ynt
           \begin{figure}[!ht]
             \centering
             \begin{minipage}{0.45\textwidth}
-              \begin{circuitikz}[american voltages]
-                \draw (0, -1) to [V=$V_1$]                     (0, 3)
-                              to [short, -, i<^=$i_D$]         (1, 3)
-                              to [R=$R_1$, v<=$V_{R_1}$]       (4, 3)
-                              to [short, -]                    (5, 3)
-                              to [zD=$1N60$, v<=$v_D$]          (5, -1)
-                              to [short, -]                    (5, -1)
-                              to [short, -]                    (0, -1)
-                              ;
-              \end{circuitikz}
-              \caption{Circuito con diodo de silicio 1N60 en inversa.}
+                \begin{circuitikz}[american voltages]
+                  \draw (0, -1) to [sV=$V_1$]                     (0, 3)
+                                to [R=$R_1$, v<=$V_{R_1}$]       (5, 3)
+                                to [short, -*, l_=vo]                    (5, 3)
+                                to [zD=$1N5342B$,invert, v<=$v_D$]          (5, 1)
+                                to [zD=$1N5349B$, v<=$v_D$]  (5, -0.5)
+                                to [short, -]                    (5, -1)
+                                to [short, -]                    (0, -1)
+                                ;
+                \end{circuitikz}
+                \caption{Circuito con diodos Zener enfrentados ánodo-ánodo}
               \label{crkt.recortador.ftf}
             \end{minipage}
             \hfill
@@ -1247,7 +1247,7 @@ sorting=ynt
             \end{minipage}
           \end{figure}
 
-          Y el grafico que presenta es el siguiente:
+          Y el gráfico que presenta es el siguiente:
           \begin{figure}[!ht]
             \centering
             \begin{tikzpicture}
@@ -1288,65 +1288,148 @@ sorting=ynt
               \addlegendentry{Vi}
               \end{axis}
             \end{tikzpicture}
-            \caption{Grafico de las curvas caracteristicas simuladas de los diodos de Silicio y Germanio utilizados.}
+            \caption{Gráfico de las curvas características simuladas de los diodos de Silicio y Germanio utilizados.}
             \label{graph.simulation.recortador.ftf}
           \end{figure}
 
-          En este caso al variar los valores de los diodos zener lo que ocurre es lo siguiente: Se presentan dos
-          zener con los valores de $6.8V$ y $12V$. En el semiciclo positivo, el Zener de $6V$ está en inversa y
+          En este caso al variar los valores de los diodos Zener lo que ocurre es lo siguiente: Se presentan dos
+          Zener con los valores de $6.8V$ y $12V$. En el semiciclo positivo, el Zener de $6V$ está en inversa y
           conduce solamente si $Vin \leq 7.5V$, por otro lado en el semiciclo negativo, el Zener de $12V$ esta en
           inversa y conduce solamente si $Vin < 12.7V$. Por lo tanto recorta la señal entre $+7.5V$ y $12.7V$.
 
     \chapter{Circuitos recortadores con diodos Zener: Laboratorio}
-    \chapter{Analisis sobre parametros de hoja de datos}
+      Se solicito que se armen los circuitos propuestos en las etapas de simulación para comparar las métricas
+      simuladas con las reales medidas en el laboratorio.
 
+      Para ambos circuitos se utilizo la siguiente señal alterna:
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{pictures/osc_mult-vac-crkt3-crkt4.jpg}
+        \caption{Señal de entrada para ambos circuitos recortadores Zener.}
+      \end{figure}
+
+
+      Para el circuito de la figura (\ref{crkt.recortador.btb}), se implemento de la siguiente manera:
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{pictures/prot_crkt3.jpg}
+        \caption{Circuito recortador Zener back-to-back.}
+      \end{figure}
+
+      En el osciloscopio se observo la siguiente señal de salida:
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{pictures/osc_mult-vd_crkt-3.jpg}
+        \caption{Salida del circuito recortador Zener back-to-back.}
+      \end{figure}
+
+      Para el circuito de la figura (\ref{crkt.recortador.ftf}), se implemento de la siguiente manera:
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{pictures/prot_crkt4.jpg}
+        \caption{Circuito recortador Zener front-to-front.}
+      \end{figure}
+
+      En el osciloscopio se observo la siguiente señal de salida:
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{pictures/osc_mult-vd-crkt4.jpg}
+        \caption{Salida del circuito recortador Zener front-to-front.}
+      \end{figure}
+
+    \chapter{Análisis sobre parámetros de hoja de datos}
         Se pide  determinar el significado de cada sigla y cual es su interpretación en el uso.
+        \begin{itemize}
+            \item Características Eléctricas:
+                \begin{enumerate}
+                    \item Regímenes Máximos:
+                        \begin{enumerate}
+                            \item $V_{RRM}4$: Es la tensión inversa de pico de trabajo. Es la que puede ser soportada por el diodo sin llegar a la zona de ruptura.
+                            \item $V_{RSM}$: Es la tensión inversa de pico no repetitiva. Es la máxima tensión inversa transitoria que puede ser soportada  por el diodo en forma no repetitiva.
+                            \item $I_{FRMS}$: Es la corriente directa de pico repetitiva. Corriente que puede ser soportada cada 20ms con un pico de duración de 1ms a T=25$°C$.
+                            \item $I_{FSM}$: Corriente directa de pico no repetitiva. Máximo pico de intensidad de corriente que puede soportar el dispositivo.
+                        \end{enumerate}
+                    \item Regímenes Característicos:
+                        \begin{enumerate}
+                            \item $V_{BR}$: Es la tensión inversa continua. Máxima tensión que soporta el diodo en estado de bloqueo.
+                            \item $I_R$: Máxima corriente inversa. Valor de corriente que circula en estado de bloqueo.
+                            \item $V_F$: Tensión en directa. Tensión en estado de circulación.
+                            \item $I_{RM}$: Es la corriente máxima que fluye en sentido inverso cuando se cambia de polarización directa a inversa en un diodo. 
+                            \item $I_F$: Corriente directa. Corriente que circula en estado de conducción.
+                        \end{enumerate}
+                \end{enumerate}
+            \item Características Térmicas:
+                \begin{enumerate}
+                    \item $T_J$: Es la temperatura de la unión. Temperatura máxima del componente antes de que se dañe.
+                    \item $T_{STG}$: Es la temperatura de almacenamiento. Temperatura que se almacena en el dispositivo cuando no se le aplica potencia.
+                    \item $T_A$: Es la temperatura del ambiente. Temperatura a la que el diodo trabaja y se almacena
+                    \item $R_{thjc}$: Es la resistencia térmica que se encuentra entre la unión semiconductora del diodo y la carcasa externa del dispositivo. Mide la eficiencia con la que el calor generado dentro del diodo se transfiere a la carcasa, donde puede ser disipado. 
+                \end{enumerate}
+            \item Características de Uso:
+                \begin{enumerate}
+                    \item $V_{RMS}$: Es el valor eficaz de la tensión que se aplica a un diodo. Es el valor que representa el voltaje que, al ser aplicado a una carga, produciría el mismo efecto energético que la corriente alterna.
+                    \item $P_{tot}$: Potencia máxima que puede disipar el diodo.
+                    \item $T_{rr}$: Es el tiempo que tarda un diodo en dejar de conducir cuando se le aplica una polarización inversa después de estar inicialmente en polarización directa.
+                \end{enumerate}
+            \item Características Principales:
+                \begin{enumerate}
+                    \item $V_Z$: Es la tensión Zener. Es la tensión de ruptura inversa que el diodo Zener comienza a conducir de forma significativa en polarización inversa.
+                    \item $P_T$: Potencia nominal o máxima de disipación que el diodo puede soportar sin dañarse.
+                    \item $T_J$: Es la temperatura de unión (junction temperature). Si se excede esta temperatura el diodo Zener se daña.
+                    \item $V_F$: Es la tensión directa máxima. Este es el voltaje que se necesita aplicar al diodo en polarización directa.
+                    \item $I_Z$: Es la corriente inversa máxima o mínima. Puede ser la mínima corriente necesaria para que el diodo entre en conducción en inversa o la máxima corriente que puede soportar en este estado.
+                \end{enumerate}
+        \end{itemize}
+        
+  \chapter{Conclusiones}
 
-        \section{Caracteristicas Electricas}
+El presente trabajo práctico permitió realizar un abordaje integral y comparativo del comportamiento eléctrico de diodos semiconductores, incluyendo dispositivos de silicio (1N4007), germanio (1N60) y Zener, mediante simulaciones en LTspice y mediciones experimentales en laboratorio. El análisis se centró en las curvas características en polarización directa e inversa, la influencia de la temperatura y la implementación de configuraciones funcionales en circuitos recortadores.
 
-        \subsection{Regimenes Maximos}
-        \begin{enumerate}
-          \item $V_{RRM}$: Es la tension inversa de pico de trabajo. Es la que puede ser soportada por el diodo sin
-              llegar a la zona de ruptura.\\
-            \item $V_{RSM}$: Es la tension inversa de pico no repetitiva. Es la maxima tension inversa transitoria que
-              puede ser soportada  por el diodo en forma no repetitiva.\\
-            \item $I_{FRMS}$: Es la corriente directa de pico repetitiva. Corriente que puede ser soportada cada 20ms
-              con un pico de duracion de 1ms a $T=25°C$.\\
-            \item $I_{FSM}$: Corriente directa de pico no repetitiva. Maximo pico de intensidad de corriente que puede
-              soportar el dispoitivo.
-        \end{enumerate}
+En la etapa de simulación, se observó con claridad el codo de conducción en ambos tipos de diodos. El diodo de germanio presentó una tensión umbral significativamente menor ($\sim$0{,}3\,V) respecto al de silicio ($\sim$0{,}7\,V), lo que implica una menor barrera de potencial en la unión PN. Sin embargo, este beneficio en conducción directa se ve contrarrestado por una corriente de fuga considerablemente mayor en polarización inversa, lo que limita su aplicación en sistemas que requieren alta estabilidad en estado de bloqueo.
 
-        \subsection{Regimenes Caracteristicos}
-        \begin{enumerate}
-          \item $V_{BR}$: Es la tension inversa continua. Maxima tension que soporta el diodo en estado de bloqueo.\\
-            \item $I_R$: Maxima corriente inversa. Valor de orriente que circula en estado de bloqueo.\\
-            \item $V_F$: Tension en directa. Tension en estado de circulacion.\\
-            \item $I_{RM}$: Es la corriente máxima que fluye en sentido inverso cuando se cambia de polarización
-              directa a inversa en un diodo.\\
-            \item $I_F$: Corriente directa. Corriente que circula en estado de conduccion.
-        \end{enumerate}
+Las mediciones de laboratorio corroboraron los resultados simulados, especialmente en el caso del diodo de silicio, donde la curva medida mostró una muy buena concordancia con el modelo teórico. En cambio, para el diodo de germanio se observaron ciertas discrepancias, atribuibles posiblemente a variaciones de lote o sustituciones en la fabricación actual del 1N60, dada su obsolescencia comercial.
 
-        \subsection{Caracteristicas Termicas}
-        \begin{enumerate}
-            \item $T_J$: Es la temperatura de la union. Temperatura maxima del componente antes de que se dañe.\\
-            \item $T_{STG}$: Es la temperatura de almacenamiento. Temperatura que se almacena en el dispositivo cuando
-              no se le aplica potencia.\\
-            \item $T_A$: Es la temperatura del ambiente. Temperatura a la que el diodo trabaja y se almacena.\\
-            \item $R_{thjc}$: Es la resistencia térmica que se encuentra entre la unión semiconductora del diodo y la
-              carcasa externa del dispositivo. Mide la eficiencia con la que el calor generado dentro del diodo se
-              transfiere a la carcasa, donde puede ser disipado.
-        \end{enumerate}
+Se abordó también el análisis térmico del diodo 1N3198 mediante simulaciones a diferentes temperaturas. Se verificó que el incremento térmico reduce la tensión de conducción y aumenta exponencialmente la corriente de fuga, validando así los modelos teóricos de comportamiento térmico de semiconductores. Esta variación debe ser considerada cuidadosamente en aplicaciones que involucren temperaturas elevadas o condiciones ambientales fluctuantes.
 
+Por último, se diseñaron e implementaron circuitos recortadores con diodos Zener en configuraciones \textit{back-to-back} y \textit{front-to-front}. Los resultados obtenidos en laboratorio coincidieron con los límites de tensión esperados según los valores de tensión Zener utilizados, confirmando la funcionalidad de estos arreglos como limitadores de tensión efectivos en señales alternas.
 
-        \section{Caracteristicas de Uso}
+En resumen, el trabajo permitió consolidar los fundamentos teóricos de funcionamiento de los diodos, explorar sus parámetros a través de la simulación, y validar experimentalmente sus características más relevantes. Asimismo, se reforzó la capacidad de interpretación de hojas de datos, la utilización de herramientas de simulación profesional y el análisis crítico de resultados experimentales, aportando así una visión integral y aplicada de estos dispositivos fundamentales en la electrónica.
+  
 
-        \begin{enumerate}
-          \item $V_{RMS}$: Es el valor eficaz de la tensión que se aplica a un diodo. Es el valor que representa el
-            voltaje que, al ser aplicado a una carga, produciría el mismo efecto energético que la corriente alterna.\\
-          \item $P_{tot}$: Potencia maxima que puede disipar el diodo.\\
-          \item $T_{rr}$: Es el tiempo que tarda un diodo en dejar de conducir cuando se le aplica una polarización
-            inversa después de estar inicialmente en polarización directa.
-        \end{enumerate}
+    \chapter{Anexos}
+      \section{Rubrica}
+      \begin{figure}[!h]
+        \centering
+        \begin{tabular}[c]{|c|c|c|}
+          \rowcolor{gray!30}
+          \hline
+          \textbf{Tarea}                      & \textbf{Puntuación} & \textbf{Máximo}\\
+          \hline
+          Presentación del informe            &                     & 30\%\\
+          \hline
+          Explicación del proceso de medición &                     & 40\%\\
+          \hline
+          Defensa de las conclusiones         &                     & 30\%\\
+          \hline
+          \textbf{Total}                      &                     & \textbf{100\%}\\
+          \hline
+        \end{tabular}
+      \end{figure}
+
+      \section{Planilla de Seguimiento}
+      \begin{figure}[!h]
+        \begin{footnotesize}
+          \begin{tabular}{|m{1cm}|m{1cm}|m{1.3cm}|m{2cm}|m{1.7cm}|m{1.7cm}|m{1.7cm}|m{1.7cm}|m{1.7cm}|}
+            \hline
+            Versión del TP & Fecha de Inicio & Revisado Por & Resumen Observaciones Correcciones &
+            Fecha de retroalimentación enviada & Cambios realizados por JTP? & Nueva fecha de entrega &
+            Aprobado por jefe de cátedra?\\
+            \hline
+            1.0 (2025) & & & & & & &\\
+            \hline
+          \end{tabular}
+        \end{footnotesize}
+      \end{figure}
 
   \printbibliography
 \end{document}
