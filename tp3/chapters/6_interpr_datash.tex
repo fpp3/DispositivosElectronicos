@@ -1,66 +1,59 @@
 \chapter{Interpretacion de Hojas de datos}
 
-    \begin{itemize}
-        
-            \item Caracteristicas Electricas a 25°C:
-            
-                \begin{enumerate}
-                    \item \textbf{$V_{(BR)CEO}$} — Tensión de ruptura colector-emisor con base abierta: \\
-                    Tensión máxima que puede aplicarse entre colector y emisor con la base abierta sin que ocurra ruptura. Si se supera, puede dañar permanentemente el transistor.
-                
-                    \item \textbf{$I_{CEO}$} — Corriente de fuga colector-emisor con base abierta: \\
-                    Corriente que circula desde el colector al emisor cuando la base está abierta. Es una corriente muy pequeña (en el orden de nA a µA) causada por portadores minoritarios.
-                
-                    \item \textbf{$I_{CES}$} — Corriente de fuga colector-emisor con base conectada al emisor: \\
-                    Similar a $I_{CEO}$, pero en este caso la base está conectada directamente al emisor. Es aún menor y representa el nivel mínimo de fuga entre colector y emisor.
-                
-                    \item \textbf{$I_C$} — Corriente máxima de colector: \\
-                    Es la máxima corriente que puede circular de forma continua por el colector sin dañar el dispositivo. Se relaciona con la disipación máxima de potencia.
-                
-                    \item \textbf{$I_{EBO}$} — Corriente de fuga emisor-base con colector abierto: \\
-                    Corriente inversa entre emisor y base cuando el colector está en circuito abierto. También muy baja; mide la fuga a través de la juntura BE.      
-                \end{enumerate}
-                
-            \item Caracteristicas Termicas:
-            
-                \begin{enumerate}
-                    \item \textbf{$\theta_{jc}$} — Resistencia térmica junta-colector: \\
-                    Indica la resistencia térmica entre la juntura interna del transistor y el colector (normalmente encapsulado). Se mide en °C/W. Cuanto menor, mejor disipación.
-                
-                    \item \textbf{$\theta_{ja}$} — Resistencia térmica junta-ambiente: \\
-                    Representa la resistencia térmica total desde la juntura hasta el ambiente. Permite estimar cuánto se calentará el transistor por cada watt disipado.
-                \end{enumerate}
-                
-            \item Caracteristicas de conmutacion a 25°C:
-            
-                \begin{enumerate}
-                \item \textbf{$t_{on}$} — Tiempo de encendido: \\
-                Tiempo que tarda el transistor en pasar del estado de corte al estado de conducción cuando se le aplica una señal.
-            
-                \item \textbf{$h_{FE}$} — Ganancia de corriente continua (DC): \\
-                Relación entre la corriente de colector y la corriente de base ($I_C / I_B$) en continua. También conocida como $\beta$.
-            
-                \item \textbf{$h_{fe}$} — Ganancia de corriente en pequeña señal (AC): \\
-                Relación $I_C / I_B$ medida con señales pequeñas de alterna. Se utiliza para análisis de pequeñas señales.
-            
-                \item \textbf{$V_{BE}$} — Tensión base-emisor: \\
-                Tensión directa entre base y emisor necesaria para que el transistor comience a conducir. Para silicio, suele estar entre 0.6\,V y 0.7\,V.
-            
-                \item \textbf{$V_{CE(sat)}$} — Tensión de saturación colector-emisor: \\
-                Tensión entre colector y emisor cuando el transistor está completamente saturado. Suele ser baja $(≈ 0.2\,V)$, lo que indica buen contacto entre colector y emisor.
-            
-                \item \textbf{$P_d$ o $P_{tot}$} — Potencia máxima de disipación: \\
-                Potencia máxima que puede disipar el transistor sin superar su temperatura máxima de operación. Se calcula como:
-                \[
-                P_{d} = \frac{T_{\text{max}} - T_{\text{amb}}}{\theta_{ja}}
-                \]
-                \end{enumerate}
+  \begin{itemize}
+    \item Caracteristicas Electricas a 25°C:
+      \begin{enumerate}
+        \item \textbf{$V_{(BR)CEO}$} — Tensión de ruptura colector-emisor con base abierta: \\
+        Tensión máxima que puede aplicarse entre colector y emisor con la base abierta sin que ocurra ruptura. Si se
+              supera, puede dañar permanentemente el transistor.
+        \item \textbf{$I_{CEO}$} — Corriente de fuga colector-emisor con base abierta: \\
+        Corriente que circula desde el colector al emisor cuando la base está abierta. Es una corriente muy pequeña (en
+              el orden de nA a µA) causada por portadores minoritarios.
+        \item \textbf{$I_{CES}$} — Corriente de fuga colector-emisor con base conectada al emisor: \\
+        Similar a $I_{CEO}$, pero en este caso la base está conectada directamente al emisor. Es aún menor y representa
+              el nivel mínimo de fuga entre colector y emisor.
+        \item \textbf{$I_C$} — Corriente máxima de colector: \\
+        Es la máxima corriente que puede circular de forma continua por el colector sin dañar el dispositivo. Se
+              relaciona con la disipación máxima de potencia.
+        \item \textbf{$I_{EBO}$} — Corriente de fuga emisor-base con colector abierto: \\
+        Corriente inversa entre emisor y base cuando el colector está en circuito abierto. También muy baja; mide la
+              fuga a través de la juntura BE.      
+      \end{enumerate}
+    \item Caracteristicas Termicas:
+      \begin{enumerate}
+        \item \textbf{$\theta_{jc}$} — Resistencia térmica junta-colector: \\
+        Indica la resistencia térmica entre la juntura interna del transistor y el colector (normalmente encapsulado).
+              Se mide en °C/W. Cuanto menor, mejor disipación.
+        \item \textbf{$\theta_{ja}$} — Resistencia térmica junta-ambiente: \\
+        Representa la resistencia térmica total desde la juntura hasta el ambiente. Permite estimar cuánto se calentará
+              el transistor por cada watt disipado.
+      \end{enumerate}
+    \item Caracteristicas de conmutacion a 25°C:
+      \begin{enumerate}
+        \item \textbf{$t_{on}$} — Tiempo de encendido: \\
+        Tiempo que tarda el transistor en pasar del estado de corte al estado de conducción cuando se le aplica una
+              señal.
+        \item \textbf{$h_{FE}$} — Ganancia de corriente continua (DC): \\
+        Relación entre la corriente de colector y la corriente de base ($I_C / I_B$) en continua. También conocida como
+              $\beta$.
+        \item \textbf{$h_{fe}$} — Ganancia de corriente en pequeña señal (AC): \\
+        Relación $I_C / I_B$ medida con señales pequeñas de alterna. Se utiliza para análisis de pequeñas señales.
+        \item \textbf{$V_{BE}$} — Tensión base-emisor: \\
+        Tensión directa entre base y emisor necesaria para que el transistor comience a conducir. Para silicio, suele
+              estar entre 0.6\,V y 0.7\,V.
+        \item \textbf{$V_{CE(sat)}$} — Tensión de saturación colector-emisor: \\
+        Tensión entre colector y emisor cuando el transistor está completamente saturado. Suele ser baja $(\approx 0.2\,V)$,
+              lo que indica buen contacto entre colector y emisor.
+        \item \textbf{$P_d$ o $P_{tot}$} — Potencia máxima de disipación: \\
+        Potencia máxima que puede disipar el transistor sin superar su temperatura máxima de operación. Se calcula como:
+        \[
+        P_{d} = \frac{T_{\text{max}} - T_{\text{amb}}}{\theta_{ja}}
+        \]
+      \end{enumerate}
+  \end{itemize}
 
-        \end{itemize}
 
-\newpage
-
-\begin{table}[h!]
+\begin{table}[!ht]
 \centering
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|c|c|c|c|c|c|c|}

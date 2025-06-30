@@ -1,19 +1,34 @@
 \documentclass[chaptersright]{informeutn}
 \usepackage{listings}
+\usepackage{multirow}
 \usepackage[
 backend=bibtex,
 style=alphabetic,
 sorting=ynt
 ]{biblatex}
-\addbibresource{fuentes.bib}
+\addbibresource{fuentes}
 
 \usepgfplotslibrary{external}
 \tikzexternalize
 
+\usepackage{pdfpages}
 \usepackage{subcaption}
 \usepackage{array}
 \usepackage{colortbl}
 \usepackage{multirow}
+\lstdefinestyle{ltspice}{
+  backgroundcolor=\color{gray!10},
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{green!50!black},
+  stringstyle=\color{orange},
+  frame=single,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+  columns=flexible,
+  captionpos=b
+}
+\renewcommand{\lstlistingname}{Listado}
 
 % Datos del informe
 \materia{Dispositivos Electronicos}
@@ -30,7 +45,6 @@ sorting=ynt
   \tableofcontents
   \setcounter{page}{1}
   \thispagestyle{plain}
-
   \input{chapters/1_introduccion.tex}
   \input{chapters/2_bjt_corte.tex}
   \input{chapters/3_bjt_polariz.tex}
@@ -38,8 +52,9 @@ sorting=ynt
   \input{chapters/5_transf_corr.tex}
   \input{chapters/6_interpr_datash.tex}
   \input{chapters/7_conclusiones.tex}
+  \nocite{*}
   \printbibliography[
-    heading=bibintoc,
+    heading=bibnumbered,
     title={Fuentes}
   ]
   \input{chapters/8_anexos.tex}

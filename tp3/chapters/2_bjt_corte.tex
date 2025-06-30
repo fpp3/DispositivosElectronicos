@@ -1,101 +1,110 @@
 \chapter{Transistor en Zona de Corte}
-    La \textbf{zona de corte} es una de las regiones fundamentales de operación del transistor bipolar (BJT). En esta condición, ambas uniones PN (base-emisor y base-colector) están polarizadas en inversa, impidiendo el flujo de corriente significativa a través del dispositivo. Como consecuencia, tanto la corriente de colector $I_C$ como la corriente de emisor $I_E$ son prácticamente nulas.
+  La \textbf{zona de corte} es una de las regiones fundamentales de operación del transistor bipolar (BJT). En esta
+  condición, ambas uniones PN (base-emisor y base-colector) están polarizadas en inversa, impidiendo el flujo de
+  corriente significativa a través del dispositivo. Como consecuencia, tanto la corriente de colector $I_C$ como la
+  corriente de emisor $I_E$ son prácticamente nulas.
 
-    El BJT en corte se comporta como un \textit{interruptor abierto}, motivo por el cual esta región se utiliza ampliamente en aplicaciones de conmutación digital, como puertas lógicas o etapas de control.
-    
-    Para que el transistor esté en corte, se debe cumplir:
-    
-    \[
-    V_{BE} < V_{BE(\text{on})}
-    \]
-    
-    donde $V_{BE(\text{on})}$ representa la tensión de umbral para el encendido del transistor (típicamente entre 0.6\,V y 0.7\,V para transistores de silicio).
-    
-    En esta región de operación se verifica que:
-    
-    \begin{itemize}
-      \item $I_B \approx 0$
-      \item $I_C \approx 0$
-      \item $V_{CE} \approx V_{CC}$
-    \end{itemize}
-    
-    Durante el trabajo práctico, se verificará experimentalmente esta región observando que, al no aplicarse una tensión suficiente en la base, el transistor permanece ``apagado'' y no conduce corriente, confirmando así su comportamiento en corte.
+  El BJT en corte se comporta como un \textit{interruptor abierto}, motivo por el cual esta región se utiliza
+  ampliamente en aplicaciones de conmutación digital, como puertas lógicas o etapas de control.
 
+  Para que el transistor esté en corte, se debe cumplir:
+  \begin{equation}
+  V_{BE} < V_{BE(\text{on})}
+  \end{equation}
+  donde $V_{BE(\text{on})}$ representa la tensión de umbral para el encendido del transistor (típicamente entre 0.6\,V y
+  0.7\,V para transistores de silicio).
 
-\newpage
-
-
-  \section{Simulacion}
-
-
-  A continuacion se presenta el circuito utilizado en la simulacion y los parametros que se utilizaron para conseguir la grafica con los datos requeridos:
-
-
-
-    %Circuito de la simulacion
-
-    %Grafico de la simulacion
-
-
-  La grafica con los valores obtenidos de la $I_{CEO}$ que presenta la simulacion es la siguiente:\\
-
-
-  Como se puede observar los valores estan cerca de los $10pA$ siendo este un valor muy pequeño, por otro lado, el valor aproximado que me puede brindar el datasheet tiene que ser calculado ya que solamente me da el $I_{CBO}$.
-
-
-  Datos brindados por datasheet:
-
+  En esta región de operación se verifica que:
   \begin{itemize}
-      \item $I_{CBO}=15nA$
-      \item $\beta$ o $h_{fe}max=450$
+    \item $I_B \approx 0$
+    \item $I_C \approx 0$
+    \item $V_{CE} \approx V_{CC}$
   \end{itemize}
 
-  Teniendo el $\beta$ calculo el $\alpha$ con la siguiente formular:
+  Durante el trabajo práctico, se verificará experimentalmente esta región observando que, al no aplicarse una tensión
+  suficiente en la base, el transistor permanece ''apagado'' y no conduce corriente, confirmando así su comportamiento
+  en corte.
 
+  \section{Simulacion}
+    En la figura (\ref{crkt:corte}) se presenta el circuito utilizado en la simulacion y en el listado
+    (\ref{list:corte}) los parametros que se utilizaron para obtener el $I_{CEO}$.
 
-    
-    \begin{center}
+    \begin{figure}[!ht]
+      \centering
+      \begin{minipage}{0.45\textwidth}
+        \begin{tikzpicture}[circuitikz, straight voltages]
+          % Paths, nodes and wires:
+          \draw node[npn] at (8, 6) {};
+          \draw (7.16, 6) to[american resistor, l={$R_B$}, label distance=0.02cm] (5, 6);
+          \draw (9, 7.75) to[american resistor, l={$R_C$}, label distance=0.02cm, v<=$I_{CEO}$] (11, 7.75);
+          \draw (8, 6.52) -| (8, 7.75);
+          \draw (12, 7) to[battery, l={$V_{CC}$}, label distance=0.02cm] (12, 6);
+          \draw (12, 6.75) -| (12, 7.75);
+          \draw (8, 5.23) -| (8, 4.5);
+          \draw (12, 6.011) |- (12, 4.5);
+          \draw node[ground] at (8, 4.5) {};
+          \draw node[ground] at (12, 4.5) {};
+          \draw (8, 7.75) -- (9, 7.75);
+          \draw (11, 7.75) -- (12, 7.75);
+          \draw node[ground] at (5, 4.5) {};
+          \draw (5, 6) -| (5, 4.5);
+        \end{tikzpicture}
+        \caption{Circuito de prueba para polarizacion en zona de corte.}
+        \label{crkt:corte}
+      \end{minipage}
+      \hfill
+      \begin{minipage}{0.45\textwidth}
+        \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list:corte]
+.model BC548C   NPN(Is=7.049f Xti=3 Eg=1.11 Vaf=54.76 Bf=543.1 Ise=78.17f Ne=1.479 Ikf=24.96m Nk=.5381 Xtb=1.5 Br=1.2 Isc=27.51f Nc=1.775 Ikr=3.321 Rc=.9706 Cjc=4.25p Mjc=.3147 Vjc=.5697 Fc=.5 Cje=11.5p Mje=.6715 Vje=.5 Tr=10n Tf=410.7p Itf=1.12 Xtf=26.19 Vtf=10)
+.op
+        \end{lstlisting}
+      \end{minipage}
+    \end{figure}
 
-        \[
-        \alpha=\frac{\beta}{\beta+1}
-        \]
-        \[
-        \alpha=0.9978
-        \]
-        
-    \end{center}
+    La simulacion de punto de operacion dio como resultado una $I_C = 10pA$. Por otro lado, el
+    valor aproximado que brinda el fabricante, tiene que ser calculado, ya que solamente presenta el valor de $I_{CBO}$.
 
-
-    Luego calculo la $I_{CEO}$ con la siguiente formula:
-
-
-    \begin{center}
-        \[
-        I_{CEO}=\frac{I_{CBO}}{1-\alpha}
-        \]
-
-        \[
-        I_{CEO}= 6.81\mu A
-        \]
-           
-    \end{center}
-
-  Para finalizar respondiendo la pregunta "¿Cree poder implementar este circuito en el laboratorio y
-realizar la medición de la corriente de fuga?":
-
-    Sí, es posible implementar el circuito en el laboratorio, aunque con algunas consideraciones importantes. La corriente de fuga $I_{CEO}$ en un transistor bipolar es muy pequeña (del orden de nanoamperios en condiciones normales), por lo que su medición directa requiere instrumentos con alta sensibilidad, como un amperímetro o multímetro con resolución en el rango de nA.
-    
-    Para que la medición sea significativa:
-    
+    Con los datos brindados por el fabricante en el datahseet:
     \begin{itemize}
-        \item Es necesario mantener la base abierta o conectada mediante una resistencia de valor muy alto (simulando circuito abierto).
-        \item Se debe aplicar una tensión $V_{CE}$ adecuada (por ejemplo, entre 5\,V y 10\,V).
-        \item Puede ser útil aumentar la temperatura del transistor (por ejemplo, con una pistola de aire caliente) para incrementar $I_{CEO}$, ya que esta corriente crece exponencialmente con la temperatura.
+      \item $I_{CBO}=15 \, nA \, @ \, V_{CB} = 30V$
+      \item $\beta$ o $h_{fe}max = 450$
     \end{itemize}
-    
-    En condiciones estándar de laboratorio, puede ser difícil distinguir $I_{CEO}$ de las corrientes de fuga del instrumento o del ruido eléctrico, pero con una buena configuración experimental, la medición es viable y permite confirmar el comportamiento esperado del transistor en zona de corte.
 
+    Teniendo el $\beta$ calculo el $\alpha$ con la siguiente formular:
+    \begin{gather*}
+      \alpha=\frac{\beta}{\beta+1}\\
+      \alpha=0.9978
+    \end{gather*}
+    Luego, se puede obtener la $I_{CEO}$ con la siguiente formula:
+    \begin{equation}
+      I_{CEO}=\frac{I_{CBO}}{1-\alpha}
+    \end{equation}
+    \begin{equation*}
+      I_{CEO}= 6.75 \mu A
+    \end{equation*}
 
-       
-       
-        
+    El valor calculado difiere con el de la simulacion, debido a que el modelo posee valores idealizados del transistor,
+    ademas de que tiene otros datos (como corrientes de fuga de colector y emisor) que en el componente real serian
+    imposibles de calcular o medir debido a su magnitud (en el orden de los fA).
+
+    Para finalizar respondiendo la pregunta "¿Cree poder implementar este circuito en el laboratorio y realizar la
+    medición de la corriente de fuga?":
+
+    Sí, es posible implementar el circuito en el laboratorio, aunque con algunas consideraciones importantes. La
+    corriente de fuga $I_{CEO}$ en un transistor bipolar es muy pequeña (del orden de nanoamperios en condiciones
+    normales), por lo que su medición directa requiere instrumentos con alta sensibilidad, como un amperímetro o
+    multímetro con resolución en el rango de nA.
+
+    Para que la medición sea significativa:
+
+    \begin{itemize}
+      \item Es necesario mantener la base abierta o conectada mediante una resistencia de valor muy alto (simulando
+          circuito abierto).
+      \item Se debe aplicar una tensión $V_{CE}$ adecuada (por ejemplo, entre 5\,V y 10\,V).
+      \item Puede ser útil aumentar la temperatura del transistor (por ejemplo, con una pistola de aire caliente) para
+          incrementar $I_{CEO}$, ya que esta corriente crece exponencialmente con la temperatura.
+    \end{itemize}
+
+    En condiciones estándar de laboratorio, puede ser difícil distinguir $I_{CEO}$ de las corrientes de fuga del
+    instrumento o del ruido eléctrico, pero con una buena configuración experimental, la medición es viable y permite
+    confirmar el comportamiento esperado del transistor en zona de corte.
