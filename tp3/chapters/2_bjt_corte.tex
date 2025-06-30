@@ -1,4 +1,101 @@
 \chapter{Transistor en Zona de Corte}
-  %breve introduccion teorica
+    La \textbf{zona de corte} es una de las regiones fundamentales de operación del transistor bipolar (BJT). En esta condición, ambas uniones PN (base-emisor y base-colector) están polarizadas en inversa, impidiendo el flujo de corriente significativa a través del dispositivo. Como consecuencia, tanto la corriente de colector $I_C$ como la corriente de emisor $I_E$ son prácticamente nulas.
+
+    El BJT en corte se comporta como un \textit{interruptor abierto}, motivo por el cual esta región se utiliza ampliamente en aplicaciones de conmutación digital, como puertas lógicas o etapas de control.
+    
+    Para que el transistor esté en corte, se debe cumplir:
+    
+    \[
+    V_{BE} < V_{BE(\text{on})}
+    \]
+    
+    donde $V_{BE(\text{on})}$ representa la tensión de umbral para el encendido del transistor (típicamente entre 0.6\,V y 0.7\,V para transistores de silicio).
+    
+    En esta región de operación se verifica que:
+    
+    \begin{itemize}
+      \item $I_B \approx 0$
+      \item $I_C \approx 0$
+      \item $V_{CE} \approx V_{CC}$
+    \end{itemize}
+    
+    Durante el trabajo práctico, se verificará experimentalmente esta región observando que, al no aplicarse una tensión suficiente en la base, el transistor permanece ``apagado'' y no conduce corriente, confirmando así su comportamiento en corte.
+
+
+\newpage
+
 
   \section{Simulacion}
+
+
+  A continuacion se presenta el circuito utilizado en la simulacion y los parametros que se utilizaron para conseguir la grafica con los datos requeridos:
+
+
+
+    %Circuito de la simulacion
+
+    %Grafico de la simulacion
+
+
+  La grafica con los valores obtenidos de la $I_{CEO}$ que presenta la simulacion es la siguiente:\\
+
+
+  Como se puede observar los valores estan cerca de los $10pA$ siendo este un valor muy pequeño, por otro lado, el valor aproximado que me puede brindar el datasheet tiene que ser calculado ya que solamente me da el $I_{CBO}$.
+
+
+  Datos brindados por datasheet:
+
+  \begin{itemize}
+      \item $I_{CBO}=15nA$
+      \item $\beta$ o $h_{fe}max=450$
+  \end{itemize}
+
+  Teniendo el $\beta$ calculo el $\alpha$ con la siguiente formular:
+
+
+    
+    \begin{center}
+
+        \[
+        \alpha=\frac{\beta}{\beta+1}
+        \]
+        \[
+        \alpha=0.9978
+        \]
+        
+    \end{center}
+
+
+    Luego calculo la $I_{CEO}$ con la siguiente formula:
+
+
+    \begin{center}
+        \[
+        I_{CEO}=\frac{I_{CBO}}{1-\alpha}
+        \]
+
+        \[
+        I_{CEO}= 6.81\mu A
+        \]
+           
+    \end{center}
+
+  Para finalizar respondiendo la pregunta "¿Cree poder implementar este circuito en el laboratorio y
+realizar la medición de la corriente de fuga?":
+
+    Sí, es posible implementar el circuito en el laboratorio, aunque con algunas consideraciones importantes. La corriente de fuga $I_{CEO}$ en un transistor bipolar es muy pequeña (del orden de nanoamperios en condiciones normales), por lo que su medición directa requiere instrumentos con alta sensibilidad, como un amperímetro o multímetro con resolución en el rango de nA.
+    
+    Para que la medición sea significativa:
+    
+    \begin{itemize}
+        \item Es necesario mantener la base abierta o conectada mediante una resistencia de valor muy alto (simulando circuito abierto).
+        \item Se debe aplicar una tensión $V_{CE}$ adecuada (por ejemplo, entre 5\,V y 10\,V).
+        \item Puede ser útil aumentar la temperatura del transistor (por ejemplo, con una pistola de aire caliente) para incrementar $I_{CEO}$, ya que esta corriente crece exponencialmente con la temperatura.
+    \end{itemize}
+    
+    En condiciones estándar de laboratorio, puede ser difícil distinguir $I_{CEO}$ de las corrientes de fuga del instrumento o del ruido eléctrico, pero con una buena configuración experimental, la medición es viable y permite confirmar el comportamiento esperado del transistor en zona de corte.
+
+
+       
+       
+        
