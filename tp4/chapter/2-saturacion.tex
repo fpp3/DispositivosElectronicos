@@ -1,4 +1,4 @@
-\chapter{JFET en Saturacion}
+\chapter{JFET en Saturación}
   \begin{wrapfigure}{R}{0.3\textwidth}
   \vspace{-1cm}
     \centering
@@ -9,9 +9,9 @@
     \label{fig:jfet.nopol}
   \end{wrapfigure}
   Si al JFET se le aplica un voltaje positivo $V_{DS}$ a través del canal y el gate está conectada directamente a la
-  fuente, estableciendo la condicion de $V_{GS} = 0 V$, el resultado es un gate y un source al mismo potencial y una
+  fuente, estableciendo la condición de $V_{GS} = 0 V$, el resultado es un gate y un source al mismo potencial y una
   región de empobrecimiento en el extremo bajo de cada material p similar a la distribución de las condiciones sin
-  polarización, como se puede ver en la figura \ref{fig:jfet.nopol}. La region gris oscuro simboliza la region de
+  polarización, como se puede ver en la figura \ref{fig:jfet.nopol}. La región gris oscuro simboliza la región de
   empobrecimiento generada por la juntura de las regiones PN.
 
   En el instante en que se aplica $V_{DD} (= V_{DS})$, los electrones son atraídos hacia el drenaje y se establece la
@@ -21,10 +21,10 @@
   \begin{wrapfigure}{l}{0.4\textwidth}
     \centering
     \resizebox{!}{\linewidth}{
-    \input{tikz/jfet_pol-corte.tikz}
+    \input{tikz/jfet_pol-sat.tikz}
     }
     \caption{JFET polarizado.}
-    \label{fig:jfet.pol-corte}
+    \label{fig:jfet.pol-sat}
   \end{wrapfigure}
   Conforme el voltaje $V_{DS}$ aumente de $0V$ a algunos volts, la corriente también lo hará de acuerdo con la ley de Ohm.
   Al mismo tiempo, las regiones de empobrecimiento se iran acercando mas y mas, hasta llegar a un potencial $V_p$, en el
@@ -38,10 +38,10 @@
   6.9, la corriente se mantiene fija en el valor $I_D = I_{DSS}$ , pero la carga aplicada determina el voltaje $V_{DS}$
   (para niveles $\geq V_p$).
 
-  \section{Actividad de Simulacion}
+  \section{Actividad de Simulación}
     Se propuso implementar el circuito de la figura \ref{crkt:jfet-sat} en el simulador LTSpice, y hacer que la fuente
-    $V1$ varie desde $0$ a $15V$ en pasos de $0.1V$, para poder recrear una curva que exponga el comportamiento de la
-    corriente $I_D$ en funcion del voltaje drain-source $V_{GS}$ 
+    $V1$ varíe desde $0$ a $15V$ en pasos de $0.1V$, para poder recrear una curva que exponga el comportamiento de la
+    corriente $I_D$ en función del voltaje drain-source $V_{DS}$ 
     \begin{figure}[!ht]
       \centering
       \begin{minipage}{0.45\textwidth}
@@ -57,7 +57,7 @@
           \node[ground] at (0, -2){};
           \node[ground] at (2.5, -2){};
         \end{tikzpicture}
-        \caption{circuito de prueba para saturacion.}
+        \caption{circuito de prueba para saturación.}
         \label{crkt:jfet-sat}
       \end{minipage}
       \hfill
@@ -72,15 +72,15 @@
     \begin{figure}[!ht]
       \centering
       \includegraphics[width=0.8\textwidth]{images/saturacion-id_vds.png}
-      \caption{resultados de simulacion para saturacion del JFET.}
+      \caption{resultados de simulación para saturación del JFET.}
       \label{fig:sim.sat}
     \end{figure}
-    En la figura \ref{fig:sim.sat} puede observar los resultados de la simulacion. Como se puede ver, a partir de
+    En la figura \ref{fig:sim.sat} puede observar los resultados de la simulación. Como se puede ver, a partir de
     aproximadamente $2V$, el JFET llega a su corriente $I_{DSS}$. A pesar de que el voltaje $V_{DS}$ sigue aumentando, la
-    corriente $I_D$ permanece practicamente constante.
+    corriente $I_D$ permanece prácticamente constante.
 
-    La hoja de datos especifica una $I_{DSS}$ que va de $6mA$ a $15mA$. El modelo que se utilizo usa el minimo de
-    corriente $I_{DSS}$, lo cual se corrobora en la grafica de la figura \ref{fig:sim.sat}, estabilizandose al rededor
+    La hoja de datos especifica una $I_{DSS}$ que va de $6mA$ a $15mA$. El modelo que se utilizo usa el mínimo de
+    corriente $I_{DSS}$, lo cual se corrobora en la gráfica de la figura \ref{fig:sim.sat}, estabilizándose al rededor
     de los $5.5mA$.
 
   \section{Actividad de Laboratorio}

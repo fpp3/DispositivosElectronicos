@@ -1,1 +1,68 @@
 \chapter{JFET en Corte}
+  \begin{wrapfigure}{R}{0.4\textwidth}
+    \centering
+    \resizebox{!}{\linewidth}{
+    \input{tikz/jfet_pol-corte.tikz}
+    }
+    \caption{JFET con fuente $V_{GG}$.}
+    \label{fig:jfet.pol-corte}
+  \end{wrapfigure}
+El voltaje de la compuerta a la fuente, denotado $V_{GS}$, es el voltaje de control del JFET. Del mismo modo en que se
+establecieron varias curvas para $I_C$ contra $V_{CE}$ para diferentes niveles de $I_B$ para el transistor BJT, se
+pueden desarrollar curvas de $I_D$ contra $V_{DS}$ para varios niveles de $V_{GS}$ para el JFET.
+
+El efecto del $V_{GS}$ de polarización negativa es establecer regiones de empobrecimiento similares a las obtenidas con
+$V_{GS} = 0V$, pero a niveles más bajos de $V_DS$. Por consiguiente, el resultado de la aplicación de polarización
+negativa a la compuerta es alcanzar un nuevo "tope" de corriente a un nivel más bajo de $V_{DS}$. El nivel de saturación
+resultante para $I_D$ se redujo y de hecho continuará haciéndolo a medida que $V_{GS}$ se haga más y más negativo.
+
+Con el tiempo, cuando $V_{GS} = V_p$ sea lo bastante negativo para establecer un nivel de saturación que básicamente sea
+de $0 mA$, y para todo propósito práctico el dispositivo se haya “apagado”. Este potencial es también llamado
+$V_{GS_{(OFF)}}$
+
+\section{Actividad de Simulación}
+    Se propuso implementar el circuito de la figura \ref{crkt:jfet-corte} en el simulador LTSpice, y hacer que la fuente
+    $V1$ varíe desde $0$ a $8V$ en pasos de $0.1V$, para poder recrear una curva que exponga el comportamiento de la
+    corriente $I_D$ en función del voltaje drain-source $V_{GS}$ 
+    \begin{figure}[!ht]
+      \centering
+      \begin{minipage}{0.45\textwidth}
+        \begin{tikzpicture}
+          % Paths, nodes and wires:
+          \node[njfet](N1) at (2.25, 2.73){} node[anchor=west] at (N1.text){$BF245B$};
+          \draw (4.75, 3.48) to[battery, l={$15V$}] (4.75, 1.98);
+          \draw (4.75, 3.46) -- (4.75, 5.21) |- (2.25, 5.21) -| (2.25, 3.48);
+          \draw (2.25, 1.96) -- (2.25, 0.73);
+          \draw (4.75, 1.98) -- (4.75, 0.73);
+          \node[ground] at (0.25, 0.73){};
+          \node[ground] at (2.25, 0.73){};
+          \node[ground] at (4.75, 0.73){};
+          \draw (0.25, 1.25) to[battery, l={$V1$}] (0.25, 2);
+          \draw (1.27, 2.46) -| (0.25, 2);
+          \draw (0.25, 0.73) -| (0.25, 1.25);
+        \end{tikzpicture}
+        \caption{circuito de prueba para corte.}
+        \label{crkt:jfet-corte}
+      \end{minipage}
+      \hfill
+      \begin{minipage}{0.45\textwidth}
+        \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list:jfet-sat]
+.MODEL  BF245B   NJF VTO = -2.3085E+000 BETA = 1.09045E-003 LAMBDA = 2.31754E-003 RD = 7.77648E+000 RS = 7.77648E+000 IS = 2.59121E-016 CGS  = 2.00000E-012 CGD  = 2.20000E-012 PB = 9.91494E-001 FC = 5.00000E-001
+.dc V1 0 8 .1
+        \end{lstlisting}
+      \end{minipage}
+    \end{figure}
+
+    \begin{figure}[!ht]
+      \centering
+      \includegraphics[width=0.8\textwidth]{images/corte-id_vgs.png}
+      \caption{resultados de simulación para corte del JFET.}
+      \label{fig:sim.corte}
+    \end{figure}
+
+    Para poder apreciar mejor la curva de transferencia, se redujo el barrido de la fuente hasta $3V$. Como se puede ver
+    en la figura \ref{fig:sim.corte}, la tensión $V_{GS_{(OFF)}}$ se encuentra aproximadamente a los $-2.4V$. En la hoja
+    de datos, el parámetro especifica un rango de entre $-0.5V$ a $-8V$, así que el modelo estaría dentro de los
+    parámetros correctos.
+
+  \section{Actividad de Laboratorio}
