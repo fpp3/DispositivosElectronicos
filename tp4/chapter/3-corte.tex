@@ -22,8 +22,8 @@ $V_{GS_{(OFF)}}$
 
 \section{Actividad de Simulación}
     Se propuso implementar el circuito de la figura \ref{crkt:jfet-corte} en el simulador LTSpice, y hacer que la fuente
-    $V1$ varíe desde $0$ a $8V$ en pasos de $0.1V$, para poder recrear una curva que exponga el comportamiento de la
-    corriente $I_D$ en función del voltaje drain-source $V_{GS}$ 
+    $V1$ varíe desde $0V$ a $8V$ en pasos de $0.1V$, para poder recrear una curva que exponga el comportamiento de la
+    corriente $I_D$ en función del voltaje drain-source $V_{GS}$.
     \begin{figure}[!ht]
       \centering
       \begin{minipage}{0.45\textwidth}
@@ -46,7 +46,7 @@ $V_{GS_{(OFF)}}$
       \end{minipage}
       \hfill
       \begin{minipage}{0.45\textwidth}
-        \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list:jfet-sat]
+        \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list:jfet-corte]
 .MODEL  BF245B   NJF VTO = -2.3085E+000 BETA = 1.09045E-003 LAMBDA = 2.31754E-003 RD = 7.77648E+000 RS = 7.77648E+000 IS = 2.59121E-016 CGS  = 2.00000E-012 CGD  = 2.20000E-012 PB = 9.91494E-001 FC = 5.00000E-001
 .dc V1 0 8 .1
         \end{lstlisting}
