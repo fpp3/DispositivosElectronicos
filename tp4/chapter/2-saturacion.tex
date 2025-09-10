@@ -47,7 +47,7 @@
       \begin{minipage}{0.45\textwidth}
         \begin{tikzpicture}
           % Paths, nodes and wires:
-          \node[njfet](N1) at (0, -0){} node[anchor=west] at (N1.text){$BF245B$};
+          \node[njfet](N1) at (0, -0){} node[anchor=west] at (N1.text){$2N5457$};
           \draw (2.5, 0.75) to[battery, l={$V1$}] (2.5, -0.75);
           \draw (2.5, 0.73) -- (2.5, 2.48) |- (0, 2.48) -| (0, 0.75);
           \draw (0, -0.77) -- (0, -2);
@@ -63,7 +63,7 @@
       \hfill
       \begin{minipage}{0.45\textwidth}
         \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list:jfet-sat]
-.MODEL  BF245B   NJF VTO = -2.3085E+000 BETA = 1.09045E-003 LAMBDA = 2.31754E-003 RD = 7.77648E+000 RS = 7.77648E+000 IS = 2.59121E-016 CGS  = 2.00000E-012 CGD  = 2.20000E-012 PB = 9.91494E-001 FC = 5.00000E-001
+.MODEL 2N5457 NJF IS=1N VT0=-1.5 BETA=1.125M LAMBDA=2.3M CGD=4PF CGS=5PF
 .dc V1 0 15 .1
         \end{lstlisting}
       \end{minipage}
@@ -76,11 +76,11 @@
       \label{fig:sim.sat}
     \end{figure}
     En la figura \ref{fig:sim.sat} puede observar los resultados de la simulación. Como se puede ver, a partir de
-    aproximadamente $2V$, el JFET llega a su corriente $I_{DSS}$. A pesar de que el voltaje $V_{DS}$ sigue aumentando, la
+    aproximadamente $1.5V$, el JFET llega a su corriente $I_{DSS}$. A pesar de que el voltaje $V_{DS}$ sigue aumentando, la
     corriente $I_D$ permanece prácticamente constante.
 
-    La hoja de datos especifica una $I_{DSS}$ que va de $6mA$ a $15mA$. El modelo que se utilizo usa el mínimo de
+    La hoja de datos especifica una $I_{DSS}$ que va de $1mA$ a $5mA$. El modelo que se utilizo usa el mínimo de
     corriente $I_{DSS}$, lo cual se corrobora en la gráfica de la figura \ref{fig:sim.sat}, estabilizándose al rededor
-    de los $5.5mA$.
+    de los $2.5mA$.
 
   \section{Actividad de Laboratorio}

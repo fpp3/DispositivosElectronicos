@@ -29,7 +29,7 @@ $V_{GS_{(OFF)}}$
       \begin{minipage}{0.45\textwidth}
         \begin{tikzpicture}
           % Paths, nodes and wires:
-          \node[njfet](N1) at (2.25, 2.73){} node[anchor=west] at (N1.text){$BF245B$};
+          \node[njfet](N1) at (2.25, 2.73){} node[anchor=west] at (N1.text){$2N5457$};
           \draw (4.75, 3.48) to[battery, l={$15V$}] (4.75, 1.98);
           \draw (4.75, 3.46) -- (4.75, 5.21) |- (2.25, 5.21) -| (2.25, 3.48);
           \draw (2.25, 1.96) -- (2.25, 0.73);
@@ -47,7 +47,7 @@ $V_{GS_{(OFF)}}$
       \hfill
       \begin{minipage}{0.45\textwidth}
         \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list:jfet-corte]
-.MODEL  BF245B   NJF VTO = -2.3085E+000 BETA = 1.09045E-003 LAMBDA = 2.31754E-003 RD = 7.77648E+000 RS = 7.77648E+000 IS = 2.59121E-016 CGS  = 2.00000E-012 CGD  = 2.20000E-012 PB = 9.91494E-001 FC = 5.00000E-001
+.MODEL 2N5457 NJF IS=1N VT0=-1.5 BETA=1.125M LAMBDA=2.3M CGD=4PF CGS=5PF
 .dc V1 0 8 .1
         \end{lstlisting}
       \end{minipage}
@@ -61,8 +61,8 @@ $V_{GS_{(OFF)}}$
     \end{figure}
 
     Para poder apreciar mejor la curva de transferencia, se redujo el barrido de la fuente hasta $3V$. Como se puede ver
-    en la figura \ref{fig:sim.corte}, la tensión $V_{GS_{(OFF)}}$ se encuentra aproximadamente a los $-2.4V$. En la hoja
-    de datos, el parámetro especifica un rango de entre $-0.5V$ a $-8V$, así que el modelo estaría dentro de los
+    en la figura \ref{fig:sim.corte}, la tensión $V_{GS_{(OFF)}}$ se encuentra aproximadamente a los $-1.5V$. En la hoja
+    de datos, el parámetro especifica un rango de entre $-0.5V$ a $-6V$, así que el modelo estaría dentro de los
     parámetros correctos.
 
   \section{Actividad de Laboratorio}
