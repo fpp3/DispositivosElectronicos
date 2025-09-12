@@ -66,3 +66,40 @@ $V_{GS_{(OFF)}}$
     parámetros correctos.
 
   \section{Actividad de Laboratorio}
+
+      
+
+     En esta experiencia se implementó en protoboard el circuito que se nos planteo 
+    con el objetivo de obtener de manera experimental las curvas características de salida del transistor JFET. 
+    El procedimiento consistió en fijar un valor de $V_{GS}$ y, a partir de dicho valor, variar la tensión 
+    $V_{DS}$ midiendo los correspondientes valores de la corriente $I_{DS}$. Posteriormente, se repitió la 
+    medición para distintos valores de $V_{GS}$, siguiendo los parámetros propuestos en la tabla correspondiente.
+    
+    De esta forma, se obtuvo un conjunto de mediciones que permitió representar la relación 
+    $I_{DS} = f(V_{DS})$ para cada valor de $V_{GS}$. Dichas gráficas permiten analizar el comportamiento 
+    característico del dispositivo en sus diferentes regiones de operación, y además comparar los resultados 
+    experimentales con las curvas obtenidas mediante simulación en el entorno LTSpice.
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|}
+        \hline
+        \textbf{$V_{GS}$ [V]} & \textbf{$I_{DS}$ [mA]} \\ \hline
+        0     & 1.54  \\ \hline
+        -0.1  & 0.98  \\ \hline
+        -0.2  & 0.32  \\ \hline
+        -0.3  & 0.03  \\ \hline
+        -0.4  & 0.003 \\ \hline
+        -0.5  & 0     \\ \hline
+        -0.6  & 0     \\ \hline
+        -0.7  & 0     \\ \hline
+        -0.8  & 0     \\ \hline
+        -0.9  & 0     \\ \hline
+        -1.0  & 0     \\ \hline
+        \end{tabular}
+        \caption{Valores de $I_{DS}$ en función de $V_{GS}$}
+        \label{tab:ids-vgs}
+        \end{table}
+
+
+    Para el caso de la tabla hicimos variar el rango de voltaje $V_{GS}$ de $1V$ a $0.1V$ para poder apreciar de mejor forma la corriente $I_{DS}$ 
