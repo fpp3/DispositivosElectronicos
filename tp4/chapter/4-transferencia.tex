@@ -1,4 +1,4 @@
-\chapter{Caracteristicas de transferencia del JFET}
+\chapter{Características de transferencia del JFET}
   En el análisis de los transistores de efecto de campo de juntura (JFET), resulta fundamental comprender la relación
   entre la tensión aplicada entre compuerta y fuente (\(V_{GS}\)) y la corriente de drenaje (\(I_D\)). Esta relación se
   conoce como característica de transferencia, ya que describe cómo la señal de entrada (voltaje de control)
@@ -26,9 +26,9 @@
 
 \section{Actividad de Simulación}
     Se propuso implementar el circuito de la figura \ref{crkt:jfet-transf} en el simulador LTSpice, y hacer que la fuente
-    $V1$ varíe desde $0V$ a $8V$ en pasos de $0.1V$, y por cada variacion de la fuente $V1$, que la fuente $V2$ varie de
-    $0V$ a $15V$ en pasos de $0.1V$ para poder recrear una familia de curvas que expongan el comportamiento de la
-    corriente $I_D$ en función del voltaje drain-source $V_{DS}$ por cada $V_{GS}$.
+    $V2$ varíe desde $0V$ a $15V$ en pasos de $0.1V$, y por cada variación de la fuente $V2$, que la fuente $V1$ varíe de
+    $0V$ a $8V$ en pasos de $0.1V$ para poder recrear una familia de curvas que expongan el comportamiento de la
+    corriente $I_D$ en función del voltaje gate-source $V_{GS}$ por cada $V_{DS}$.
     \begin{figure}[!ht]
       \centering
       \begin{minipage}{0.45\textwidth}
@@ -46,14 +46,14 @@
           \draw (1.27, 2.46) -| (0.25, 2);
           \draw (0.25, 0.73) -| (0.25, 1.25);
         \end{tikzpicture}
-        \caption{circuito de prueba para caracteristicas de trasnferencia.}
+        \caption{circuito de prueba para características de transferencia.}
         \label{crkt:jfet-transf}
       \end{minipage}
       \hfill
       \begin{minipage}{0.45\textwidth}
         \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list:jfet-transf]
 .MODEL 2N5457 NJF IS=1N VT0=-1.5 BETA=1.125M LAMBDA=2.3M CGD=4PF CGS=5PF
-.dc V2 0 15 .1 V1 0 8 .1
+.dc V1 0 3 .1 V2 0 15 .1
         \end{lstlisting}
       \end{minipage}
     \end{figure}
@@ -61,57 +61,44 @@
     \begin{figure}[!ht]
       \centering
       \includegraphics[width=0.65\textwidth]{images/transferencia-id_vds-vgs.png}
-      \caption{resultados de simulación para caracteristicas de transferencia del JFET.}
+      \caption{resultados de simulación para características de transferencia del JFET.}
       \label{fig:sim.transf}
     \end{figure}
 
     Para poder apreciar mejor los resultados de la figura \ref{fig:sim.transf}, se redujo el barrido de la fuente $V1$
-    hasta $3V$ en pasos de $0.2V$. Como se puede ver, el modelo describe perfectamente la famila de curvas de
-    $I_{D_{(V_{DS}, \, V_{GS}})}$. La unica diferencia observable comparada con la grafica presentada por el fabricante es el
+    hasta $3V$ en pasos de $0.1V$. Como se puede ver, el modelo describe perfectamente la familia de curvas de
+    $I_{D_{(V_{GS}, \, V_{DS}})}$. La única diferencia observable comparada con la gráfica presentada por el fabricante es el
     valor de $I_{DSS}$.
 
 \section{Actividad de Laboratorio}
 
-    En esta actividad se implementó el circuito que se nos planteo con el objetivo de obtener las curvas características $I_{DS} = f(V_{DS})$ para distintos valores de $V_{GS}$.  
-    El procedimiento consistió en fijar un valor de $V_{GS}$, variar la tensión $V_{DS}$ y medir 
-    los correspondientes valores de $I_{DS}$. Posteriormente, se cambió el valor de $V_{GS}$ y 
-    se repitió la medición, obteniendo así diferentes curvas que permiten observar el efecto 
-    del voltaje de compuerta en la corriente de drenaje.  
-    
-    \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.6\textwidth]{pictures/robada-tp3.jpeg}
-    \caption{Circuito utilizado para la medición de $I_{DS} = f(V_{DS})$ para distintos $V_{GS}$.}
-    \label{crkt:jfet-carac}
-    \end{figure}
+    En esta actividad se implementó el circuito que se nos planteo con el objetivo de obtener las curvas características
+    $I_{DS} = f(V_{GS})$ para distintos valores de $V_{DS}$.  El procedimiento consistió en fijar un valor de $V_{DS}$,
+    variar la tensión $V_{GS}$ y medir los correspondientes valores de $I_{DS}$. Posteriormente, se cambió el valor de
+    $V_{DS}$ y se repitió la medición, obteniendo así diferentes curvas que permiten observar el efecto del voltaje de
+    compuerta en la corriente de drenaje.  
     
     Los valores experimentales obtenidos se resumen en la siguiente tabla:
     
-    \begin{table}[H]
-    \centering
-    \resizebox{\textwidth}{!}{%
-    \begin{tabular}{|c|c|c|c|c|}
-    \hline
-    \textbf{$V_{DS}$ [V]} & \textbf{$I_{DS}$ [mA] ($V_{GS}=-0$ V)} & 
-    \textbf{$I_{DS}$ [mA] ($V_{GS}=-0.1$ V)} & 
-    \textbf{$I_{DS}$ [mA] ($V_{GS}=-0.2$ V)} & 
-    \textbf{$I_{DS}$ [$\mu$A] ($V_{GS}=-0.3$ V)} \\ \hline
-    0  & 0    & 0    & 0    & 0    \\ \hline
-    1  & 0.84    & 0.32    & 0.05    & 2.6    \\ \hline
-    2  & 0.98 & 0.39 & 0.07  & 4.3 \\ \hline
-    3  & 1.1    & 0.46    & 0.09    & 6.1    \\ \hline
-    4  & 1.14 & 0.52  & 0.12 & 8.5  \\ \hline
-    5  & 1.31    & 0.57    & 0.137    & 10.1    \\ \hline
-    6  & 1.39 & 0.62 & 0.155 & 12.3 \\ \hline
-    7  & 1.47    & 0.67    & 0.172    & 15.5    \\ \hline
-    8  & 1.59 & 0.73  & 0.146  & 18.3 \\ \hline
-    9  & 1.64    & 0.77    & 0.211    & 21.5    \\ \hline
-    10 & 1.72 & 0.83 & 0.212  & 25.5 \\ \hline
-    \end{tabular}}
-    \caption{Valores de $I_{DS}$ en función de $V_{DS}$ para distintos valores de $V_{GS}$.}
-    \label{tab:ids-vgs}
+    \begin{table}[h]
+      \centering
+      \resizebox{\textwidth}{!}{%
+      \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \textbf{$V_{GS}$ [V]} & \textbf{$I_D$ [mA] ($V_{DS}=2$ V)} & \textbf{$I_D$ [mA] ($V_{DS}=5$ V)} & \textbf{$I_D$ [mA] ($V_{DS}=8$ V)} & \textbf{$I_D$ [mA] ($V_{DS}=15$ V)} \\ \hline
+         0.0  & 0.98   & 1.31   & 1.59   & 2.11 \\ \hline
+        -0.1  & 0.39   & 0.57   & 0.73   & 1.05 \\ \hline
+        -0.2  & 0.07   & 0.137  & 0.146  & 0.16 \\ \hline
+        -0.3  & 0.0043 & 0.0101 & 0.0183 & 0.0281 \\ \hline
+        -0.4  & $\approx$0.003 & $\approx$0.003 & $\approx$0.003 & $\approx$0.003 \\ \hline
+        -0.5  & 0.000  & 0.000  & 0.000  & 0.000 \\ \hline
+        -1.0  & 0.000  & 0.000  & 0.000  & 0.000 \\ \hline
+      \end{tabular}
+      }
+      \caption{corriente $I_D$ en función de $V_{GS}$ para $V_{DS}$ obtenidos experimentalmente.}
+      \label{tab:ids-vgs-vds}
     \end{table}
     
-    A partir de estos resultados es posible graficar el conjunto de curvas características 
-    del transistor y compararlas con las simulaciones y los valores obtenidos de la hoja de datos del fabricante.
+    A partir de estos resultados es posible traficar el conjunto de curvas características del transistor y compararlas
+    con las simulaciones y los valores obtenidos de la hoja de datos del fabricante.
     
