@@ -5,7 +5,11 @@ el comportamiento del dispositivo en sus distintas regiones de operación: la re
 corriente aumenta casi linealmente), la región de saturación o activa (cuando $I_D$ se estabiliza para un $V_{DS}$
 suficiente), y el corte (cuando $V_{GS}$ es más negativo que $V_{GS(\text{off})}$ y la corriente se anula).
 
-\lipsum[1]
+  A lo largo de esta experiencia, realizamos la medición de las curvas características del transistor, obteniendo datos
+  experimentales de $I_C$ en función de $V_{CE}$ para distintos valores de $I_B$. Posteriormente, representamos
+  gráficamente las curvas tanto a partir de los datos medidos como de las simulaciones. Estas representaciones nos
+  permitieron identificar las distintas regiones de operación del transistor (corte, activa y saturación), y analizar su
+  comportamiento ante variaciones en la corriente de base.
 
 La medición de estas curvas resulta fundamental para caracterizar el transistor, ya que de ellas se puede determinar
 experimentalmente parámetros clave como la corriente de saturación $I_{DSS}$, la tensión de estrangulamiento $V_P$ y el
@@ -77,27 +81,64 @@ característica del JFET empleado.
     Los valores experimentales obtenidos se resumen en la siguiente tabla:
     
     \begin{table}[H]
-    \centering
-    \resizebox{\textwidth}{!}{%
-    \begin{tabular}{|c|c|c|c|c|}
-    \hline
+      \centering
+      \resizebox{\textwidth}{!}{%
+      \begin{tabular}{|c|c|c|c|c|}
+        \hline
         \textbf{$V_{DS}$ [V]} & \textbf{$I_D$ [mA] ($V_{GS}=0$ V)} & \textbf{$I_D$ [mA] ($V_{GS}=-0.1$ V)} & \textbf{$I_D$ [mA] ($V_{GS}=-0.2$ V)} & \textbf{$I_D$ [mA] ($V_{GS}=-0.3$ V)}\\ \hline
-    0  & 0    & 0    & 0    & 0    \\ \hline
-    1  & 0.84    & 0.32    & 0.05    & 2.6    \\ \hline
-    2  & 0.98 & 0.39 & 0.07  & 4.3 \\ \hline
-    3  & 1.1    & 0.46    & 0.09    & 6.1    \\ \hline
-    4  & 1.14 & 0.52  & 0.12 & 8.5  \\ \hline
-    5  & 1.31    & 0.57    & 0.137    & 10.1    \\ \hline
-    6  & 1.39 & 0.62 & 0.155 & 12.3 \\ \hline
-    7  & 1.47    & 0.67    & 0.172    & 15.5    \\ \hline
-    8  & 1.59 & 0.73  & 0.146  & 18.3 \\ \hline
-    9  & 1.64    & 0.77    & 0.211    & 21.5    \\ \hline
-    10 & 1.72 & 0.83 & 0.212  & 25.5 \\ \hline
-    \end{tabular}}
-    \caption{Valores de $I_{DS}$ en función de $V_{DS}$ para distintos valores de $V_{GS}$.}
-    \label{tab:ids-vds-vgs}
+        0  & 0    & 0    & 0    & 0    \\ \hline
+        1  & 0.84    & 0.32    & 0.05    & 2.6    \\ \hline
+        2  & 0.98 & 0.39 & 0.07  & 4.3 \\ \hline
+        3  & 1.1    & 0.46    & 0.09    & 6.1    \\ \hline
+        4  & 1.14 & 0.52  & 0.12 & 8.5  \\ \hline
+        5  & 1.31    & 0.57    & 0.137    & 10.1    \\ \hline
+        6  & 1.39 & 0.62 & 0.155 & 12.3 \\ \hline
+        7  & 1.47    & 0.67    & 0.172    & 15.5    \\ \hline
+        8  & 1.59 & 0.73  & 0.146  & 18.3 \\ \hline
+        9  & 1.64    & 0.77    & 0.211    & 21.5    \\ \hline
+        10 & 1.72 & 0.83 & 0.212  & 25.5 \\ \hline
+      \end{tabular}}
+      \caption{Valores de $I_{DS}$ en función de $V_{DS}$ para distintos valores de $V_{GS}$.}
+      \label{tab:ids-vds-vgs}
     \end{table}
     
     A partir de estos resultados es posible traficar el conjunto de curvas características del transistor y compararlas
     con las simulaciones y los valores obtenidos de la hoja de datos del fabricante.
     
+    \begin{figure}[H]
+      \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+            grid=major,
+            xlabel={$V_{DS}$ [V]},
+            ylabel={$I_{D}$ [mA]},
+            legend style={at={(0.5,-0.2)},anchor=north,legend columns=2},
+            width=0.8\textwidth,
+            height=0.5\textwidth,
+        ]
+        
+        \addplot+[mark=*] coordinates {
+        (0,0) (1,0.84) (2,0.98) (3,1.1) (4,1.14) (5,1.31) (6,1.39) (7,1.47) (8,1.59) (9,1.64) (10,1.72)
+        };
+        \addlegendentry{$V_{GS}=0$ V}
+        
+        \addplot+[mark=square*] coordinates {
+        (0,0) (1,0.32) (2,0.39) (3,0.46) (4,0.52) (5,0.57) (6,0.62) (7,0.67) (8,0.73) (9,0.77) (10,0.83)
+        };
+        \addlegendentry{$V_{GS}=-0.1$ V}
+        
+        \addplot+[mark=triangle*] coordinates {
+        (0,0) (1,0.05) (2,0.07) (3,0.09) (4,0.12) (5,0.137) (6,0.155) (7,0.172) (8,0.146) (9,0.211) (10,0.212)
+        };
+        \addlegendentry{$V_{GS}=-0.2$ V}
+        
+        \addplot+[mark=diamond*] coordinates {
+        (0,0) (1,2.6) (2,4.3) (3,6.1) (4,8.5) (5,10.1) (6,12.3) (7,15.5) (8,18.3) (9,21.5) (10,25.5)
+        };
+        \addlegendentry{$V_{GS}=-0.3$ V}
+        
+        \end{axis}
+      \end{tikzpicture}
+      \caption{$I_{D}$ en función de $V_{DS}$ para distintos valores de $V_{GS}$.}
+    \end{figure}
+

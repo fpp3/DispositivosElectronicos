@@ -96,10 +96,39 @@ $V_{GS_{(OFF)}}$
         -0.8  & 0     \\ \hline
         -0.9  & 0     \\ \hline
         -1.0  & 0     \\ \hline
-        \end{tabular}
-        \caption{Valores de $I_{DS}$ en función de $V_{GS}$}
-        \label{tab:ids-vgs}
-        \end{table}
+      \end{tabular}
+      \caption{Valores de $I_{DS}$ en función de $V_{GS}$}
+      \label{tab:ids-vgs}
+    \end{table}
 
 
     Para el caso de la tabla hicimos variar el rango de voltaje $V_{GS}$ de $1V$ a $0.1V$ para poder apreciar de mejor forma la corriente $I_{DS}$ 
+
+    \begin{figure}[H]
+      \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+            grid=major,
+            xlabel={$V_{GS}$ [V]},
+            ylabel={$I_{DS}$ [mA]},
+            width=0.7\textwidth,
+            height=0.5\textwidth,
+        ]
+        \addplot+[mark=*] coordinates {
+        (0,1.54)
+        (-0.1,0.98)
+        (-0.2,0.32)
+        (-0.3,0.03)
+        (-0.4,0.003)
+        (-0.5,0)
+        (-0.6,0)
+        (-0.7,0)
+        (-0.8,0)
+        (-0.9,0)
+        (-1.0,0)
+        };
+        \end{axis}
+      \end{tikzpicture}
+      \caption{$I_{DS}$ en función de $V_{GS}$.}
+    \end{figure}
+

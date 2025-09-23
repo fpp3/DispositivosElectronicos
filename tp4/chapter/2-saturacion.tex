@@ -94,31 +94,65 @@
     se completó la siguiente tabla:
     
     \begin{table}[H]
-    \centering
-    \begin{tabular}{|c|c|c|}
-    \hline
-    \textbf{$V_{DD}$ [V]}  &  \textbf{ $V_{DS}$ [V]} & \textbf{$I_{DS}$ [mA]} \\ \hline
-    0      &    0   & 0     \\ \hline
-    5.96   &    1   & 1     \\ \hline
-    7.77   &    2   & 1.17  \\ \hline
-    9.46   &    3   & 1.31  \\ \hline
-    10.93  &    4   & 1.42  \\ \hline
-    12.43  &    5   & 1.52  \\ \hline
-    13.89  &    6   & 1.62  \\ \hline
-    15.43  &    7   & 1.72  \\ \hline
-    16.73  &    8   & 1.81  \\ \hline
-    18.3   &    9   & 1.91  \\ \hline
-    19.7   &    10  & 1.99  \\ \hline
-    21.2   &    11  & 2.08  \\ \hline
-    22.6   &    12  & 2.18  \\ \hline
-    24.2   &    13  & 2.3   \\ \hline
-    29.8   &    14  & 2.41  \\ \hline
-    27.7   &    15  & 2.61  \\ \hline
-    \end{tabular}
-    \caption{Valores de $I_{DS}$ en función de $V_{DS}$ obtenidos experimentalmente}
-    \label{tab:ids-vds}
+      \centering
+      \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{$V_{DD}$ [V]}  &  \textbf{ $V_{DS}$ [V]} & \textbf{$I_{DS}$ [mA]} \\ \hline
+        0      &    0   & 0     \\ \hline
+        5.96   &    1   & 1     \\ \hline
+        7.77   &    2   & 1.17  \\ \hline
+        9.46   &    3   & 1.31  \\ \hline
+        10.93  &    4   & 1.42  \\ \hline
+        12.43  &    5   & 1.52  \\ \hline
+        13.89  &    6   & 1.62  \\ \hline
+        15.43  &    7   & 1.72  \\ \hline
+        16.73  &    8   & 1.81  \\ \hline
+        18.3   &    9   & 1.91  \\ \hline
+        19.7   &    10  & 1.99  \\ \hline
+        21.2   &    11  & 2.08  \\ \hline
+        22.6   &    12  & 2.18  \\ \hline
+        24.2   &    13  & 2.3   \\ \hline
+        29.8   &    14  & 2.41  \\ \hline
+        27.7   &    15  & 2.61  \\ \hline
+      \end{tabular}
+      \caption{Valores de $I_{DS}$ en función de $V_{DS}$ obtenidos experimentalmente}
+      \label{tab:ids-vds}
     \end{table}
     
     A partir de estos resultados se puede graficar la característica de salida $I_{DS} = f(V_{DS})$, 
     lo que permite analizar el comportamiento del transistor en sus distintas regiones de operación 
     y comparar los resultados experimentales con la simulación previa y con las especificaciones del fabricante.
+
+    \begin{figure}[H]
+      \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+            grid=major,
+            xlabel={$V_{DS}$ [V]},
+            ylabel={$I_{DS}$ [mA]},
+            width=0.8\textwidth,
+            height=0.5\textwidth,
+        ]
+        \addplot+[mark=*] coordinates {
+        (0,0)
+        (1,1)
+        (2,1.17)
+        (3,1.31)
+        (4,1.42)
+        (5,1.52)
+        (6,1.62)
+        (7,1.72)
+        (8,1.81)
+        (9,1.91)
+        (10,1.99)
+        (11,2.08)
+        (12,2.18)
+        (13,2.30)
+        (14,2.41)
+        (15,2.61)
+        };
+        \end{axis}
+      \end{tikzpicture}
+      \caption{$I_{DS}$ en función de $V_{DS}$.}
+    \end{figure}
+

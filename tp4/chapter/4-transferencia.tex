@@ -102,3 +102,40 @@
     A partir de estos resultados es posible traficar el conjunto de curvas características del transistor y compararlas
     con las simulaciones y los valores obtenidos de la hoja de datos del fabricante.
     
+    \begin{figure}[H]
+      \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+            grid=major,
+            xlabel={$V_{GS}$ [V]},
+            ylabel={$I_{D}$ [mA]},
+            legend style={at={(0.5,-0.2)},anchor=north,legend columns=2},
+            width=0.8\textwidth,
+            height=0.5\textwidth,
+        ]
+        
+        \addplot+[mark=*] coordinates {
+        (0.0,0.98) (-0.1,0.39) (-0.2,0.07) (-0.3,0.0043) (-0.4,0.003) (-0.5,0) (-1.0,0)
+        };
+        \addlegendentry{$V_{DS}=2$ V}
+        
+        \addplot+[mark=square*] coordinates {
+        (0.0,1.31) (-0.1,0.57) (-0.2,0.137) (-0.3,0.0101) (-0.4,0.003) (-0.5,0) (-1.0,0)
+        };
+        \addlegendentry{$V_{DS}=5$ V}
+        
+        \addplot+[mark=triangle*] coordinates {
+        (0.0,1.59) (-0.1,0.73) (-0.2,0.146) (-0.3,0.0183) (-0.4,0.003) (-0.5,0) (-1.0,0)
+        };
+        \addlegendentry{$V_{DS}=8$ V}
+        
+        \addplot+[mark=diamond*] coordinates {
+        (0.0,2.11) (-0.1,1.05) (-0.2,0.16) (-0.3,0.0281) (-0.4,0.003) (-0.5,0) (-1.0,0)
+        };
+        \addlegendentry{$V_{DS}=15$ V}
+        
+        \end{axis}
+      \end{tikzpicture}
+      \caption{$I_{D}$ en función de $V_{GS}$ para distintos valores de $V_{DS}$.}
+    \end{figure}
+
