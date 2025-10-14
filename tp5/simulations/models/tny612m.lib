@@ -1,0 +1,40 @@
+*---------------------------------------------------------------------------------
+* TYN612M SCR SPICE Model
+* Based on datasheet from STMicroelectronics
+* Vdrm = 600V, It(rms) = 12A, Igt(max) = 15mA
+* Model Type: 2-Transistor behavioral model
+*---------------------------------------------------------------------------------
+.SUBCKT TYN612M A K G
+* NODES: ANODE, KATHODE, GATE
+
+* --- Modelo de 2 transistores para el comportamiento del SCR ---
+Q1 A N2 K Q_PNP
+Q2 N2 G K Q_NPN
+
+* --- Componentes para modelar características clave ---
+* R_shunt: Ayuda a establecer la corriente de mantenimiento (Holding Current, Ih)
+* Ih ≈ Vbe_on / R_shunt => 0.7V / 35Ω ≈ 20mA (Ih típico datasheet = 10mA, max = 30mA)
+R_shunt N2 K 35
+
+* C_dvdt: Modela la sensibilidad al dV/dt.
+* I = C * dV/dt. I_trigger ≈ C * dV/dt => C = Igt / (dV/dt)
+* C = 15mA / (500V/us) = 30pF
+C_dvdt N2 G 30p
+
+* R_gate: Resistencia interna de la compuerta.
+R_gate G_int G 10
+
+* D_rev: Diodo de protección para tensión inversa en la compuerta (Vrgm = 5V).
+D_rev K G D_gate_protection
+
+* --- Modelos de los transistores y diodo ---
+* Q_NPN: Transistor principal de potencia, ajustado para Vtm y manejo de corriente.
+.MODEL Q_NPN NPN(Is=5e-9 Bf=25 Vaf=120 Ikf=25 Cjc=40p Cje=120p Tf=1.5u Tr=10u)
+
+* Q_PNP: Transistor de control. El producto de las betas (Bf_npn * Bf_pnp) debe ser > 1 para el enganche.
+.MODEL Q_PNP PNP(Is=2e-9 Bf=1.5 Vaf=80 Ikf=1)
+
+* Modelo del diodo de protección de compuerta.
+.MODEL D_gate_protection D(BV=5 Rs=0.1)
+
+.ENDS TYN612M
