@@ -1,0 +1,328 @@
+{
+    "version": "0.1",
+    "components": [
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 21.165,
+                    "y": -86.929
+                },
+                {
+                    "x": 134.551,
+                    "y": -86.929
+                }
+            ],
+            "label": {
+                "value": "4K7",
+                "distance": "0.12cm"
+            },
+            "id": "american resistor"
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 295.937,
+                    "y": -151.181
+                },
+                {
+                    "x": 295.937,
+                    "y": -264.567
+                }
+            ],
+            "label": {
+                "value": "4K7",
+                "distance": "0.12cm"
+            },
+            "id": "american resistor"
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 295.937,
+                    "y": -151.181
+                },
+                {
+                    "x": 295.937,
+                    "y": -75.591
+                }
+            ],
+            "id": "empty thyristor",
+            "scale": {
+                "x": 1,
+                "y": -1
+            }
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 134.551,
+                    "y": -86.929
+                },
+                {
+                    "x": 210.142,
+                    "y": -86.929
+                }
+            ],
+            "label": {
+                "value": "I_G",
+                "distance": "0.12cm"
+            },
+            "id": "qiprobe"
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 134.551,
+                    "y": -86.929
+                },
+                {
+                    "x": 134.551,
+                    "y": 0
+                }
+            ],
+            "label": {
+                "value": "V_G",
+                "distance": "0.12cm"
+            },
+            "id": "qvprobe"
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 295.937,
+                    "y": -75.591
+                },
+                {
+                    "x": 295.937,
+                    "y": 0
+                }
+            ],
+            "label": {
+                "value": "I_A",
+                "distance": "0.12cm"
+            },
+            "id": "qiprobe"
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 210.142,
+                    "y": -86.929
+                },
+                {
+                    "x": 266.835,
+                    "y": -86.929
+                }
+            ],
+            "label": {
+                "value": "SW_1",
+                "distance": "0.12cm"
+            },
+            "id": "normal open switch"
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 380.221,
+                    "y": -151.181
+                },
+                {
+                    "x": 380.221,
+                    "y": 0
+                }
+            ],
+            "label": {
+                "value": "V_{AK}",
+                "otherSide": true,
+                "distance": "0.12cm"
+            },
+            "id": "qvprobe"
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 418.016,
+                    "y": -264.567
+                },
+                {
+                    "x": 418.016,
+                    "y": 0
+                }
+            ],
+            "label": {
+                "value": "V_i",
+                "distance": "0.12cm"
+            },
+            "id": "qvprobe"
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 0,
+                    "y": -148.347
+                },
+                {
+                    "x": 0,
+                    "y": -25.512
+                }
+            ],
+            "label": {
+                "value": "5K",
+                "otherSide": true,
+                "distance": "0.12cm"
+            },
+            "id": "american potentiometer"
+        },
+        {
+            "type": "wire",
+            "points": [
+                {
+                    "x": 0,
+                    "y": -25.512
+                },
+                {
+                    "x": 134.551,
+                    "y": 0
+                }
+            ],
+            "stroke": {
+                "width": "0.4pt"
+            },
+            "directions": [
+                "|-"
+            ]
+        },
+        {
+            "type": "wire",
+            "points": [
+                {
+                    "x": 134.551,
+                    "y": 0
+                },
+                {
+                    "x": 295.937,
+                    "y": 0
+                },
+                {
+                    "x": 380.221,
+                    "y": 0
+                },
+                {
+                    "x": 418.016,
+                    "y": 0
+                }
+            ],
+            "stroke": {
+                "width": "0.4pt"
+            },
+            "directions": [
+                "-|",
+                "-|",
+                "-|"
+            ]
+        },
+        {
+            "type": "node",
+            "label": {
+                "value": "+20V",
+                "anchor": "default",
+                "position": "default",
+                "distance": "0.12cm"
+            },
+            "position": {
+                "x": 0,
+                "y": -264.567
+            },
+            "id": "vcc"
+        },
+        {
+            "type": "node",
+            "label": {
+                "value": "V_i",
+                "anchor": "default",
+                "position": "default",
+                "distance": "0.12cm"
+            },
+            "position": {
+                "x": 295.937,
+                "y": -264.567
+            },
+            "id": "vcc"
+        },
+        {
+            "type": "wire",
+            "points": [
+                {
+                    "x": 418.016,
+                    "y": -264.567
+                },
+                {
+                    "x": 295.937,
+                    "y": -264.567
+                }
+            ],
+            "stroke": {
+                "width": "0.4pt"
+            },
+            "directions": [
+                "|-"
+            ]
+        },
+        {
+            "type": "wire",
+            "points": [
+                {
+                    "x": 380.221,
+                    "y": -151.181
+                },
+                {
+                    "x": 295.937,
+                    "y": -151.181
+                }
+            ],
+            "stroke": {
+                "width": "0.4pt"
+            },
+            "directions": [
+                "|-"
+            ]
+        },
+        {
+            "type": "wire",
+            "points": [
+                {
+                    "x": 0,
+                    "y": -264.567
+                },
+                {
+                    "x": 0,
+                    "y": -148.347
+                }
+            ],
+            "stroke": {
+                "width": "0.4pt"
+            },
+            "directions": [
+                null
+            ]
+        },
+        {
+            "type": "node",
+            "position": {
+                "x": 295.937,
+                "y": 0
+            },
+            "id": "ground"
+        }
+    ]
+}

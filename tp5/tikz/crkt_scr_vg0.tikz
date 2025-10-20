@@ -1,0 +1,13 @@
+\begin{tikzpicture}
+	% Paths, nodes and wires:
+	\draw (0, 2.3) to[american voltage source, l={$V_1$}] (0, -0);
+	\draw (6.77, 4.5) to[american voltage source, l={$V_2$}] (6.77, 2.5);
+	\draw (0, 2.3) to[american resistor, l={$4K7$}] (3, 2.3);
+	\draw (3.77, 4) to[american resistor, l={$4K7$}] (3.77, 7);
+	\draw (3.77, 4) to[empty thyristor, mirror] (3.77, 2);
+	\draw (6.77, 4.5) -- (6.77, 7) -- (3.77, 7);
+	\draw (3.77, 2) -| (3.77, -0) -- (6.77, -0) -| (6.77, 2.5);
+	\draw (0, -0) -- (0.02, -0) -- (3.77, -0);
+	\draw (5.25, 4) to[qvprobe, l={$V_{AK}$}] (5.25, -0);
+	\draw (5.25, 4) |- (3.77, 4);
+\end{tikzpicture}

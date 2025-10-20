@@ -1,40 +1,47 @@
 *---------------------------------------------------------------------------------
-* TYN612M SCR SPICE Model
-* Based on datasheet from STMicroelectronics
+* TYN612M SCR SPICE Model (v3 - Corregido Disparo por Ruptura)
+*
 * Vdrm = 600V, It(rms) = 12A, Igt(max) = 15mA
-* Model Type: 2-Transistor behavioral model
+* - Modelo de 2 transistores
+* - Simula corriente de mantenimiento (Ih)
+* - Simula sensibilidad dV/dt
+* - Simula disparo por ruptura Vbo @ 600V
 *---------------------------------------------------------------------------------
 .SUBCKT TYN612M A K G
 * NODES: ANODE, KATHODE, GATE
+* Nodos Internos: N2 (Base PNP/Colector NPN), G_int (Base NPN interna)
 
-* --- Modelo de 2 transistores para el comportamiento del SCR ---
+* --- Modelo de 2 transistores ---
 Q1 A N2 K Q_PNP
-Q2 N2 G K Q_NPN
+Q2 N2 G_int K Q_NPN
 
-* --- Componentes para modelar características clave ---
-* R_shunt: Ayuda a establecer la corriente de mantenimiento (Holding Current, Ih)
-* Ih ≈ Vbe_on / R_shunt => 0.7V / 35Ω ≈ 20mA (Ih típico datasheet = 10mA, max = 30mA)
+* --- Componentes de disparo y mantenimiento ---
+* R_shunt: Fija la corriente de mantenimiento (Ih = Vbe_on / R_shunt)
 R_shunt N2 K 35
 
-* C_dvdt: Modela la sensibilidad al dV/dt.
-* I = C * dV/dt. I_trigger ≈ C * dV/dt => C = Igt / (dV/dt)
-* C = 15mA / (500V/us) = 30pF
-C_dvdt N2 G 30p
+* C_dvdt: Sensibilidad al dV/dt
+C_dvdt N2 G_int 30p
 
-* R_gate: Resistencia interna de la compuerta.
-R_gate G_int G 10
+* R_gate: Resistencia interna de la compuerta
+R_gate G G_int 10
 
-* D_rev: Diodo de protección para tensión inversa en la compuerta (Vrgm = 5V).
+* D_rev: Proteccion de compuerta inversa
 D_rev K G D_gate_protection
 
-* --- Modelos de los transistores y diodo ---
-* Q_NPN: Transistor principal de potencia, ajustado para Vtm y manejo de corriente.
+* --- Disparo por Tension de Ruptura (Vbo) <<< ---
+* El anodo del diodo Zener se conecta a la compuerta interna (G_int).
+* El catodo del diodo Zener se conecta al Anodo del SCR (A).
+*
+* D_break [Nodo Anodo] [Nodo Catodo] [Modelo]
+D_break G_int A D_vbo
+
+* --- Modelos de los transistores y diodos ---
 .MODEL Q_NPN NPN(Is=5e-9 Bf=25 Vaf=120 Ikf=25 Cjc=40p Cje=120p Tf=1.5u Tr=10u)
-
-* Q_PNP: Transistor de control. El producto de las betas (Bf_npn * Bf_pnp) debe ser > 1 para el enganche.
 .MODEL Q_PNP PNP(Is=2e-9 Bf=1.5 Vaf=80 Ikf=1)
-
-* Modelo del diodo de protección de compuerta.
 .MODEL D_gate_protection D(BV=5 Rs=0.1)
+
+* Modelo del diodo de ruptura (Zener)
+* BV=600 significa que rompe a 600V en inversa.
+.MODEL D_vbo D(BV=600 Rs=10)
 
 .ENDS TYN612M

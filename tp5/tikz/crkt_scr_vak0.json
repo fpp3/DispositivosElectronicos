@@ -1,0 +1,191 @@
+{
+    "version": "0.1",
+    "components": [
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 0,
+                    "y": -86.929
+                },
+                {
+                    "x": 0,
+                    "y": 0
+                }
+            ],
+            "label": {
+                "value": "V_1",
+                "distance": "0.12cm"
+            },
+            "id": "american voltage source"
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 255.874,
+                    "y": -170.079
+                },
+                {
+                    "x": 255.874,
+                    "y": -94.488
+                }
+            ],
+            "label": {
+                "value": "V_2",
+                "distance": "0.12cm"
+            },
+            "id": "american voltage source"
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 0,
+                    "y": -86.929
+                },
+                {
+                    "x": 113.386,
+                    "y": -86.929
+                }
+            ],
+            "label": {
+                "value": "4K7",
+                "distance": "0.12cm"
+            },
+            "id": "american resistor"
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 142.488,
+                    "y": -151.181
+                },
+                {
+                    "x": 142.488,
+                    "y": -264.567
+                }
+            ],
+            "label": {
+                "value": "4K7",
+                "distance": "0.12cm"
+            },
+            "id": "american resistor"
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 142.488,
+                    "y": -151.181
+                },
+                {
+                    "x": 142.488,
+                    "y": -75.591
+                }
+            ],
+            "id": "empty thyristor",
+            "scale": {
+                "x": 1,
+                "y": -1
+            }
+        },
+        {
+            "type": "wire",
+            "points": [
+                {
+                    "x": 255.874,
+                    "y": -170.079
+                },
+                {
+                    "x": 255.874,
+                    "y": -264.567
+                },
+                {
+                    "x": 142.488,
+                    "y": -264.567
+                }
+            ],
+            "stroke": {
+                "width": "0.4pt"
+            },
+            "directions": [
+                null,
+                "-|"
+            ]
+        },
+        {
+            "type": "wire",
+            "points": [
+                {
+                    "x": 142.488,
+                    "y": -75.591
+                },
+                {
+                    "x": 142.488,
+                    "y": 0
+                },
+                {
+                    "x": 255.874,
+                    "y": 0
+                },
+                {
+                    "x": 255.874,
+                    "y": -94.488
+                }
+            ],
+            "stroke": {
+                "width": "0.4pt"
+            },
+            "directions": [
+                "-|",
+                "-|",
+                "-|"
+            ]
+        },
+        {
+            "type": "wire",
+            "points": [
+                {
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "x": 0.756,
+                    "y": 0
+                },
+                {
+                    "x": 142.488,
+                    "y": 0
+                }
+            ],
+            "stroke": {
+                "width": "0.4pt"
+            },
+            "directions": [
+                null,
+                "-|"
+            ]
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 113.386,
+                    "y": -86.929
+                },
+                {
+                    "x": 113.386,
+                    "y": 0
+                }
+            ],
+            "label": {
+                "value": "V_G",
+                "otherSide": true,
+                "distance": "0.12cm"
+            },
+            "id": "qvprobe"
+        }
+    ]
+}

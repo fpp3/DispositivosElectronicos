@@ -1,0 +1,21 @@
+\begin{tikzpicture}
+	% Paths, nodes and wires:
+	\draw (0.56, 2.3) to[american resistor, l={$4K7$}] (3.56, 2.3);
+	\draw (7.83, 4) to[american resistor, l={$4K7$}] (7.83, 7);
+	\draw (7.83, 4) to[empty thyristor, mirror] (7.83, 2);
+	\draw (3.56, 2.3) to[qiprobe, l={$I_G$}] (5.56, 2.3);
+	\draw (3.56, 2.3) to[qvprobe, l={$V_G$}] (3.56, -0);
+	\draw (7.83, 2) to[qiprobe, l={$I_A$}] (7.83, -0);
+	\draw (5.56, 2.3) to[normal open switch, l={$SW_1$}] (7.06, 2.3);
+	\draw (10.06, 4) to[qvprobe, l_={$V_{AK}$}] (10.06, -0);
+	\draw (11.06, 7) to[qvprobe, l={$V_i$}] (11.06, -0);
+	\draw (0, 3.925) to[american potentiometer, l_={$5K$}] (0, 0.675);
+	\draw (0, 0.675) |- (3.56, -0);
+	\draw (3.56, -0) -- (7.83, -0) -- (10.06, -0) -- (11.06, -0);
+	\node[vcc](N1) at (0, 7){} node[anchor=south] at (N1.text){$+20V$};
+	\node[vcc](N2) at (7.83, 7){} node[anchor=south] at (N2.text){$V_i$};
+	\draw (11.06, 7) |- (7.83, 7);
+	\draw (10.06, 4) |- (7.83, 4);
+	\draw (0, 7) -- (0, 3.925);
+	\node[ground] at (7.83, -0){};
+\end{tikzpicture}
