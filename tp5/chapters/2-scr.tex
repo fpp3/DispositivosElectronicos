@@ -10,14 +10,14 @@
   \end{wrapfigure}
   Un SCR (rectificador controlado de silicio, silicon-controlled rectifier) es un dispositivo pnpn de 4 capas similar al
   diodo de 4 capas pero con tres terminales: ánodo, cátodo y compuerta. En la figura \ref{fig:scr_si} puede ver la
-  construccion basica del mismo, y su simbolo esquematico.
+  construcción básica del mismo, y su símbolo esquemático.
 
   \section{Activación del SCR}
     Cuando la corriente en la compuerta, $I_G$, es cero, por lo que el dispositivo actúa como un diodo de 4 capas en el
     estado de apagado. En este estado, la muy alta resistencia entre el ánodo y el cátodo pueden ser simulados de forma
     aproximada por un interruptor abierto. Cuando se aplica un pulso (disparo) positivo de corriente a la compuerta, el
-    dispositivo se enciende, generando un camino de baja resistencia para permitir el flujo de corriente entre anodo y
-    catodo. El SCR se puede activar tambien por voltake entre anodo y catodo, ya que mientras que $I_G = 0$, el componente
+    dispositivo se enciende, generando un camino de baja resistencia para permitir el flujo de corriente entre ánodo y
+    cátodo. El SCR se puede activar también por voltaje entre ánodo y cátodo, ya que mientras que $I_G = 0$, el componente
     se comportara como un diodo de 4 capas.
 
     Se propuso analizar las regiones de acrivacion y corrientes de codo del SCR seleccionado y compararlas con las
@@ -29,16 +29,16 @@
       \item Curva de $I_A = f_{(V_G)}$ para $V_{AK} = 100V$.
     \end{itemize}
 
-    Por cuestiones de seguridad, la curva de $I_A = f_{(V_{AK})}$ para $V_G = 0V$ solo se realizara en simulacion.
+    Por cuestiones de seguridad, la curva de $I_A = f_{(V_{AK})}$ para $V_G = 0V$ solo se realizara en simulación.
 
     \subsection{Curva $I_G = f_{(V_G)}$}
-      Para lograr esta curva, la unica condicion que se debe aplicar es mantener $V_{AK} = 0V$ en todo momento,
+      Para lograr esta curva, la única condición que se debe aplicar es mantener $V_{AK} = 0V$ en todo momento,
       mientras se varia el $V_G$.
 
-      \subsubsection{Actividad de simulacion}
-        Se propuso realizar un barrido lineal de la tension $V_G$ mientras que $V_{AK} = 0V$. El barrido es de $0V$ a
+      \subsubsection{Actividad de simulación}
+        Se propuso realizar un barrido lineal de la tensión $V_G$ mientras que $V_{AK} = 0V$. El barrido es de $0V$ a
         $20V$ en pasos de $100mV$. Para trazar esta curva, el circuito utilizado es el de la figura \ref{crkt:scr_vak0}
-        y los parametros de simulacion se pueden ver en \ref{list:scr_vak0}.
+        y los parámetros de simulación se pueden ver en \ref{list:scr_vak0}.
         \begin{figure}[!ht]
           \centering
           \begin{minipage}{0.45\textwidth}
@@ -56,7 +56,7 @@
           \end{minipage}
         \end{figure}
 
-      Revise la seccion \ref{annex:scr_model} para ver el modelo SPICE utilzado para las simulaciones.
+      Revise la sección \ref{annex:scr_model} para ver el modelo SPICE utilizado para las simulaciones.
       \begin{figure}[!ht]
         \begin{tikzpicture}
           \begin{axis}[
@@ -69,15 +69,15 @@
             scale only axis,
             enlargelimits=false,
               title={$I_G = f_{(V_G)}$},
-            extra x ticks={300},
+            extra x ticks={550},
             extra x tick style={
               grid style={red, thick, dashed},
               tick style={red},
               tick label style={red}
              },
             scaled ticks=false,
-            restrict x to domain=0:400,
-            xmin=0, xmax=400
+            restrict x to domain=0:800,
+            xmin=0, xmax=800
           ]
           \addplot[
             color=blue,
@@ -91,16 +91,16 @@
           ] {simulations/ig_vg_vak0.txt};
           \end{axis}
         \end{tikzpicture}
-          \caption{grafica de la corriente de gate en funcion de la tension de gate.}
+          \caption{gráfica de la corriente de gate en función de la tensión de gate.}
           \label{graph:scr_ig_vg_vak0}
       \end{figure}
 
       La curva relevada se puede ver en la figura \ref{graph:scr_ig_vg_vak0}, y esta es bastante similar a la curva de
-      un diodo, con el cambio de que el potencial en el que empieza a conducir es menor. Esto se debe a que la union
-      presente entre gate y catodo es, a los ojos del circuito de gate, un simple diodo.
+      un diodo, con el cambio de que el potencial en el que empieza a conducir es menor. Esto se debe a que la unión
+      presente entre gate y cátodo es, a los ojos del circuito de gate, un simple diodo.
 
       \subsubsection{Actividad de Laboratorio}
-        Para esta actividad, en vez de variar la fuente, esta se mantuvo fija, y usando un potenciometro fuimos variando
+        Para esta actividad, en vez de variar la fuente, esta se mantuvo fija, y usando un potenciómetro fuimos variando
         su resistencia, provocando un cambio en la $V_G$ y la $I_G$. El circuito utilizado se puede ver en la figura
         \ref{crkt:scr_vak0_lab}.
 
@@ -124,7 +124,7 @@
 
         Los datos relevados en el laboratorio se pueden ver en la tabla \ref{tab:scr_vak0_lab} y en la figura
         \ref{graph:scr_ig_vg_vak0_lab}. La curva es muy similar a la del diodo, solo que con un potencial de
-        conduccion mas bajo que el diodo comun de silicio.
+        conducción mas bajo que el diodo común de silicio.
 
         \begin{figure}[!ht]
           \centering
@@ -134,7 +134,7 @@
               $V_G$ & $I_G$ \\ \hline
               0     & 0     \\
             \end{tabular}
-            \caption{datos relvados en el laboratorio}
+            \caption{datos relevados en el laboratorio}
             \label{tab:scr_vak0_lab}
           \end{minipage}
           \hfill
@@ -150,15 +150,15 @@
                 scale only axis,
                 enlargelimits=false,
                   title={$I_G = f_{(V_G)}$},
-                extra x ticks={300},
+                extra x ticks={550},
                 extra x tick style={
                   grid style={red, thick, dashed},
                   tick style={red},
                   tick label style={red}
                  },
                 scaled ticks=false,
-                restrict x to domain=0:400,
-                xmin=0, xmax=400
+                restrict x to domain=0:800,
+                xmin=0, xmax=800
               ]
               \addplot[
                 color=blue,
@@ -172,18 +172,17 @@
               ] {simulations/ig_vg_vak0.txt};
               \end{axis}
             \end{tikzpicture}
-            \caption{grafica $I_G = f_{(V_G)}$ relevada en el laboratorio.}
+            \caption{gráfica $I_G = f_{(V_G)}$ relevada en el laboratorio.}
             \label{graph:scr_ig_vg_vak0_lab}
-
           \end{minipage}
         \end{figure}
 
       \subsection{Curva $I_A = f_{(V_{AK})}$}
-        Para lograr esta curva, la unica condicion que se debe aplicar es mantener $V_G = 0V$ en todo momento,
+        Para lograr esta curva, la única condición que se debe aplicar es mantener $V_G = 0V$ en todo momento,
         mientras se varia el $V_{AK}$.
-          Se propuso realizar un barrido lineal de la tension $V_{AK}$ mientras que $V_G = 0V$. El barrido es de $0V$ a
+          Se propuso realizar un barrido lineal de la tensión $V_{AK}$ mientras que $V_G = 0V$. El barrido es de $0V$ a
           $800V$ en pasos de $10V$. Para trazar esta curva, el circuito utilizado es el de la figura \ref{crkt:scr_vg0}
-          y los parametros de simulacion se pueden ver en \ref{list:scr_vg0}.
+          y los parámetros de simulación se pueden ver en \ref{list:scr_vg0}.
           \begin{figure}[!ht]
             \centering
             \begin{minipage}{0.45\textwidth}
@@ -213,19 +212,21 @@
                 scale only axis,
                 enlargelimits=false,
                   title={$I_{AK} = f_{(V_{AK})}$},
+                extra x ticks={615},
                 extra x tick style={
                   grid style={red, thick, dashed},
                   tick style={red},
                   tick label style={red}
                  },
+                extra y ticks={140},
                 extra y tick style={
                   grid style={red, thick, dashed},
                   tick style={red},
                   tick label style={red}
                  },
                 scaled ticks=false,
-                restrict x to domain=0:3,
-                xmin=0, xmax=3
+                restrict x to domain=0:700,
+                xmin=0, xmax=700
               ]
               \addplot[
                 color=blue,
@@ -239,23 +240,23 @@
               ] {simulations/iak_vak_vg0.txt};
               \end{axis}
             \end{tikzpicture}
-              \caption{grafica de la corriente de anodo en funcion de la tension anodo-catodo.}
+              \caption{gráfica de la corriente de ánodo en función de la tensión ánodo-cátodo.}
               \label{graph:scr_iak_vak_vg0}
           \end{figure}
 
-          Como se puede ver en la figura \ref{graph:scr_iak_vak_vg0}, la curva obtenida no se parece a la curva
-          caracteristica de los SCR. De hecho parece la curva de tension corriente de una resistencia. Esto se puede
-          deber a que el modelo SPICE no tiene ese comportamiento tenido en cuenta. No encontramos otro modelo que si lo
-          tuviese, por lo que no pudimos incluir la grafica correcta.
+          Como se puede ver en la figura \ref{graph:scr_iak_vak_vg0}, la curva obtenida tiene cierta similitud a la
+          curva teórica del SCR y del diodo de 4 capas. Lo que es un poco extraño es la $I_H$, que parece estar
+          bastante mas alta que la especificada por la hoja de datos ($20mA$).
+          %hay que ver de corregir el modelo. La IH es altisima comparada con la de la hoja de datos (approx 20mA)
 
     \subsection{Curva $I_A = f_{(V_G)}$}
       Para esta curva, se fijara $V_{AK} = 100V$ y haciendo un barrido lineal de $V_G$ trazaremos la curva y
       encontraremos el punto donde el SCR se dispara por corriente de gate.
 
-      \subsubsection{Actividad de Simulacion}
-        Se propuso realizar un barrido lineal de la tension $V_g$ mientras que $V_{AK} = 100V$. El barrido es de $0V$ a
+      \subsubsection{Actividad de Simulación}
+        Se propuso realizar un barrido lineal de la tensión $V_g$ mientras que $V_{AK} = 100V$. El barrido es de $0V$ a
         $20V$ en pasos de $100mV$. Para trazar esta curva, el circuito utilizado es el de la figura \ref{crkt:scr_vak100}
-        y los parametros de simulacion se pueden ver en \ref{list:scr_vak100}.
+        y los parámetros de simulación se pueden ver en \ref{list:scr_vak100}.
         \begin{figure}[!ht]
           \centering
           \begin{minipage}{0.45\textwidth}
@@ -286,8 +287,8 @@
               enlargelimits=false,
                 title={$I_{AK} = f_{(V_G)}$},
               scaled ticks=false,
-              restrict x to domain=0:430,
-              xmin=0, xmax=430
+              restrict x to domain=0:700,
+              xmin=0, xmax=700
             ]
             \addplot[
               color=blue,
@@ -301,11 +302,150 @@
             ] {simulations/iak_vg_vak100.txt};
             \end{axis}
           \end{tikzpicture}
-            \caption{grafica de la corriente de gate en funcion de la corriente de gate.}
+            \caption{gráfica de la corriente de ánodo en función de la tensión de gate.}
             \label{graph:scr_iak_vg_vak100}
         \end{figure}
 
-  \section{Curva caracteristica del SCR}
+        %hay que concluir algo pero el modelo todavia no esta lo suficientemente pulido para generar esta curva de
+        %manera adecuada
+
+      \subsubsection{Actividad de Laboratorio}
+        Nuevamente, para realizar la variación de la tensión de gate, se hizo lo mismo que para la actividad anterior,
+        esto es, dejar fijo el voltaje de gate, y con un potenciómetro ir variando su resistencia y con el su voltaje.
+        El circuito empleado es el mismo de la figura \ref{crkt:scr_vak0_lab}.
+
+        Como primer apartado, fijando la $V_{AK} = 100V$ fuimos variando el potenciómetro hasta que notamos que el
+        dispositivo se activo por corriente de gate. Los valores relevados son:
+        \begin{equation*}
+          V_G = \quad I_G =
+        \end{equation*}
+
+        Posterior a eso, desconectamos el circuito de disparo y notamos que el dispositivo permaneció en la región de
+        conducción. Esto es porque la corriente $I_{AK} > I_H$. Posterior a esa prueba, fuimos bajando $V_{AK}$ para
+        encontrar cual era la $I_H$ para un $V_G = 0V$. Los datos relevados en el laboratorio se pueden ver en la tabla
+        \ref{tab:scr_vak100_lab} y en la figura \ref{graph:scr_ig_vg_vak100_lab}. 
+
+        \begin{figure}[!ht]
+          \centering
+          \begin{minipage}{0.3\textwidth}
+            \centering
+            \begin{tabular}{c|c}
+              $V_{AK}$ & $I_{AK}$ \\ \hline
+              0     & 0     \\
+            \end{tabular}
+            \caption{datos relevados en el laboratorio}
+            \label{tab:scr_vak100_lab}
+          \end{minipage}
+          \hfill
+          \begin{minipage}{0.6\textwidth}
+            \begin{tikzpicture}
+              \begin{axis}[
+                width=8cm,
+                height=5.5cm,
+                xlabel={$V_{AK}$ [mV]},
+                ylabel={$I_{AK}$ [mA]},
+                grid=both,
+                minor tick num=1,
+                scale only axis,
+                enlargelimits=false,
+                  title={$I_{AK} = f_{(V_G)}$},
+                extra x ticks={550},
+                extra x tick style={
+                  grid style={red, thick, dashed},
+                  tick style={red},
+                  tick label style={red}
+                 },
+                scaled ticks=false,
+                restrict x to domain=0:800,
+                xmin=0, xmax=800
+              ]
+              \addplot[
+                color=blue,
+                mark=none,
+                thick,
+              ] table[
+                col sep=tab,
+                header=true,
+                x expr=\thisrow{V(vg)}*1000,
+                y expr=\thisrow{Ix(U1:A)}*1000
+              ] {simulations/iak_vg_vak100.txt};
+              \end{axis}
+            \end{tikzpicture}
+            \caption{gráfica $I_{AK} = f_{(V_{AK})}$ relevada en el laboratorio.}
+            \label{graph:scr_ig_vg_vak100_lab}
+          \end{minipage}
+        \end{figure}
+
+        Después de haber logrado apagar el dispositivo haciendo que $I_{AK} < I_H$, procedimos a poner $V_{AK} = 100V$.
+        El dispositivo permaneció sin polarización hasta que el circuito de disparo, que quedo con la tensión y
+        corriente de disparo, fue conectado, lo que genero que el dispositivo se polarice y comience a circular
+        corriente. El comportamiento es idéntico al previamente mencionado.
+
+        Por ultimo, se realizo la prueba de que el SCR quede colocado en inversa, y generar la misma corriente de
+        disparo al mismo voltaje. En este caso, no hubo circulación de corriente apreciable, incluso después de subir la
+        corriente de gate, por lo que en inversa, el SCR se sigue comportando como un diodo de 4 capas,
+        independientemente de la corriente presente en gate.
+
+  \section{Curva característica del SCR}
+    Con la información relevada anteriormente respecto a la activación del SCR, podemos ahora pasar a recrear las curvas
+    características del SCR. Para ello, la idea es fijar una corriente de gate, e ir haciendo un barrido de la $V_{AK}$
+    hasta encontrar el $V_{BR(Fn)}$, voltaje en el cual el dispositivo se polariza y comienza a conducir. El circuito
+    implementado en el laboratorio, es el mismo que se utilizo anteriormente. Puede verlo en la figura
+    \ref{crkt:scr_curvcar_lab}.
+
+    \begin{figure}[!ht]
+      \centering
+      \input{tikz/scr_lab.tikz}
+      \caption{circuito a implementar en el laboratorio.}
+      \label{crkt:scr_curvcar_lab}
+    \end{figure}
+
+    \begin{table}[!ht]
+      \centering
+      \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+        \multicolumn{2}{c|}{$I_G = mA$} & \multicolumn{2}{c|}{$I_G = mA$} & \multicolumn{2}{c|}{$I_G = mA$} & \multicolumn{2}{c|}{$I_G = mA$} & \multicolumn{2}{c}{$I_G = mA$} \\
+        $V_{AK}$ & $I_{AK}$ & $V_{AK}$ & $I_{AK}$ & $V_{AK}$ & $I_{AK}$ & $V_{AK}$ & $I_{AK}$ & $V_{AK}$ & $I_{AK}$ \\ \hline
+        
+      \end{tabular}
+      \caption{valores relevados en el laboratorio.}
+      \label{tab:scr_curvcar_lab}
+    \end{table}
+
+    \begin{figure}[!ht]
+      \begin{tikzpicture}
+        \begin{axis}[
+          width=14cm,
+          height=5.5cm,
+          xlabel={$V_G$ [mV]},
+          ylabel={$I_{AK}$ [mA]},
+          grid=both,
+          minor tick num=1,
+          scale only axis,
+          enlargelimits=false,
+            title={$I_{AK} = f_{(V_G)}$},
+          scaled ticks=false,
+          restrict x to domain=0:700,
+          xmin=0, xmax=700
+        ]
+        \addplot[
+          color=blue,
+          mark=none,
+          thick,
+        ] table[
+          col sep=tab,
+          header=true,
+          x expr=\thisrow{V(vg)}*1000,
+          y expr=\thisrow{Ix(U1:A)}*1000
+        ] {simulations/iak_vg_vak100.txt};
+        \end{axis}
+      \end{tikzpicture}
+      \caption{familia de curvas de $I_{AK} = f_{V_{AK}, I_G}$}
+      \label{graph:scr_curvcar_lab}
+    \end{figure}
+
+    Puede revisar los valores relevados en el laboratorio en la tabla \ref{tab:scr_curvcar_lab} y la familia de curvas
+    en la figura \ref{graph:scr_curvcar_lab}. Las tablas terminan cuando en el recorrido de tensión a la próxima
+    medición generaba el disparo.
 
   \section{SCR en Corriente Alterna}
 
