@@ -1,0 +1,15 @@
+\begin{tikzpicture}
+	% Paths, nodes and wires:
+	\draw (0, 6) to[empty bidirectionaldiode] (0, 3);
+	\draw (0, 6) to[american resistor, l={$R_1$}] (0, 9);
+	\draw (0, 3) to[qiprobe, l={$I_A$}] (0, -0);
+	\draw (2, 6) to[qvprobe, l={$V_A$}] (2, -0);
+	\draw (4, 9) to[qvprobe, l={$V$}] (4, -0);
+	\draw (2, 6) -- (0, 6);
+	\draw (4, 9) |- (0, 9);
+	\draw (0, -0) -- (2, -0);
+	\draw (2, -0) -- (4, -0);
+	\draw (6, 9) to[american voltage source, l={$V_i$}] (6, -0);
+	\draw (6, -0) -- (4, -0);
+	\draw (6, 9) |- (4, 9);
+\end{tikzpicture}

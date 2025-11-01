@@ -1,5 +1,141 @@
 \chapter{TRIAC}
+  \begin{wrapfigure}{R}{0.3\textwidth}
+  \vspace{-1cm}
+    \centering
+    \resizebox{!}{\linewidth}{
+    \input{tikz/triac_regiones.tikz}
+    }
+    \caption{estructura interna del TRIAC.\protect\footnotemark}
+    \label{fig:triac_si}
+  \end{wrapfigure}
+  \footnotetext{La region N de $A_1$ y $A_2$ es considerablemente mas grande que la de G en el dispositivo real. La figura es puramente ilustrativa.}
+  Un triac es como un diac con una terminal compuerta. Un triac puede ser disparado por un pulso de corriente en la
+  compuerta y no requiere voltaje de ruptura para iniciar la conducción, como el diac. Básicamente, se puede pensar en
+  un triac simplemente como dos SCR conectados en paralelo y en direcciones opuestas con una terminal común, la
+  compuerta. A diferencia del SCR, el triac puede conducir corriente en una u otra dirección cuando es activado, según
+  la polaridad del voltaje a través de sus terminales A1 y A2. La figura \ref{fig:triac_si} muestra la construcción
+  básica de un triac.
 
   \section{Curva característica del TRIAC}
+    Para esta actividad de laboratorio, se propuso variar la tension de alimentacion en pasos grandes, variando entre
+    cada paso la tension de gate $V_G$, observando el momento en el que se produzca el disparo del dispositivo. Ademas,
+    se probara la capacidad del dispositivo de permanecer polarizado incluso cuando la tension de gate $V_G$ deja de
+    estar presente. El circuito a implementar se puede ver en la figura \ref{crkt:triac_lab}.
+    \begin{figure}[!ht]
+      \centering
+      \begin{minipage}{0.5\textwidth}
+        \centering
+        \input{tikz/crkt_triac.tikz}
+        \caption{circuito TRIAC a implementar en el laboratorio.}
+        \label{crkt:triac_lab}
+      \end{minipage}
+      \hfill
+      \begin{minipage}{0.4\textwidth}
+        \centering
+        %foto del circuito
+        \caption{circuito TRIAC implementado en el laboratorio.}
+      \end{minipage}
+    \end{figure}
 
+    \begin{table}[!ht]
+      \centering
+      \begin{tabular}{c|c|c|c|c|c|c|c|c}
+        \multicolumn{3}{c|}{$V_i = 80V$} & \multicolumn{3}{c|}{$V_i = 130V$} & \multicolumn{3}{c}{$V_i = 180V$} \\
+        $V_G \, [V]$ & $I_G \, [mA]$ & $I_A \, [mA]$ &  $V_G \, [V]$ & $I_G \, [mA]$ & $I_A \, [mA]$ & $V_G \, [V]$ & $I_G \, [mA]$ & $I_A \, [mA]$ \\ \hline
+        0       & 0     & 0     & 0     & 0     & 0     & 0     & 0     & 0     \\
+        10      & 0     & 0     & 10    & 0     & 0     & 10    & 0     & 0     \\
+        20      & 0     & 0     & 20    & 0     & 0     & 20    & 0     & 0     \\
+        30      & 0     & 0     & 30    & 0     & 0     & 30    & 0     & 0     \\
+        31      & 0     & 0     & 31    & 0     & 0     & 32    & 0     & 31.7  \\
+        32      & 3.4   & 3.4   & 31.6  & 4.53  & 4.57  &       &       &       \\
+        23.3    & 3.8   & 3.9   & 28.4  & 4.53  & 4.53  &       &       &       \\
+        23.1    & 4.15  & 4.15  & 0.3   & 0     & 26.7  &       &       &       \\
+        23.2    & 4.6   & 4.8   &       &       &       &       &       &       \\
+        23.2    & 4.3   & 6     &       &       &       &       &       &       \\
+        23.3    & 4.1   & 6.2   &       &       &       &       &       &       \\
+        0.7     & 0     & 16.3  &       &       &       &       &       &       \\
+      \end{tabular}
+      \caption{valores relevados en el laboratorio.}
+      \label{tab:triac_curvcar_lab}
+    \end{table}
+
+\begin{figure}[!ht]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=14cm,
+      height=7cm,
+      xlabel={$V_G$ [V]},
+      ylabel={$I_A$ [mA]},
+      grid=both,
+      minor tick num=1,
+      scale only axis,
+      enlargelimits=false,
+    ]
+
+    % --- Datos para Vi = 80V ---
+    \addplot[
+      color=blue,
+      mark=*,
+      mark size=1.8pt
+    ] coordinates {
+      (0,0)
+      (5,0)
+      (10,0)
+      (15,0)
+      (20,0)
+      (25,0)
+      (30,0)
+      (31,0)
+      (32,3.4)
+      (23.3,3.9)
+      (23.1,4.15)
+      (23.2,4.8)
+      (23.2,6)
+      (23.3,6.2)
+      (0.7,16.3)
+    };
+    \addlegendentry{$V_i = 80V$}
+
+    % --- Datos para Vi = 130V ---
+    \addplot[
+      color=red,
+      mark=square*,
+      mark size=1.8pt
+    ] coordinates {
+      (0,0)
+      (5,0)
+      (10,0)
+      (15,0)
+      (20,0)
+      (25,0)
+      (30,0)
+      (31,0)
+      (31.6,4.57)
+      (28.4,4.53)
+      (0.3,26.7)
+    };
+    \addlegendentry{$V_i = 130V$}
+
+    % --- Datos para Vi = 180V ---
+    \addplot[
+      color=green!70!black,
+      mark=triangle*,
+      mark size=2pt
+    ] coordinates {
+      (0,0)
+      (5,0)
+      (10,0)
+      (15,0)
+      (20,0)
+      (25,0)
+      (32,31.7)
+    };
+    \addlegendentry{$V_i = 180V$}
+
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Familia de curvas experimentales $I_A = f(V_G)$ para distintos valores de $V_i$}
+  \label{graph:triac_curvcar_lab}
+\end{figure}
   \section{Recortador de onda con TRIAC}

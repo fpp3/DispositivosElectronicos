@@ -1,3 +1,97 @@
 \chapter{DIAC}
+  \begin{wrapfigure}{R}{0.3\textwidth}
+  \vspace{-1cm}
+    \centering
+    \resizebox{!}{\linewidth}{
+    \input{tikz/diac_regiones.tikz}
+    }
+    \caption{estructura interna del DIAC.}
+    \label{fig:diac_si}
+  \end{wrapfigure}
+  Un diac es un dispositivo semiconductor de cuatro capas y dos terminales (tiristor) que conduce corriente en una u
+  otra dirección cuando se activa. La construcción básica de un diac se muestran en la figura \ref{fig:scr_si}. Observe
+  las dos terminales, designadas A1 y A2. Las capas superior e inferior contienen tanto materiales n como p. El lado
+  derecho de la pila se considera como una estructura pnpn con las mismas características de un diodo de cuatro capas,
+  mientras que el lado izquierdo es un diodo de cuatro capas invertido que tiene una estructura npnp.
+
+  La conducción ocurre en un diac cuando se alcanza el voltaje de ruptura con una u otra polaridad a través de las dos
+  terminales. Una vez que se presenta la ruptura, la corriente fluye en una dirección según la polaridad del voltaje a
+  través de las terminales. El dispositivo se apaga cuando la corriente se reduce por debajo del valor de retención.
 
   \section{Reversibilidad del DIAC}
+    Para esta actividad de laboratorio, se propuso variar la tension de alimentacion de 0 a 50V, en pasos de 5V, e ir
+    midiendo la corriente que circula por el circuito. Una vez completada la prueba, se debe invertir la polaridad del
+    circuito y realizar las mismas mediciones. El circuito implementado en el laboratorio se puede ver en la figura
+    \ref{crkt:diac_lab}.
+
+    \begin{figure}[!ht]
+      \centering
+      \begin{minipage}{0.5\textwidth}
+        \centering
+        \input{tikz/crkt_diac.tikz}
+        \caption{circuito DIAC a implementar en el laboratorio.}
+        \label{crkt:diac_lab}
+      \end{minipage}
+      \hfill
+      \begin{minipage}{0.4\textwidth}
+        \centering
+        %foto del circuito
+        \caption{circuito DIAC implementado en el laboratorio.}
+      \end{minipage}
+    \end{figure}
+
+    
+    \begin{figure}[!ht]
+      \centering
+      \begin{minipage}{0.3\textwidth}
+        \centering
+        \begin{tabular}{c|c|c}
+          $V_i$ & $V_A$ & $I_{AK}$ \\ \hline
+          0     & 0     & 0\\
+          5     & 5     & 0\\
+          10    & 10    & 0\\
+          15    & 15    & 0\\
+          20    & 20
+        \end{tabular}
+        \caption{datos relevados en el laboratorio}
+        \label{tab:diac}
+      \end{minipage}
+      \hfill
+      \begin{minipage}{0.6\textwidth}
+        \begin{tikzpicture}
+          \begin{axis}[
+            width=8cm,
+            height=5.5cm,
+            xlabel={$V_{AK}$ [mV]},
+            ylabel={$I_{AK}$ [mA]},
+            grid=both,
+            minor tick num=1,
+            scale only axis,
+            enlargelimits=false,
+              title={$I_{AK} = f_{(V_G)}$},
+            extra x ticks={550},
+            extra x tick style={
+              grid style={red, thick, dashed},
+              tick style={red},
+              tick label style={red}
+             },
+            scaled ticks=false,
+            restrict x to domain=0:800,
+            xmin=0, xmax=800
+          ]
+          \addplot[
+            color=blue,
+            mark=none,
+            thick,
+          ] table[
+            col sep=tab,
+            header=true,
+            x expr=\thisrow{V(vg)}*1000,
+            y expr=\thisrow{Ix(U1:A)}*1000
+          ] {simulations/iak_vg_vak100.txt};
+          \end{axis}
+        \end{tikzpicture}
+        \caption{gráfica $I_{AK} = f_{(V_{AK})}$ relevada en el laboratorio.}
+        \label{graph:diac}
+      \end{minipage}
+    \end{figure}

@@ -1,0 +1,15 @@
+\begin{tikzpicture}
+	% Paths, nodes and wires:
+	\draw (3.25, -0.075) to[empty bidirectionaldiode] (6.25, -0.075);
+	\draw (7.02, 1.5) to[empty triac, mirror] (7.02, -0.25);
+	\draw (0.56, -0.075) to[qiprobe, l={$I_G$}] (3.25, -0.075);
+	\draw (0, 0.925) to[american potentiometer, l={$R_V$}] (0, -1.075);
+	\draw (7.02, 1.5) to[american resistor, l={$R_1$}] (7.02, 3.625);
+	\draw (7.02, -0.25) to[qiprobe, l={$I_A$}] (7.02, -2.25);
+	\draw (3.25, -0.075) to[qvprobe, l={$V_G$}] (3.25, -2.25);
+	\node[vcc] at (7.02, 3.625){};
+	\draw (0, 0.925) |- (0.02, 3.625) -- (7.02, 3.625);
+	\draw (9.02, 3.625) to[qvprobe, l={$V_i$}] (9.02, -2.25);
+	\draw (7.02, 3.625) -- (9.02, 3.625);
+	\draw (9.02, -2.25) -| (0, -1.075);
+\end{tikzpicture}

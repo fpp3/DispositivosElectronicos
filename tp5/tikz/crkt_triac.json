@@ -1,0 +1,215 @@
+{
+    "version": "0.1",
+    "components": [
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 122.835,
+                    "y": 2.834
+                },
+                {
+                    "x": 236.22,
+                    "y": 2.834
+                }
+            ],
+            "id": "empty bidirectionaldiode"
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 265.322,
+                    "y": -56.693
+                },
+                {
+                    "x": 265.322,
+                    "y": 9.448
+                }
+            ],
+            "id": "empty triac",
+            "scale": {
+                "x": 1,
+                "y": -1
+            }
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 21.165,
+                    "y": 2.834
+                },
+                {
+                    "x": 122.835,
+                    "y": 2.834
+                }
+            ],
+            "label": {
+                "value": "I_G",
+                "distance": "0.12cm"
+            },
+            "id": "qiprobe"
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 0,
+                    "y": -34.961
+                },
+                {
+                    "x": 0,
+                    "y": 40.629
+                }
+            ],
+            "label": {
+                "value": "R_V",
+                "distance": "0.12cm"
+            },
+            "id": "american potentiometer"
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 265.322,
+                    "y": -56.693
+                },
+                {
+                    "x": 265.323,
+                    "y": -137.008
+                }
+            ],
+            "label": {
+                "value": "R_1",
+                "distance": "0.12cm"
+            },
+            "id": "american resistor"
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 265.322,
+                    "y": 9.448
+                },
+                {
+                    "x": 265.322,
+                    "y": 85.039
+                }
+            ],
+            "label": {
+                "value": "I_A",
+                "distance": "0.12cm"
+            },
+            "id": "qiprobe"
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 122.835,
+                    "y": 2.834
+                },
+                {
+                    "x": 122.835,
+                    "y": 85.039
+                }
+            ],
+            "label": {
+                "value": "V_G",
+                "distance": "0.12cm"
+            },
+            "id": "qvprobe"
+        },
+        {
+            "type": "node",
+            "position": {
+                "x": 265.323,
+                "y": -137.008
+            },
+            "id": "vcc"
+        },
+        {
+            "type": "wire",
+            "points": [
+                {
+                    "x": 0,
+                    "y": -34.961
+                },
+                {
+                    "x": 0.756,
+                    "y": -137.008
+                },
+                {
+                    "x": 265.323,
+                    "y": -137.008
+                }
+            ],
+            "stroke": {
+                "width": "0.4pt"
+            },
+            "directions": [
+                "|-",
+                "-|"
+            ]
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 340.913,
+                    "y": -137.008
+                },
+                {
+                    "x": 340.913,
+                    "y": 85.039
+                }
+            ],
+            "label": {
+                "value": "V_i",
+                "distance": "0.12cm"
+            },
+            "id": "qvprobe"
+        },
+        {
+            "type": "wire",
+            "points": [
+                {
+                    "x": 265.323,
+                    "y": -137.008
+                },
+                {
+                    "x": 340.913,
+                    "y": -137.008
+                }
+            ],
+            "stroke": {
+                "width": "0.4pt"
+            },
+            "directions": [
+                "-|"
+            ]
+        },
+        {
+            "type": "wire",
+            "points": [
+                {
+                    "x": 340.913,
+                    "y": 85.039
+                },
+                {
+                    "x": 0,
+                    "y": 40.629
+                }
+            ],
+            "stroke": {
+                "width": "0.4pt"
+            },
+            "directions": [
+                "-|"
+            ]
+        }
+    ]
+}
