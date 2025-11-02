@@ -32,7 +32,7 @@
       \hfill
       \begin{minipage}{0.4\textwidth}
         \centering
-        %foto del circuito
+          \includegraphics[width=0.5\textwidth]{pictures/prot_triac.jpg}
         \caption{circuito TRIAC implementado en el laboratorio.}
       \end{minipage}
     \end{figure}
@@ -65,7 +65,7 @@
     \begin{axis}[
       width=14cm,
       height=7cm,
-      xlabel={$V_G$ [V]},
+      xlabel={$I_G$ [mA]},
       ylabel={$I_A$ [mA]},
       grid=both,
       minor tick num=1,
@@ -80,20 +80,17 @@
       mark size=1.8pt
     ] coordinates {
       (0,0)
-      (5,0)
-      (10,0)
-      (15,0)
-      (20,0)
-      (25,0)
-      (30,0)
-      (31,0)
-      (32,3.4)
-      (23.3,3.9)
-      (23.1,4.15)
-      (23.2,4.8)
-      (23.2,6)
-      (23.3,6.2)
-      (0.7,16.3)
+      (0,0)
+      (0,0)
+      (0,0)
+      (0,0)
+      (3.4,3.4)
+      (3.8,3.9)
+      (4.15,4.15)
+      (4.6,4.8)
+      (4.3,6)
+      (4.1,6.2)
+      (0,16.3)
     };
     \addlegendentry{$V_i = 80V$}
 
@@ -104,16 +101,13 @@
       mark size=1.8pt
     ] coordinates {
       (0,0)
-      (5,0)
-      (10,0)
-      (15,0)
-      (20,0)
-      (25,0)
-      (30,0)
-      (31,0)
-      (31.6,4.57)
-      (28.4,4.53)
-      (0.3,26.7)
+      (0,0)
+      (0,0)
+      (0,0)
+      (0,0)
+      (4.53,4.57)
+      (4.53,4.53)
+      (0,26.7)
     };
     \addlegendentry{$V_i = 130V$}
 
@@ -124,18 +118,17 @@
       mark size=2pt
     ] coordinates {
       (0,0)
-      (5,0)
-      (10,0)
-      (15,0)
-      (20,0)
-      (25,0)
-      (32,31.7)
+      (0,0)
+      (0,0)
+      (0,0)
+      (0,0)
+      (0,31.7)
     };
     \addlegendentry{$V_i = 180V$}
 
     \end{axis}
   \end{tikzpicture}
-  \caption{Familia de curvas experimentales $I_A = f(V_G)$ para distintos valores de $V_i$}
+  \caption{Familia de curvas experimentales $I_A = f(I_G)$ para distintos valores de $V_i$}
   \label{graph:triac_curvcar_lab}
 \end{figure}
   \section{Recortador de onda con TRIAC}

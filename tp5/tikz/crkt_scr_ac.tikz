@@ -1,0 +1,17 @@
+\begin{tikzpicture}
+	% Paths, nodes and wires:
+	\draw (0, 4) to[sinusoidal voltage source, l={$20Vpp$}] (0, 2);
+	\draw (2, 6) to[american resistor, l={$\{1K5 + (5k-p)\}$}] (2, 4);
+	\draw (2, 3) to[american resistor, l={$\{p\}$}] (2, 1);
+	\draw (2, 1) to[capacitor, l={$4.7 \mu F$}] (2, -0);
+	\draw (2, 3) to[american resistor, l={$1K$}] (4, 3);
+	\draw (4, 3) to[empty diode, l={$D$}] (6, 3);
+	\draw (6.77, 4.7) to[empty thyristor, mirror, l={$TN815-800H$}] (6.77, 2.7);
+	\draw (2, 4) -| (2, 3);
+	\draw (0, 2) -| (0, -0) -- (2, -0);
+	\draw (6.77, 2.7) |- (2, -0);
+	\draw (6.77, 4.7) to[american resistor, l={$1K$}] (6.75, 6.5);
+	\draw (6.75, 6.5) -| (0, 4);
+	\draw (2, 6) -| (2, 6.5);
+	\node[shape=rectangle, minimum width=0.965cm, minimum height=0.465cm] at (1, 2.5){} node[anchor=center, align=center, text width=0.577cm, inner sep=6pt] at (1, 2.5){$50Hz$};
+\end{tikzpicture}

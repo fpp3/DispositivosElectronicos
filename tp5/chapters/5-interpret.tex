@@ -1,1 +1,58 @@
 \chapter{Interpretación de hojas de datos}
+  \textbf{Objetivo:} Interpretar y familiarizarse con los parámetros de los tiristores según las especificaciones del fabricante (\textit{datasheet}).
+  
+  \section{DIAC DB3}
+  \begin{table}[!ht]
+    \centering
+    \begin{tabular}{l|c|p{8cm}}
+      \textbf{Parámetro} & \textbf{Símbolo} & \textbf{Descripción / Significado} \\ \hline
+      Tensión de disparo & $V_{BO}$ & Voltaje mínimo necesario para que el DIAC comience a conducir corriente. \\ \hline
+      Corriente de disparo & $I_{BO}$ & Corriente correspondiente al punto de ruptura, donde el DIAC pasa al estado conductor. \\ \hline
+      Variación de tensión & $\Delta V$ & Caída de tensión que ocurre al pasar del estado de bloqueo al de conducción. \\ \hline
+      Corriente de conducción & $I_C$ & Corriente que circula a través del DIAC una vez disparado. \\
+    \end{tabular}
+    \caption{Parámetros característicos del DIAC DB3.}
+  \end{table}
+  
+  \section{SCR C106}
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{p{4cm}|c|p{8cm}}
+      \textbf{Parámetro} & \textbf{Símbolo} & \textbf{Descripción / Significado} \\ \hline
+      Tensión de bloqueo directa/inversa repetitiva & $V_{DRM}$ / $V_{RRM}$ & Máxima tensión que el SCR puede soportar en estado bloqueado (sin conducir). \\ \hline
+      Corriente RMS & $I_{T(RMS)}$ & Corriente eficaz máxima permitida a través del SCR en conducción continua. \\ \hline
+      Corriente promedio & $I_{T(AV)}$ & Corriente promedio máxima permitida en conducción continua. \\ \hline
+      Corriente de sobrecarga instantánea & $I_{TSM}$ & Corriente máxima que puede soportar el SCR durante un pulso corto (no repetitivo). \\ \hline
+      Corriente de fuga directa/inversa & $I_{DRM}$ / $I_{RRM}$ & Corriente que circula cuando el SCR está en estado bloqueado. \\ \hline
+      Corriente de compuerta & $I_{GT}$ & Corriente mínima en la compuerta necesaria para disparar el SCR. \\ \hline
+      Tensión de compuerta & $V_{GT}$ & Tensión necesaria entre compuerta y cátodo para disparo. \\ \hline
+      Corriente de mantenimiento & $I_H$ & Corriente mínima que debe circular para mantener el SCR en conducción. \\ \hline
+      Tiempo de encendido & $t_{gt}$ & Tiempo entre la aplicación del pulso de compuerta y la conducción total del SCR. \\ \hline
+      Tiempo de recuperación & $t_q$ & Tiempo necesario para que el SCR vuelva a su estado de bloqueo después de conducir. \\ \hline
+      Resistencia térmica unión-carcasa & $R_{\theta JC}$ & Resistencia térmica entre la unión y la carcasa del dispositivo. \\ \hline
+      Resistencia térmica unión-ambiente & $R_{\theta JA}$ & Resistencia térmica entre la unión y el ambiente. \\
+    \end{tabular}
+    \caption{Parámetros característicos del SCR C106.}
+  \end{table}
+  
+  \section{TRIAC BT136}
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{p{4cm}|c|p{8cm}}
+      \textbf{Parámetro} & \textbf{Símbolo} & \textbf{Descripción / Significado} \\ \hline
+      Tensión de bloqueo directa/inversa repetitiva & $V_{DRM}$ / $V_{RRM}$ & Máxima tensión soportada en estado bloqueado. \\ \hline
+      Corriente RMS & $I_{T(RMS)}$ & Corriente eficaz máxima en conducción continua. \\ \hline
+      Corriente de sobrecarga instantánea & $I_{TSM}$ & Corriente máxima que soporta en un pulso corto no repetitivo. \\ \hline
+      Corriente de compuerta & $I_{GT}$ & Corriente mínima requerida en la compuerta para disparo. \\ \hline
+      Tensión de compuerta & $V_{GT}$ & Tensión entre compuerta y terminal principal para activar el TRIAC. \\ \hline
+      Corriente de mantenimiento & $I_H$ & Corriente mínima necesaria para mantener la conducción. \\ \hline
+      Tensión en conducción & $V_T$ & Caída de tensión entre terminales principales durante conducción. \\ \hline
+      Tiempo de encendido & $t_{gt}$ & Tiempo necesario desde la señal de compuerta hasta conducción completa. \\ \hline
+      Tiempo de recuperación & $t_q$ & Tiempo necesario para volver al estado de bloqueo después de conducción. \\ \hline
+      Resistencia térmica unión-carcasa & $R_{\text{th j-mb}}$ & Resistencia térmica entre la unión y la base metálica. \\ \hline
+      Resistencia térmica unión-ambiente & $R_{\text{th j-a}}$ & Resistencia térmica entre la unión y el ambiente. \\ \hline
+      Temperatura de almacenamiento & $T_{STG}$ & Rango de temperatura segura para almacenamiento. \\ \hline
+      Temperatura de operación & $T_J$ & Temperatura máxima de operación de la unión. \\
+    \end{tabular}
+    \caption{Parámetros característicos del TRIAC BT136.}
+  \end{table}

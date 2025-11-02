@@ -6,29 +6,33 @@
             "points": [
                 {
                     "x": 0,
-                    "y": -132.283
+                    "y": -151.181
                 },
                 {
                     "x": 0,
-                    "y": -66.142
+                    "y": -75.591
                 }
             ],
-            "id": "empty bidirectionaldiode"
+            "label": {
+                "value": "20Vpp",
+                "distance": "0.12cm"
+            },
+            "id": "sinusoidal voltage source"
         },
         {
             "type": "path",
             "points": [
                 {
-                    "x": 0,
-                    "y": -132.284
+                    "x": 75.591,
+                    "y": -226.772
                 },
                 {
-                    "x": 0,
-                    "y": -207.874
+                    "x": 75.591,
+                    "y": -151.181
                 }
             ],
             "label": {
-                "value": "R_1",
+                "value": "\\{1K5 + (5k-p)\\}",
                 "distance": "0.12cm"
             },
             "id": "american resistor"
@@ -37,26 +41,26 @@
             "type": "path",
             "points": [
                 {
-                    "x": 0,
-                    "y": -66.142
+                    "x": 75.591,
+                    "y": -113.386
                 },
                 {
-                    "x": 0,
-                    "y": 0
+                    "x": 75.591,
+                    "y": -37.795
                 }
             ],
             "label": {
-                "value": "I_A",
+                "value": "\\{p\\}",
                 "distance": "0.12cm"
             },
-            "id": "qiprobe"
+            "id": "american resistor"
         },
         {
             "type": "path",
             "points": [
                 {
                     "x": 75.591,
-                    "y": -132.284
+                    "y": -37.795
                 },
                 {
                     "x": 75.591,
@@ -64,39 +68,79 @@
                 }
             ],
             "label": {
-                "value": "V_A",
+                "value": "4.7 \\mu F",
                 "distance": "0.12cm"
             },
-            "id": "qvprobe"
+            "id": "capacitor"
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 75.591,
+                    "y": -113.386
+                },
+                {
+                    "x": 151.181,
+                    "y": -113.386
+                }
+            ],
+            "label": {
+                "value": "1K",
+                "distance": "0.12cm"
+            },
+            "id": "american resistor"
         },
         {
             "type": "path",
             "points": [
                 {
                     "x": 151.181,
-                    "y": -207.874
+                    "y": -113.386
                 },
                 {
-                    "x": 151.181,
-                    "y": 0
+                    "x": 226.772,
+                    "y": -113.386
                 }
             ],
             "label": {
-                "value": "V",
+                "value": "D",
                 "distance": "0.12cm"
             },
-            "id": "qvprobe"
+            "id": "empty diode"
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 255.874,
+                    "y": -177.638
+                },
+                {
+                    "x": 255.874,
+                    "y": -102.047
+                }
+            ],
+            "label": {
+                "value": "TN815-800H",
+                "distance": "0.12cm"
+            },
+            "id": "empty thyristor",
+            "scale": {
+                "x": 1,
+                "y": -1
+            }
         },
         {
             "type": "wire",
             "points": [
                 {
                     "x": 75.591,
-                    "y": -132.284
+                    "y": -151.181
                 },
                 {
-                    "x": 0,
-                    "y": -132.284
+                    "x": 75.591,
+                    "y": -113.386
                 }
             ],
             "stroke": {
@@ -110,12 +154,36 @@
             "type": "wire",
             "points": [
                 {
-                    "x": 151.181,
-                    "y": -207.874
+                    "x": 0,
+                    "y": -75.591
                 },
                 {
                     "x": 0,
-                    "y": -207.874
+                    "y": 0
+                },
+                {
+                    "x": 75.591,
+                    "y": 0
+                }
+            ],
+            "stroke": {
+                "width": "0.4pt"
+            },
+            "directions": [
+                "-|",
+                "-|"
+            ]
+        },
+        {
+            "type": "wire",
+            "points": [
+                {
+                    "x": 255.874,
+                    "y": -102.047
+                },
+                {
+                    "x": 75.591,
+                    "y": 0
                 }
             ],
             "stroke": {
@@ -126,71 +194,33 @@
             ]
         },
         {
-            "type": "wire",
-            "points": [
-                {
-                    "x": 0,
-                    "y": 0
-                },
-                {
-                    "x": 75.591,
-                    "y": 0
-                }
-            ],
-            "stroke": {
-                "width": "0.4pt"
-            },
-            "directions": [
-                "-|"
-            ]
-        },
-        {
-            "type": "wire",
-            "points": [
-                {
-                    "x": 75.591,
-                    "y": 0
-                },
-                {
-                    "x": 151.181,
-                    "y": 0
-                }
-            ],
-            "stroke": {
-                "width": "0.4pt"
-            },
-            "directions": [
-                "-|"
-            ]
-        },
-        {
             "type": "path",
             "points": [
                 {
-                    "x": 226.772,
-                    "y": -207.874
+                    "x": 255.874,
+                    "y": -177.638
                 },
                 {
-                    "x": 226.772,
-                    "y": 0
+                    "x": 255.118,
+                    "y": -245.669
                 }
             ],
             "label": {
-                "value": "V_i",
+                "value": "1K",
                 "distance": "0.12cm"
             },
-            "id": "american voltage source"
+            "id": "american resistor"
         },
         {
             "type": "wire",
             "points": [
                 {
-                    "x": 226.772,
-                    "y": 0
+                    "x": 255.118,
+                    "y": -245.669
                 },
                 {
-                    "x": 151.181,
-                    "y": 0
+                    "x": 0,
+                    "y": -151.181
                 }
             ],
             "stroke": {
@@ -204,20 +234,40 @@
             "type": "wire",
             "points": [
                 {
-                    "x": 226.772,
-                    "y": -207.874
+                    "x": 75.591,
+                    "y": -226.772
                 },
                 {
-                    "x": 151.181,
-                    "y": -207.874
+                    "x": 75.591,
+                    "y": -245.669
                 }
             ],
             "stroke": {
                 "width": "0.4pt"
             },
             "directions": [
-                "|-"
+                "-|"
             ]
+        },
+        {
+            "type": "rect",
+            "position": {
+                "x": 37.795,
+                "y": -94.488
+            },
+            "stroke": {
+                "opacity": 0
+            },
+            "size": {
+                "x": 37.795,
+                "y": 18.898
+            },
+            "text": {
+                "text": "$50Hz$",
+                "align": 1,
+                "justify": 0,
+                "showPlaceholderText": true
+            }
         }
     ]
 }

@@ -140,8 +140,6 @@
               0.7     & 3.79     \\
               0.8     & 5.64     \\
               0.9     &  -       \\
-              1.0     &  -       \\
-              1.1     &  -       \\
             \end{tabular}
             \caption{datos relevados en el laboratorio}
             \label{tab:scr_vak0_lab}
@@ -159,7 +157,7 @@
                 scale only axis,
                 enlargelimits=false,
                   title={$I_G = f_{(V_G)}$},
-                extra x ticks={550},
+                extra x ticks={700},
                 extra x tick style={
                   grid style={red, thick, dashed},
                   tick style={red},
@@ -171,14 +169,17 @@
               ]
               \addplot[
                 color=blue,
-                mark=none,
-                thick,
-              ] table[
-                col sep=tab,
-                header=true,
-                x expr=\thisrow{V(vg)}*1000,
-                y expr=\thisrow{Ix(U1:G)}*1000
-              ] {simulations/ig_vg_vak0.txt};
+                mark=*,
+                mark size=2pt,
+              ] coordinates {
+                (200, 0.82)
+                (300, 1.27)
+                (400, 1.73)
+                (500, 2.17)
+                (600, 2.63)
+                (700, 3.79)
+                (800, 5.64)
+              };
               \end{axis}
             \end{tikzpicture}
             \caption{gráfica $I_G = f_{(V_G)}$ relevada en el laboratorio.}
@@ -191,7 +192,7 @@
         mientras se varia el $V_{AK}$.
           Se propuso realizar un barrido lineal de la tensión $V_{AK}$ mientras que $V_G = 0V$. El barrido es de $0V$ a
           $800V$ en pasos de $10V$. Para trazar esta curva, el circuito utilizado es el de la figura \ref{crkt:scr_vg0}
-          y los parámetros de simulación se pueden ver en \ref{list:scr_vg0}.
+          y los parámetros de simulación se pueden ver en el listado \ref{list:scr_vg0}.
           \begin{figure}[!ht]
             \centering
             \begin{minipage}{0.45\textwidth}
@@ -255,7 +256,8 @@
 
           Como se puede ver en la figura \ref{graph:scr_iak_vak_vg0}, la curva obtenida tiene cierta similitud a la
           curva teórica del SCR y del diodo de 4 capas. Lo que es un poco extraño es la $I_H$, que parece estar
-          bastante mas alta que la especificada por la hoja de datos ($20mA$).
+          bastante mas alta que la especificada por la hoja de datos ($20mA$). Esto es muy probablemente una limitacion
+          del modelo SPICE.
           %hay que ver de corregir el modelo. La IH es altisima comparada con la de la hoja de datos (approx 20mA)
 
     \subsection{Curva $I_A = f_{(V_G)}$}
@@ -287,7 +289,7 @@
           \begin{tikzpicture}
             \begin{axis}[
               width=14cm,
-              height=5.5cm,
+              height=5cm,
               xlabel={$V_G$ [mV]},
               ylabel={$I_{AK}$ [mA]},
               grid=both,
@@ -315,6 +317,13 @@
             \label{graph:scr_iak_vg_vak100}
         \end{figure}
 
+        En la figura \ref{graph:scr_iak_vg_vak100} puede ver el resultado de la simulacion. La cuvra obtenida no se
+        parece nada a la teorica. Suponemos que la limitacion se encuentra en el modelo SPICE que no puede modelar el
+        comportamiento del SCR en esa region de manera correcta. Existe una amplia variedad de modelos (modelos
+        conductuales, modelos equivalentes que utilizan transistores) pero ninguno puede simular el comportamiento de
+        todas las regiones del dispositivo real. El mejor modelo que se encontro es el que se esta utilizando, y
+        lamentablemente el resultado de la simulacion no es correcto.
+
         %hay que concluir algo pero el modelo todavia no esta lo suficientemente pulido para generar esta curva de
         %manera adecuada
 
@@ -338,25 +347,35 @@
           \centering
           \begin{minipage}{0.3\textwidth}
             \centering
-            \begin{tabular}{c|c}
-              $V_{AK}$ & $I_{AK}$ \\ \hline
-              100     & 20.6    \\
-              90     & 18.4     \\
-              80     & 16.3     \\
-              70     & 14.2     \\
-              60     & 12.1     \\
-              50     & 19.8     \\
-              49     & 9.7      \\
-              48     & 9.5      \\
-              47     & 9.3      \\
-              46     & 9.1      \\
-              45     & 8.9      \\
-              44     & 8.7      \\
-              43     & 8.5      \\
-              42     & 8.3      \\
-              41     & 8        \\
-              40     & 0        \\
-            \end{tabular}
+            \begin{minipage}{0.45\textwidth}
+              \centering
+              \begin{tabular}{c|c}
+                $V_{AK}$  & $I_{AK}$ \\ \hline
+                100       & 20.6      \\
+                90        & 18.4      \\
+                80        & 16.3      \\
+                70        & 14.2      \\
+                60        & 12.1      \\
+                50        & 9.8       \\
+                49        & 9.7       \\
+                48        & 9.5       \\
+              \end{tabular}
+            \end{minipage}
+            \hfill
+              \begin{minipage}{0.45\textwidth}
+              \centering
+              \begin{tabular}{c|c}
+                $V_{AK}$  & $I_{AK}$ \\ \hline
+                47        & 9.3       \\
+                46        & 9.1       \\
+                45        & 8.9       \\
+                44        & 8.7       \\
+                43        & 8.5       \\
+                42        & 8.3       \\
+                41        & 8         \\
+                40        & 0         \\
+              \end{tabular}
+            \end{minipage}
             \caption{datos relevados en el laboratorio}
             \label{tab:scr_vak100_lab}
           \end{minipage}
@@ -365,8 +384,8 @@
             \begin{tikzpicture}
               \begin{axis}[
                 width=8cm,
-                height=5.5cm,
-                xlabel={$V_{AK}$ [mV]},
+                height=5cm,
+                xlabel={$V_{AK}$ [V]},
                 ylabel={$I_{AK}$ [mA]},
                 grid=both,
                 minor tick num=1,
@@ -380,19 +399,32 @@
                   tick label style={red}
                  },
                 scaled ticks=false,
-                restrict x to domain=0:800,
-                xmin=0, xmax=800
+                restrict x to domain=0:100,
+                xmin=0, xmax=100
               ]
               \addplot[
                 color=blue,
-                mark=none,
-                thick,
-              ] table[
-                col sep=tab,
-                header=true,
-                x expr=\thisrow{V(vg)}*1000,
-                y expr=\thisrow{Ix(U1:A)}*1000
-              ] {simulations/iak_vg_vak100.txt};
+                mark=*,
+                mark size=2pt,
+                thick
+              ] coordinates {
+                (40, 0.0)
+                (41, 8.0)
+                (42, 8.3)
+                (43, 8.5)
+                (44, 8.7)
+                (45, 8.9)
+                (46, 9.1)
+                (47, 9.3)
+                (48, 9.5)
+                (49, 9.7)
+                (50, 9.8)
+                (60, 12.1)
+                (70, 14.2)
+                (80, 16.3)
+                (90, 18.4)
+                (100, 20.6)
+              };
               \end{axis}
             \end{tikzpicture}
             \caption{gráfica $I_{AK} = f_{(V_{AK})}$ relevada en el laboratorio.}
@@ -429,19 +461,18 @@
       \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
         \multicolumn{2}{c|}{$I_G = mA$} & \multicolumn{2}{c|}{$I_G = mA$} & \multicolumn{2}{c|}{$I_G = mA$} & \multicolumn{2}{c|}{$I_G = mA$} & \multicolumn{2}{c}{$I_G = mA$} \\
         $V_{AK}$ & $I_{AK}$ & $V_{AK}$ & $I_{AK}$ & $V_{AK}$ & $I_{AK}$ & $V_{AK}$ & $I_{AK}$ & $V_{AK}$ & $I_{AK}$ \\ \hline
-
-        0 & 2.9 & 0 & 3.05 & 0 & 3.13 & 0 & 3.22 & 0 & 3.22\\ \hline
-        100 & 2.91 & 80 & 3.05 & 30 & 3.18 & 20 & 3.33 & 5 & 3.39\\ \hline
-        200 & 2.91 & 80 & 3.05 & 30 & 3.18 & 20 & 3.33 & 5 & 3.39\\ \hline
-        300 & 2.91 & 240 & 3.06 & 90 & 3.19 & 60 & 3.34 & 15 & 3.4\\ \hline
-        400 & 2.92 & 300 & 3.07 & 120 & 3.20 & 80 & 3.34 & 20 & 3.4\\ \hline
-        500 & 2.92 & 400 & 3.08 & 150 & 3.2 & 100 & 3.35 & 25 & 3.4\\ \hline
-        600 & 2.93 & 480 & 3.09 & 180 & 3.21 & 120 & 3.36 & 30 & 3.41\\ \hline
-        - & - & - & - & 210 & 3.22 & 140 & 3.37 & 35 & 3.41\\ \hline
-        - & - & - & - & 240 & 3.22 & 160 & 3.38 & 40 & 3.41\\ \hline
-        - & - & - & - & 270 & 3.21 & 180 & 3.4 & 45 & 3.41\\ \hline
-        - & - & - & - & 300 & 3.23 & - & - & 50 & 3.42\\ \hline
-        - & - & - & - & 330 & 3.26 & - & - & 55 & 3.42\\ \hline
+        0 & 2.9 & 0 & 3.05 & 0 & 3.13 & 0 & 3.22 & 0 & 3.22\\
+        100 & 2.91 & 80 & 3.05 & 30 & 3.18 & 20 & 3.33 & 5 & 3.39\\
+        200 & 2.91 & 80 & 3.05 & 30 & 3.18 & 20 & 3.33 & 5 & 3.39\\
+        300 & 2.91 & 240 & 3.06 & 90 & 3.19 & 60 & 3.34 & 15 & 3.4\\
+        400 & 2.92 & 300 & 3.07 & 120 & 3.20 & 80 & 3.34 & 20 & 3.4\\
+        500 & 2.92 & 400 & 3.08 & 150 & 3.2 & 100 & 3.35 & 25 & 3.4\\
+        600 & 2.93 & 480 & 3.09 & 180 & 3.21 & 120 & 3.36 & 30 & 3.41\\
+        - & - & - & - & 210 & 3.22 & 140 & 3.37 & 35 & 3.41\\
+        - & - & - & - & 240 & 3.22 & 160 & 3.38 & 40 & 3.41\\
+        - & - & - & - & 270 & 3.21 & 180 & 3.4 & 45 & 3.41\\
+        - & - & - & - & 300 & 3.23 & - & - & 50 & 3.42\\
+        - & - & - & - & 330 & 3.26 & - & - & 55 & 3.42\\
         
       \end{tabular}
       \caption{valores relevados en el laboratorio.}
@@ -452,29 +483,112 @@
       \begin{tikzpicture}
         \begin{axis}[
           width=14cm,
-          height=5.5cm,
-          xlabel={$V_G$ [mV]},
+          height=6.5cm,
+          xlabel={$V_{AK}$ [V]},
           ylabel={$I_{AK}$ [mA]},
           grid=both,
           minor tick num=1,
           scale only axis,
           enlargelimits=false,
-            title={$I_{AK} = f_{(V_G)}$},
+          title={$I_{AK} = f_{(V_{AK}, I_G)}$},
           scaled ticks=false,
           restrict x to domain=0:700,
           xmin=0, xmax=700
         ]
+        % --- I_G = 0 mA (columna 1) ---
         \addplot[
           color=blue,
-          mark=none,
-          thick,
-        ] table[
-          col sep=tab,
-          header=true,
-          x expr=\thisrow{V(vg)}*1000,
-          y expr=\thisrow{Ix(U1:A)}*1000
-        ] {simulations/iak_vg_vak100.txt};
-        \end{axis}
+          mark=*,
+          mark size=1pt,
+          thick
+        ] coordinates {
+          (0,2.90)
+          (100,2.91)
+          (200,2.91)
+          (300,2.91)
+          (400,2.92)
+          (500,2.92)
+          (600,2.93)
+        };
+        \addlegendentry{$I_G = 0$ mA}
+
+        % --- I_G = 3.05 mA (columna 2) ---
+        \addplot[
+          color=red,
+          mark=*,
+          mark size=1pt,
+          thick
+        ] coordinates {
+          (0,3.05)
+          (80,3.05)
+          (240,3.06)
+          (300,3.07)
+          (400,3.08)
+          (480,3.09)
+        };
+        \addlegendentry{$I_G = 3.05$ mA}
+
+        % --- I_G = 3.13 mA (columna 3) ---
+        \addplot[
+          color=teal,
+          mark=*,
+          mark size=1pt,
+          thick
+        ] coordinates {
+          (0,3.13)
+          (30,3.18)
+          (90,3.19)
+          (120,3.20)
+          (150,3.20)
+          (180,3.21)
+          (210,3.22)
+          (240,3.22)
+          (270,3.21)
+          (300,3.23)
+          (330,3.26)
+        };
+        \addlegendentry{$I_G = 3.13$ mA}
+
+        % --- I_G = 3.22 mA (columna 4) ---
+        \addplot[
+          color=orange,
+          mark=*,
+          mark size=1pt,
+          thick
+        ] coordinates {
+          (0,3.22)
+          (20,3.33)
+          (60,3.34)
+          (80,3.34)
+          (100,3.35)
+          (120,3.36)
+          (140,3.37)
+          (160,3.38)
+          (180,3.40)
+        };
+        \addlegendentry{$I_G = 3.22$ mA}
+
+        % --- I_G = 3.39 mA (columna 5) ---
+        \addplot[
+          color=purple,
+          mark=*,
+          mark size=1pt,
+          thick
+        ] coordinates {
+          (0,3.22)
+          (5,3.39)
+          (15,3.40)
+          (20,3.40)
+          (25,3.40)
+          (30,3.41)
+          (35,3.41)
+          (40,3.41)
+          (45,3.41)
+          (50,3.42)
+          (55,3.42)
+        };
+        \addlegendentry{$I_G = 3.39$ mA}
+      \end{axis}
       \end{tikzpicture}
       \caption{familia de curvas de $I_{AK} = f_{V_{AK}, I_G}$}
       \label{graph:scr_curvcar_lab}
@@ -485,4 +599,47 @@
     medición generaba el disparo.
 
   \section{SCR en Corriente Alterna}
+  Una aplicación común de los SCR se encuentra en el control de potencia de ca que varían de intensidad luminosa de
+  lámparas, calentadores eléctricos y motores eléctricos. En la figura \ref{crkt:scr_ac} se muestra un circuito de
+  control de fase de resistencia variable de media onda. La resistencia conectada al SCR representa la resistencia de la
+  carga (por ejemplo, un elemento calefactor o el filamento de una lámpara). El resistor R1 (1K5) limita la corriente y
+  variando $p$, se ajusta el nivel de disparo para el SCR. Ajustando $p$ se puede hacer que el SCR se dispare en
+  cualquier punto del semiciclo positivo de la forma de onda de ca entre $0^\circ$ y $90^\circ$. Esta actividad se
+  realizara en el entorno de simulacion.
+  \begin{figure}[!ht]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+      \centering
+      \input{tikz/crkt_scr_ac.tikz}
+      \caption{circuito del SCR a simular}
+      \label{crkt:scr_ac}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+      \centering
+    \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list:scr_ac]
+.tran 0 1 .96 1m
+.step param p 100 5K 500
+.include models/st_standard_sensitive_scr.lib
+     \end{lstlisting}
+     \end{minipage}
+   \end{figure}
+
+
+  \begin{figure}[!ht]
+    \centering
+    \begin{minipage}{0.5\textwidth}
+      Lamentablemente, el circuito propuesto por el profesor no parece tener efectos significativos en el voltaje o la
+      corriente de la carga como deberia. Puede revisar la figura \ref{fig:scr_ac} para ver los efectos de haber
+      realizado el barrido del potenciometro. Desconocemos el motivo de por que el circuito no genera cambios
+      significativos.
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.4\textwidth}
+      \centering
+      \includegraphics[width=1\textwidth]{images/scr_ac.png}
+      \caption{resultados de simulacion del recortador de media onda.}
+      \label{fig:scr_ac}
+    \end{minipage}
+  \end{figure}
 
