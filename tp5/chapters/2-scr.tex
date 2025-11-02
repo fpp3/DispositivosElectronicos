@@ -20,7 +20,7 @@
     cátodo. El SCR se puede activar también por voltaje entre ánodo y cátodo, ya que mientras que $I_G = 0$, el componente
     se comportara como un diodo de 4 capas.
 
-    Se propuso analizar las regiones de acrivacion y corrientes de codo del SCR seleccionado y compararlas con las
+    Se propuso analizar las regiones de activación y corrientes de codo del SCR seleccionado y compararlas con las
     provistas por el fabricante en el datasheet. Para nuestra practica, seleccionamos el TYN612M. Para analizar las
     diferentes regiones, se realizaran 3 pruebas:
     \begin{itemize}
@@ -50,7 +50,7 @@
           \hfill
           \begin{minipage}{0.45\textwidth}
             \centering
-          \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list:scr_vak0]
+          \begin{lstlisting}[style=ltspice, caption={parámetros de simulación LTspice}, label=list:scr_vak0]
 .dc V1 0 20 100m
           \end{lstlisting}
           \end{minipage}
@@ -131,7 +131,7 @@
           \begin{minipage}{0.3\textwidth}
             \centering
             \begin{tabular}{c|c}
-              $V_G$ & $I_G$ \\ \hline
+              $V_G[V]$ & $I_G[mA]$ \\ \hline
               0.2     & 0.82     \\
               0.3     & 1.27     \\
               0.4     & 1.73     \\
@@ -204,7 +204,7 @@
             \hfill
             \begin{minipage}{0.45\textwidth}
               \centering
-            \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list:scr_vg0]
+            \begin{lstlisting}[style=ltspice, caption={parámetros de simulación LTspice}, label=list:scr_vg0]
 .dc V2 0 800 10
             \end{lstlisting}
             \end{minipage}
@@ -256,7 +256,7 @@
 
           Como se puede ver en la figura \ref{graph:scr_iak_vak_vg0}, la curva obtenida tiene cierta similitud a la
           curva teórica del SCR y del diodo de 4 capas. Lo que es un poco extraño es la $I_H$, que parece estar
-          bastante mas alta que la especificada por la hoja de datos ($20mA$). Esto es muy probablemente una limitacion
+          bastante mas alta que la especificada por la hoja de datos ($20mA$). Esto es muy probablemente una limitación
           del modelo SPICE.
           %hay que ver de corregir el modelo. La IH es altisima comparada con la de la hoja de datos (approx 20mA)
 
@@ -279,7 +279,7 @@
           \hfill
           \begin{minipage}{0.45\textwidth}
             \centering
-          \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list:scr_vak100]
+          \begin{lstlisting}[style=ltspice, caption={parámetros de simulación LTspice}, label=list:scr_vak100]
 .dc V1 0 20 100m
           \end{lstlisting}
           \end{minipage}
@@ -317,12 +317,12 @@
             \label{graph:scr_iak_vg_vak100}
         \end{figure}
 
-        En la figura \ref{graph:scr_iak_vg_vak100} puede ver el resultado de la simulacion. La cuvra obtenida no se
-        parece nada a la teorica. Suponemos que la limitacion se encuentra en el modelo SPICE que no puede modelar el
-        comportamiento del SCR en esa region de manera correcta. Existe una amplia variedad de modelos (modelos
+        En la figura \ref{graph:scr_iak_vg_vak100} puede ver el resultado de la simulación. La curva obtenida no se
+        parece nada a la teórica. Suponemos que la limitación se encuentra en el modelo SPICE que no puede modelar el
+        comportamiento del SCR en esa región de manera correcta. Existe una amplia variedad de modelos (modelos
         conductuales, modelos equivalentes que utilizan transistores) pero ninguno puede simular el comportamiento de
-        todas las regiones del dispositivo real. El mejor modelo que se encontro es el que se esta utilizando, y
-        lamentablemente el resultado de la simulacion no es correcto.
+        todas las regiones del dispositivo real. El mejor modelo que se encontró es el que se esta utilizando, y
+        lamentablemente el resultado de la simulación no es correcto.
 
         %hay que concluir algo pero el modelo todavia no esta lo suficientemente pulido para generar esta curva de
         %manera adecuada
@@ -335,7 +335,7 @@
         Como primer apartado, fijando la $V_{AK} = 100V$ fuimos variando el potenciómetro hasta que notamos que el
         dispositivo se activo por corriente de gate. Los valores relevados son:
         \begin{equation*}
-          V_G = 0.8V \quad I_G = 3,31mA
+          V_G = 0.8V \quad I_G = 3.31mA
         \end{equation*}
 
         Posterior a eso, desconectamos el circuito de disparo y notamos que el dispositivo permaneció en la región de
@@ -345,12 +345,13 @@
 
         \begin{figure}[!ht]
           \centering
-          \begin{minipage}{0.3\textwidth}
+          \begin{minipage}{0.45\textwidth}
             \centering
             \begin{minipage}{0.45\textwidth}
               \centering
+              \resizebox{\textwidth}{!}{
               \begin{tabular}{c|c}
-                $V_{AK}$  & $I_{AK}$ \\ \hline
+                $V_{AK}[V]$  & $I_{AK}[mA]$ \\ \hline
                 100       & 20.6      \\
                 90        & 18.4      \\
                 80        & 16.3      \\
@@ -360,12 +361,14 @@
                 49        & 9.7       \\
                 48        & 9.5       \\
               \end{tabular}
+              }
             \end{minipage}
             \hfill
               \begin{minipage}{0.45\textwidth}
               \centering
+              \resizebox{\textwidth}{!}{
               \begin{tabular}{c|c}
-                $V_{AK}$  & $I_{AK}$ \\ \hline
+                $V_{AK}[V]$  & $I_{AK}[mA]$ \\ \hline
                 47        & 9.3       \\
                 46        & 9.1       \\
                 45        & 8.9       \\
@@ -375,15 +378,16 @@
                 41        & 8         \\
                 40        & 0         \\
               \end{tabular}
+              }
             \end{minipage}
             \caption{datos relevados en el laboratorio}
             \label{tab:scr_vak100_lab}
           \end{minipage}
           \hfill
-          \begin{minipage}{0.6\textwidth}
+          \begin{minipage}{0.5\textwidth}
             \begin{tikzpicture}
               \begin{axis}[
-                width=8cm,
+                width=7cm,
                 height=5cm,
                 xlabel={$V_{AK}$ [V]},
                 ylabel={$I_{AK}$ [mA]},
@@ -391,7 +395,7 @@
                 minor tick num=1,
                 scale only axis,
                 enlargelimits=false,
-                  title={$I_{AK} = f_{(V_G)}$},
+                  title={$I_{AK} = f_{(V_{AK})}$},
                 extra x ticks={550},
                 extra x tick style={
                   grid style={red, thick, dashed},
@@ -456,11 +460,18 @@
       \label{crkt:scr_curvcar_lab}
     \end{figure}
 
+    Puede revisar los valores relevados en el laboratorio en la tabla \ref{tab:scr_curvcar_lab} y la familia de curvas
+    en la figura \ref{graph:scr_curvcar_lab}. Las tablas terminan cuando en el recorrido de tensión a la próxima
+    medición generaba el disparo.
+
     \begin{table}[!ht]
       \centering
+      \resizebox{\textwidth}{!}{
       \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
-        \multicolumn{2}{c|}{$I_G = mA$} & \multicolumn{2}{c|}{$I_G = mA$} & \multicolumn{2}{c|}{$I_G = mA$} & \multicolumn{2}{c|}{$I_G = mA$} & \multicolumn{2}{c}{$I_G = mA$} \\
-        $V_{AK}$ & $I_{AK}$ & $V_{AK}$ & $I_{AK}$ & $V_{AK}$ & $I_{AK}$ & $V_{AK}$ & $I_{AK}$ & $V_{AK}$ & $I_{AK}$ \\ \hline
+        \multicolumn{2}{c|}{$I_G = 2.9mA$} & \multicolumn{2}{c|}{$I_G = 3mA$} & \multicolumn{2}{c|}{$I_G = 3.1mA$} &
+        \multicolumn{2}{c|}{$I_G = 3.2mA$} & \multicolumn{2}{c}{$I_G = 3.3mA$} \\
+        $V_{AK}[V]$ & $I_{AK}[mA]$ & $V_{AK}[V]$ & $I_{AK}[mA]$ & $V_{AK}[V]$ & $I_{AK}[mA]$ & $V_{AK}[V]$ &
+        $I_{AK}[mA]$ & $V_{AK}[V]$ & $I_{AK}[mA]$ \\ \hline
         0 & 2.9 & 0 & 3.05 & 0 & 3.13 & 0 & 3.22 & 0 & 3.22\\
         100 & 2.91 & 80 & 3.05 & 30 & 3.18 & 20 & 3.33 & 5 & 3.39\\
         200 & 2.91 & 80 & 3.05 & 30 & 3.18 & 20 & 3.33 & 5 & 3.39\\
@@ -475,6 +486,7 @@
         - & - & - & - & 330 & 3.26 & - & - & 55 & 3.42\\
         
       \end{tabular}
+      }
       \caption{valores relevados en el laboratorio.}
       \label{tab:scr_curvcar_lab}
     \end{table}
@@ -493,7 +505,8 @@
           title={$I_{AK} = f_{(V_{AK}, I_G)}$},
           scaled ticks=false,
           restrict x to domain=0:700,
-          xmin=0, xmax=700
+          xmin=0, xmax=700,
+          ymin=2.5, ymax=4
         ]
         % --- I_G = 0 mA (columna 1) ---
         \addplot[
@@ -509,8 +522,9 @@
           (400,2.92)
           (500,2.92)
           (600,2.93)
+          (1.2,127)
         };
-        \addlegendentry{$I_G = 0$ mA}
+        \addlegendentry{$I_G = 2.9$ mA}
 
         % --- I_G = 3.05 mA (columna 2) ---
         \addplot[
@@ -525,8 +539,9 @@
           (300,3.07)
           (400,3.08)
           (480,3.09)
+          (1.2,102)
         };
-        \addlegendentry{$I_G = 3.05$ mA}
+        \addlegendentry{$I_G = 3$ mA}
 
         % --- I_G = 3.13 mA (columna 3) ---
         \addplot[
@@ -546,8 +561,9 @@
           (270,3.21)
           (300,3.23)
           (330,3.26)
+          (1.2,70)
         };
-        \addlegendentry{$I_G = 3.13$ mA}
+        \addlegendentry{$I_G = 3.1$ mA}
 
         % --- I_G = 3.22 mA (columna 4) ---
         \addplot[
@@ -565,8 +581,9 @@
           (140,3.37)
           (160,3.38)
           (180,3.40)
+          (1.2,38)
         };
-        \addlegendentry{$I_G = 3.22$ mA}
+        \addlegendentry{$I_G = 3.2$ mA}
 
         % --- I_G = 3.39 mA (columna 5) ---
         \addplot[
@@ -586,17 +603,22 @@
           (45,3.41)
           (50,3.42)
           (55,3.42)
+          (1.2,11)
         };
-        \addlegendentry{$I_G = 3.39$ mA}
+        \addlegendentry{$I_G = 3.3$ mA}
       \end{axis}
       \end{tikzpicture}
-      \caption{familia de curvas de $I_{AK} = f_{V_{AK}, I_G}$}
+      \caption{familia de curvas de $I_{AK} = f_{(V_{AK}, I_G)}$}
       \label{graph:scr_curvcar_lab}
     \end{figure}
 
-    Puede revisar los valores relevados en el laboratorio en la tabla \ref{tab:scr_curvcar_lab} y la familia de curvas
-    en la figura \ref{graph:scr_curvcar_lab}. Las tablas terminan cuando en el recorrido de tensión a la próxima
-    medición generaba el disparo.
+    Como se puede ver, mientras que el dispositivo se encuentra en su estado no polarizado, la conducción de corriente
+    es similar a la corriente que circula por el gate. Esto es debido a que al no ser un dispositivo con su gate aislado
+    (como si lo es el JFET), la corriente que ingrese por cualquiera de los pines del dispositivo, va a circular hacia
+    el pin con menor potencial, que en este caso seria el cátodo, donde esta colocado el amperímetro. Podemos apreciar
+    también como a medida que la corriente de gate es cada vez mayor, la tensión de ruptura en directa $V_{BR_{Fn}}$ va
+    disminuyendo, produciendo que la activación del dispositivo (que se ve en el gráfico como la corriente se dispara)
+    ocurra a un potencial $V_{AK}$ menor.
 
   \section{SCR en Corriente Alterna}
   Una aplicación común de los SCR se encuentra en el control de potencia de ca que varían de intensidad luminosa de
@@ -605,7 +627,7 @@
   carga (por ejemplo, un elemento calefactor o el filamento de una lámpara). El resistor R1 (1K5) limita la corriente y
   variando $p$, se ajusta el nivel de disparo para el SCR. Ajustando $p$ se puede hacer que el SCR se dispare en
   cualquier punto del semiciclo positivo de la forma de onda de ca entre $0^\circ$ y $90^\circ$. Esta actividad se
-  realizara en el entorno de simulacion.
+  realizara en el entorno de simulación.
   \begin{figure}[!ht]
     \centering
     \begin{minipage}{0.45\textwidth}
@@ -617,7 +639,7 @@
     \hfill
     \begin{minipage}{0.45\textwidth}
       \centering
-    \begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}, label=list:scr_ac]
+    \begin{lstlisting}[style=ltspice, caption={parámetros de simulación LTspice}, label=list:scr_ac]
 .tran 0 1 .96 1m
 .step param p 100 5K 500
 .include models/st_standard_sensitive_scr.lib
@@ -630,15 +652,15 @@
     \centering
     \begin{minipage}{0.5\textwidth}
       Lamentablemente, el circuito propuesto por el profesor no parece tener efectos significativos en el voltaje o la
-      corriente de la carga como deberia. Puede revisar la figura \ref{fig:scr_ac} para ver los efectos de haber
-      realizado el barrido del potenciometro. Desconocemos el motivo de por que el circuito no genera cambios
+      corriente de la carga como debería. Puede revisar la figura \ref{fig:scr_ac} para ver los efectos de haber
+      realizado el barrido del potenciómetro. Desconocemos el motivo de por que el circuito no genera cambios
       significativos.
     \end{minipage}
     \hfill
     \begin{minipage}{0.4\textwidth}
       \centering
       \includegraphics[width=1\textwidth]{images/scr_ac.png}
-      \caption{resultados de simulacion del recortador de media onda.}
+      \caption{resultados de simulación del recortador de media onda.}
       \label{fig:scr_ac}
     \end{minipage}
   \end{figure}
