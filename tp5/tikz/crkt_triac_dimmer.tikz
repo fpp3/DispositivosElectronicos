@@ -1,0 +1,20 @@
+\begin{tikzpicture}
+	% Paths, nodes and wires:
+	\draw (2, 5.4) to[empty triac, mirror, l={$TIC226$}] (4.2, 5.4);
+	\draw (3.8, 3.4) to[american resistor, l_={$10K$}] (1, 3.4);
+	\draw (3.8, 1.4) to[capacitor, l_={$22nF$}] (1, 1.4);
+	\draw (3.8, 3.4) to[empty bidirectionaldiode, l={$30V$}] (3.8, 1.4);
+	\draw (6, 5.4) to[american resistor, l={$10K$}] (6, 2.4);
+	\draw (6, 2.4) to[american potentiometer, mirror, l={$250K$}] (6, 0.4);
+	\draw (1, 1.4) -- (1, 5.4) -- (2, 5.4);
+	\draw (3.8, 4.63) -| (3.8, 3.4);
+	\draw (4.2, 5.4) -- (6, 5.4);
+	\draw (5.44, 1.4) |- (3.8, 1.4);
+	\draw (-0, -0) -- (7, -0);
+	\node[circ](N1) at (0, 5.4){} node[anchor=east] at (N1.text){$F$};
+	\node[circ](N2) at (7, 5.4){} node[anchor=west] at (N2.text){$O$};
+	\node[circ](N3) at (7, -0){} node[anchor=west] at (N3.text){$N$};
+	\node[circ](N4) at (-0, -0){} node[anchor=east] at (N4.text){$N$};
+	\draw (1, 5.4) -- (0, 5.4);
+	\draw (6, 5.4) -- (7, 5.4);
+\end{tikzpicture}

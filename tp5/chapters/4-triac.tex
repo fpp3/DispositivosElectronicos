@@ -136,3 +136,53 @@
     aplicado, se produce el disparo. La diferencia entre cada prueba es prácticamente despreciable.
 
   \section{Recortador de onda con TRIAC}
+    Como el SCR, los triacs también se utilizan para controlar la potencia promedio suministrada a una carga por el
+    método de control de fase. El TRIAC puede ser disparado de tal forma que la potencia de ca sea suministrada a la
+    carga durante una parte controlada de cada semiciclo. Durante cada semiciclo positivo de la ca, el TRIAC se apaga
+    durante un cierto intervalo, llamado ángulo de retardo (medido en grados) y luego se dispara y conduce corriente a
+    través de la carga durante la parte restante del semiciclo positivo, llamado ángulo de conducción. Una acción
+    similar ocurre en el semiciclo negativo excepto porque, desde luego, la corriente es conducida en la dirección
+    opuesta a través de la carga. En la figura \ref{crkt:triac_dimmer} puede ver el esquemático del Dimmer con TRIAC.
+
+    \begin{figure}[!ht]
+      \centering
+      \input{tikz/crkt_triac_dimmer.tikz}
+      \caption{circuito dimmer con TRIAC.}
+      \label{crkt:triac_dimmer}
+    \end{figure}
+
+    \begin{figure}[!ht]
+      \centering
+      \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{pictures/dimmer_1.jpeg}
+        \caption{Tensión en la carga con dimmer al 30\%.}
+      \end{minipage}
+      \hfill
+      \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{pictures/dimmer_2.jpeg}
+        \caption{Tensión en la carga con dimmer al 50\%.}
+      \end{minipage}
+    \end{figure}
+    \begin{figure}[!ht]
+      \centering
+      \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{pictures/dimmer_3.jpeg}
+        \caption{Tensión en la carga con dimmer al 70\%.}
+      \end{minipage}
+      \hfill
+      \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{pictures/dimmer_full.jpeg}
+        \caption{Tensión en la carga con dimmer al 100\%.}
+      \end{minipage}
+    \end{figure}
+
+    Como se puede ver en las figuras, el circuito es capaz de recortar la onda senoidal de la entrada de la linea en
+    prácticamente los $360^\circ$ de la misma. Colocando el potenciómetro al 0\% no había circulación de corriente en el
+    circuito de salida, y variando el potenciómetro es posible seleccionar el punto en el cual se produce el disparo del
+    TRIAC. Cuando el potenciómetro esta al 100\%, casi la totalidad de la senoidal de la entrada es trazada en la
+    salida, solo recortando una pequeña parte al final de cada semiciclo, que posiblemente es producto de la dispersión
+    de parámetros al momento que el TRIAC fue disparado causado por los elementos del circuito.
