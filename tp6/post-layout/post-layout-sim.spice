@@ -1,0 +1,14 @@
+.lib /home/fpp/pdk/sky130B/libs.tech/ngspice/sky130.lib.spice tt
+.include "not_gate.spice"
+
+V1 VDD GND 1.8
+V2 in GND PULSE(0 1.8 0 1n 1n 5n 10n 4)
+R1 out GND 10k m=1
+
+.control
+  tran 0.5n 40n
+  write sim.raw
+  save all
+.endc
+
+.end
