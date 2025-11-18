@@ -5,27 +5,6 @@ K {}
 V {}
 S {}
 E {}
-B 2 -310 -500 490 -100 {flags=graph
-y1=0
-y2=2
-ypos1=0
-ypos2=2
-divy=5
-subdivy=1
-unity=1
-x1=0
-x2=10e-6
-divx=5
-subdivx=1
-xlabmag=1.0
-ylabmag=1.0
-node="vin"
-color=""
-dataset=sim_not.raw
-unitx=1
-logx=0
-logy=0
-}
 N -150 -0 -40 0 {
 lab=vin}
 N -0 -70 0 -40 {
@@ -60,16 +39,14 @@ C {gnd.sym} 0 80 0 0 {name=l1 lab=GND}
 C {lab_pin.sym} -120 0 1 0 {name=p1 sig_type=std_logic lab=vin}
 C {lab_pin.sym} 120 0 1 0 {name=p2 sig_type=std_logic lab=vout
 }
-C {sky130_fd_pr/corner.sym} -440 -270 0 0 {name=CORNER only_toplevel=true corner=tt}
-C {simulator_commands_shown.sym} -320 180 0 0 {name=COMMANDS
+C {sky130_fd_pr/corner.sym} -420 -140 0 0 {name=CORNER only_toplevel=true corner=tt}
+C {simulator_commands_shown.sym} -440 130 0 0 {name=COMMANDS
 simulator=ngspice
 only_toplevel=false 
 value="
 .control
  tran 0.5n 40n
- option filetype=ascii
- set filetype=ascii
- wrdata sim.csv time v(vin) v(vout)
+ write sim.raw
  save all
 .endc
 "}

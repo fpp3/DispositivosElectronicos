@@ -1,0 +1,4 @@
+* SPICE3 file created from not_gate.ext - technology: sky130B
+
+X0 out in VDD VDD sky130_fd_pr__pfet_01v8 ad=0.29 pd=2.58 as=0.29 ps=2.58 w=1 l=0.15
+X1 GND in out GND sky130_fd_pr__nfet_01v8 ad=0.29 pd=2.58 as=0.29 ps=2.58 w=1 l=0.15
