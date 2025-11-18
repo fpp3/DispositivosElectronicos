@@ -1,0 +1,29 @@
+v {xschem version=3.4.4 file_version=1.2
+}
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"
+schematic="../schematic/not_gate.sch"
+}
+V {}
+S {}
+E {}
+L 4 -20 -30 40 0 {}
+L 4 -20 30 40 0 {}
+L 4 -20 -30 -20 30 {}
+L 4 50 0 70 -0 {}
+L 4 -40 -0 -20 -0 {}
+L 4 -0 -40 0 -20 {}
+L 4 -0 20 0 40 {}
+B 5 67.5 -2.5 72.5 2.5 {name=out dir=out}
+B 5 -42.5 -2.5 -37.5 2.5 {name=in dir=in}
+B 5 -2.5 37.5 2.5 42.5 {name=GND dir=in}
+B 5 -2.5 -42.5 2.5 -37.5 {name=VDD dir=in}
+A 4 45 -0 5 180 360 {}
+T {@symname} 26 -51 0 0 0.3 0.3 {}
+T {@name} 30 -32 0 0 0.2 0.2 {}
+T {out} 25 -9 0 1 0.2 0.2 {}
+T {in} -15 -9 0 0 0.2 0.2 {}
+T {VDD} -25 -44 0 0 0.2 0.2 {}
+T {GND} -25 31 0 0 0.2 0.2 {}
