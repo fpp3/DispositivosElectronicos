@@ -8,6 +8,7 @@ R1 out GND 10k m=1
 .control
   tran 0.5n 40n
   write sim.raw
+  wrdata salida.csv in out
   save all
 .endc
 
