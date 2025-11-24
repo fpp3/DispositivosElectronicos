@@ -1,1 +1,68 @@
 \chapter{Conclusiones}
+
+\chapter{Conclusiones}
+
+
+
+Durante el desarrollo del inversor CMOS surgieron desafíos que son característicos del diseño 
+analógico utilizando herramientas open–source. Estos desafíos aparecieron tanto en la preparación
+del entorno como en la ejecución del flujo de diseño.
+
+Uno de los primeros desafíos fue en lograr que todas las herramientas reconocerieran adecuadamente
+el PDK \textit{SkyWater SKY130}. Esto implicó resolver dependencias de compilación, ajustar rutas en
+archivos de configuración como \texttt{xschemrc} y verificar manualmente la presencia de modelos 
+SPICE, librerías de símbolos.
+
+La herramienta Xschem requirió una configuración cuidadosa de variables como 
+\texttt{XSCHEM\_LIBRARY\_PATH} y \texttt{search\_path} para poder acceder a los símbolos del PDK. 
+Errores menores en las rutas producían la imposibilidad de cargar dispositivos esenciales del 
+proceso.
+
+En la etapa de simulación se debieron ajustar parámetros como los anchos de canal, la capacidad de 
+carga, la fuente PULSE y los tiempos de análisis transitorio. Este proceso permitió obtener formas
+de onda coherentes y evaluar tiempos de subida, bajada y regiones de operación de los transistores.
+
+Herramientas como Xschem, Ngspice, Magic y Netgen poseen interfaces y flujos de trabajo diferentes
+entre sí. A diferencia de otras aplicaciones comerciales más integradas, el flujo open–source 
+requiere comprender cómo interactúa cada herramienta y cómo se conectan mediante archivos 
+intermedios. Esto representó un gran desafio, especialmente en la depuración de errores y la 
+interpretación de mensajes de simulación o verificación.
+
+Un aspecto importante fue la necesidad de realizar múltiples iteraciones para corregir errores de
+configuración, incompatibilidades entre librerías o parámetros eléctricos no apropiados. Este 
+comportamiento es típico del diseño analógico y pone de manifiesto que pocas veces un circuito 
+funciona correctamente en el primer intento.
+Los principales desafíos se centraron en la integración del PDK, la configuración de las
+herramientas y la correcta interacción entre esquemático, modelos físicos y simulaciones. Aunque 
+demandó tiempo resolver estos inconvenientes, el proceso permitió comprender el flujo real de diseño 
+y adquirir una visión profunda del trabajo con circuitos CMOS utilizando herramientas open–source.
+
+Las reglas de diseño físico y las características del proceso CMOS influyeron directamente en el 
+desarrollo del circuito, ya que establecen dimensiones mínimas, espaciamientos y restricciones de 
+enrutamiento que deben respetarse para garantizar la fabricabilidad del diseño. Estas limitaciones 
+condicionaron la elección de los tamaños de los transistores, la proporción entre NMOS y PMOS, así 
+como la selección de dispositivos compatibles con el PDK. Además, las propiedades eléctricas del 
+proceso (como movilidad, capacitancias y parasitismos) afectaron la respuesta dinámica del circuito
+y guiaron las decisiones tomadas durante la simulación. Estas reglas aseguraron que el diseño 
+esquemático, las simulaciones y el futuro layout se mantuvieran coherentes con un flujo CMOS 
+realista.
+
+Los parámetros eléctricos y físicos más críticos para cumplir con las especificaciones iniciales
+fueron la ganancia de tensión, el punto de operación de los transistores, la corriente de 
+polarización y el margen de salida, ya que determinaron directamente el funcionamiento lineal del 
+circuito. También resultaron fundamentales la relación entre los anchos y largos de canal (W/L), las
+capacitancias parásitas asociadas al proceso CMOS y las resistencias internas, porque afectaron la 
+velocidad de respuesta, el slew rate y la estabilidad del circuito. Finalmente, el correcto ajuste 
+del umbral de los MOSFET y el control del consumo de potencia fueron esenciales para garantizar que
+el desempeño simulado coincidiera con los requisitos planteados.
+
+La validación del funcionamiento del circuito antes del diseño físico se logró mediante una serie de 
+simulaciones eléctricas realizadas en distintas etapas. Primero, se efectuaron simulaciones de 
+\textit{DC} para verificar los puntos de operación y asegurar que los transistores trabajaran en la 
+región apropiada. Luego, se realizaron simulaciones de \textit{transitorio} para analizar la 
+respuesta temporal y confirmar que el circuito cumpliera con los tiempos de establecimiento y el 
+comportamiento dinámico esperado. Finalmente, se llevaron a cabo simulaciones de \textit{AC} y 
+barridos paramétricos para evaluar la ganancia, el ancho de banda y la estabilidad frente a 
+variaciones. Este conjunto de análisis permitió identificar problemas tempranos, ajustar dimensiones
+de dispositivos y confirmar que el diseño lógico y eléctrico era funcional antes de avanzar al 
+diseño físico.
