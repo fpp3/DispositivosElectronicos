@@ -1,1 +1,23 @@
 \chapter{Introducción}
+
+En este trabajo se busca comprender y aplicar el flujo de diseño analógico para circuitos integrados
+en tecnología CMOS utilizando herramientas \textit{open source}. Esto también requería una 
+validación de lo realizado, la cual se llevó a cabo mediante las reglas de diseño físico (DRC) y las
+simulaciones. Todo el proceso se efectuó utilizando el PDK \textbf{SKY130}, que proporcionó las 
+reglas, modelos y bibliotecas necesarias para diseñar circuitos integrados en tecnología CMOS.
+
+
+El desarrollo se realizó en cinco etapas, siendo la primera de ellas el uso de \textbf{Xschem}, 
+herramienta que permite esquematizar el circuito propuesto por el profesor. Luego, se simuló el 
+comportamiento del inversor y se obtuvieron sus curvas características mediante \textbf{Ngspice}. 
+Para concluir la etapa de diseño, se utilizó \textbf{Magic} para realizar el \textit{layout} del 
+circuito, colocando los transistores funcionales dentro del área del chip. Posteriormente, se 
+ejecutó el \textbf{DRC} para verificar que el \textit{layout} cumpliera con las reglas y 
+restricciones impuestas por SKY130. A su vez, dentro de la etapa de verificación se realizó el 
+\textbf{LVS}, con el fin de asegurar que el diseño físico del integrado correspondiera exactamente 
+con el esquema eléctrico original.
+
+Finalmente, se efectuó el \textbf{tapeout}, exportando el diseño final del chip en formato
+\texttt{.gds} hacia la \textit{foundry} o planta de producción. Este archivo contiene la 
+representación geométrica y jerárquica del \textit{layout} del circuito integrado.
+
